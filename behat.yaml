@@ -2,13 +2,20 @@ default:
   suites:
     default:
       contexts:
-        - ServerContext
+        - PgSqlServerContext
+        - MySqlServerContext
+        - SqliteServerContext
+        - FeatureContext
   extensions:
     DVDoug\Behat\CodeCoverage\Extension:
       filter:
         include:
           directories:
-            'src': ~
+            'dbadmin-driver/src': ~
+            'dbadmin-driver-pgsql/src': ~
+            'dbadmin-driver-mysql/src': ~
+            'dbadmin-driver-sqlite/src': ~
+            'jaxon-dbadmin/src': ~
       reports:
         html:
           target: build/logs/html

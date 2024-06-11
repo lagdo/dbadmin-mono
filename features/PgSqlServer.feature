@@ -1,17 +1,10 @@
-Feature: Database server
+Feature: PostgreSQL Database server
   As a database user, I want to query a database server
 
-  Scenario: Read the database names in version lower than 5
+  Scenario: Read the database names
     Given The default server is connected
-    And The driver version is 4.9
     When I read the database list
-    Then The show databases query is executed
-
-  Scenario: Read the database names in version greater than 5
-    Given The default server is connected
-    And The driver version is 5.5
-    When I read the database list
-    Then The select schema name query is executed
+    Then The read database list query is executed
 
   Scenario: Read the size of an unknown database
     Given The default server is connected
