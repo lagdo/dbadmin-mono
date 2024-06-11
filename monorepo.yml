@@ -1,0 +1,31 @@
+# URL or absolute path to the remote GIT repository of the monorepo
+monorepo_url: git@github.com:lagdo/dbadmin.git
+
+# All branches that match this regular expression will be split by default
+branch_filter: /^(main|develop|\d+\.\d+)$/
+
+# List of all split projects
+repositories:
+    jaxon-dbadmin:
+        # URL or absolute path to the remote GIT repository
+        url: git@github.com:lagdo/jaxon-dbadmin.git
+    dbadmin-driver:
+        # URL or absolute path to the remote GIT repository
+        url: git@github.com:lagdo/dbadmin-driver.git
+    dbadmin-driver-mysql:
+        # URL or absolute path to the remote GIT repository
+        url: git@github.com:lagdo/dbadmin-driver-mysql.git
+    dbadmin-driver-pgsql:
+        # URL or absolute path to the remote GIT repository
+        url: git@github.com:lagdo/dbadmin-driver-pgsql.git
+    dbadmin-driver-sqlite:
+        # URL or absolute path to the remote GIT repository
+        url: git@github.com:lagdo/dbadmin-driver-sqlite.git
+    # dbadmin-voyager:
+        # URL or absolute path to the remote GIT repository
+        # url: git@github.com:lagdo/dbadmin-voyager.git
+
+# Optional additional composer settings for the root composer.json
+composer:
+    require-dev:
+        contao/monorepo-tools: ^0.2

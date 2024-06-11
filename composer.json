@@ -1,0 +1,85 @@
+{
+    "name": "lagdo/dbadmin",
+    "type": "application",
+    "description": "Database management dashboard based on Jaxon and Adminer",
+    "authors": [
+        {
+            "name": "Thierry Feuzeu",
+            "email": "thierry.feuzeu@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/lagdo/dbadmin",
+    "license": "Apache-2.0",
+    "keywords": [
+        "Database",
+        "Admin",
+        "Sql",
+        "Dashboard",
+        "Jaxon",
+        "Ajax",
+        "PostgreSQL",
+        "MySQL",
+        "Sqlite",
+        "Oracle",
+        "MsSQL",
+        "MongoDb"
+    ],
+    "support": {
+        "issues": "https://github.com/lagdo/dbadmin/issues",
+        "source": "https://github.com/lagdo/dbadmin"
+    },
+    "require": {
+        "php": ">=7.1.0",
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "jaxon-php/jaxon-annotations": "v5.x-dev",
+        "jaxon-php/jaxon-core": "v5.x-dev",
+        "jaxon-php/jaxon-dialogs": "v5.x-dev",
+        "lagdo/ui-builder": "^0.1"
+    },
+    "require-dev": {
+        "behat/behat": "^3.10",
+        "contao/monorepo-tools": "^0.2.0",
+        "dvdoug/behat-code-coverage": "5.0.*",
+        "php-coveralls/php-coveralls": "^2.5",
+        "phpunit/phpcov": "^8.2",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lagdo\\DbAdmin\\": "jaxon-dbadmin/src/lib/",
+            "Lagdo\\DbAdmin\\App\\": "jaxon-dbadmin/app/",
+            "Lagdo\\DbAdmin\\Db\\": "jaxon-dbadmin/src/db/",
+            "Lagdo\\DbAdmin\\Driver\\": "dbadmin-driver/src/",
+            "Lagdo\\DbAdmin\\Driver\\MySql\\": "dbadmin-driver-mysql/src/",
+            "Lagdo\\DbAdmin\\Driver\\PgSql\\": "dbadmin-driver-pgsql/src/",
+            "Lagdo\\DbAdmin\\Driver\\Sqlite\\": "dbadmin-driver-sqlite/src/",
+            "Lagdo\\DbAdmin\\Ui\\": "jaxon-dbadmin/src/ui/"
+        },
+        "files": [
+            "dbadmin-driver-mysql/src/start.php",
+            "dbadmin-driver-pgsql/src/start.php",
+            "dbadmin-driver-sqlite/src/start.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lagdo\\DbAdmin\\Driver\\MySql\\Tests\\": "dbadmin-driver-mysql/tests/",
+            "Lagdo\\DbAdmin\\Driver\\PgSql\\Tests\\": "dbadmin-driver-pgsql/tests/",
+            "Lagdo\\DbAdmin\\Driver\\Sqlite\\Tests\\": "dbadmin-driver-sqlite/tests/",
+            "Lagdo\\DbAdmin\\Tests\\": "jaxon-dbadmin/tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "replace": {
+        "lagdo/dbadmin-driver": "self.version",
+        "lagdo/dbadmin-driver-mysql": "self.version",
+        "lagdo/dbadmin-driver-pgsql": "self.version",
+        "lagdo/dbadmin-driver-sqlite": "self.version",
+        "lagdo/jaxon-dbadmin": "self.version"
+    },
+    "extra": {
+        "contao-manager-plugin": []
+    }
+}
