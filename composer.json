@@ -32,9 +32,9 @@
         "php": ">=7.1.0",
         "ext-iconv": "*",
         "ext-json": "*",
-        "jaxon-php/jaxon-annotations": "v5.x-dev",
-        "jaxon-php/jaxon-core": "v5.x-dev",
-        "jaxon-php/jaxon-dialogs": "v5.x-dev",
+        "jaxon-php/jaxon-annotations": "dev-main",
+        "jaxon-php/jaxon-core": "dev-main",
+        "jaxon-php/jaxon-dialogs": "dev-main",
         "lagdo/ui-builder": "^0.1"
     },
     "require-dev": {

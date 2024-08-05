@@ -1,5 +1,5 @@
 # URL or absolute path to the remote GIT repository of the monorepo
-monorepo_url: git@github.com:lagdo/dbadmin.git
+monorepo_url: git@github.com:lagdo/dbadmin-mono.git
 
 # All branches that match this regular expression will be split by default
 branch_filter: /^(main|develop|\d+\.\d+)$/
