@@ -35,7 +35,7 @@
         "jaxon-php/jaxon-annotations": "dev-main",
         "jaxon-php/jaxon-core": "dev-main",
         "jaxon-php/jaxon-dialogs": "dev-main",
-        "lagdo/ui-builder": "^0.1"
+        "lagdo/ui-builder": "dev-main"
     },
     "require-dev": {
         "behat/behat": "^3.10",
@@ -47,14 +47,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Lagdo\\DbAdmin\\": "jaxon-dbadmin/src/lib/",
+            "Lagdo\\DbAdmin\\": "jaxon-dbadmin/src/",
             "Lagdo\\DbAdmin\\App\\": "jaxon-dbadmin/app/",
-            "Lagdo\\DbAdmin\\Db\\": "jaxon-dbadmin/src/db/",
             "Lagdo\\DbAdmin\\Driver\\": "dbadmin-driver/src/",
             "Lagdo\\DbAdmin\\Driver\\MySql\\": "dbadmin-driver-mysql/src/",
             "Lagdo\\DbAdmin\\Driver\\PgSql\\": "dbadmin-driver-pgsql/src/",
-            "Lagdo\\DbAdmin\\Driver\\Sqlite\\": "dbadmin-driver-sqlite/src/",
-            "Lagdo\\DbAdmin\\Ui\\": "jaxon-dbadmin/src/ui/"
+            "Lagdo\\DbAdmin\\Driver\\Sqlite\\": "dbadmin-driver-sqlite/src/"
         },
         "files": [
             "dbadmin-driver-mysql/src/start.php",
