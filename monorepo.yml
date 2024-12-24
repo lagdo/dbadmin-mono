@@ -21,9 +21,9 @@ repositories:
     dbadmin-driver-sqlite:
         # URL or absolute path to the remote GIT repository
         url: git@github.com:lagdo/dbadmin-driver-sqlite.git
-    # dbadmin-voyager:
+    dbadmin-demo:
         # URL or absolute path to the remote GIT repository
-        # url: git@github.com:lagdo/dbadmin-voyager.git
+        url: git@github.com:lagdo/dbadmin-demo.git
 
 # Optional additional composer settings for the root composer.json
 composer:
