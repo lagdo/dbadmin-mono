@@ -35,7 +35,9 @@
         "jaxon-php/jaxon-annotations": "dev-main",
         "jaxon-php/jaxon-core": "dev-main",
         "jaxon-php/jaxon-dialogs": "dev-main",
-        "lagdo/ui-builder": "dev-main"
+        "lagdo/jaxon-ui-builder": "dev-main",
+        "lagdo/ui-builder": "dev-main",
+        "lagdo/ui-builder-bootstrap5": "dev-main"
     },
     "require-dev": {
         "behat/behat": "^3.10",
@@ -71,6 +73,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "replace": {
+        "lagdo/dbadmin-demo": "self.version",
         "lagdo/dbadmin-driver": "self.version",
         "lagdo/dbadmin-driver-mysql": "self.version",
         "lagdo/dbadmin-driver-pgsql": "self.version",
