@@ -2,4 +2,5 @@ composer.phar
 composer.lock
 /vendor/
 dbadmin-demo/public/jaxon/*js
+dbadmin-demo/cache/annotations/*php
 .monorepo-split-cache/
