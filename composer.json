@@ -29,7 +29,7 @@
         "source": "https://github.com/lagdo/dbadmin"
     },
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=8.0.0",
         "ext-iconv": "*",
         "ext-json": "*",
         "jaxon-php/jaxon-annotations": "dev-main",
@@ -50,16 +50,17 @@
     "autoload": {
         "psr-4": {
             "Lagdo\\DbAdmin\\": "jaxon-dbadmin/src/",
-            "Lagdo\\DbAdmin\\App\\": "jaxon-dbadmin/app/",
+            "Lagdo\\DbAdmin\\Ajax\\": "jaxon-dbadmin/app/ajax/",
             "Lagdo\\DbAdmin\\Driver\\": "dbadmin-driver/src/",
             "Lagdo\\DbAdmin\\Driver\\MySql\\": "dbadmin-driver-mysql/src/",
             "Lagdo\\DbAdmin\\Driver\\PgSql\\": "dbadmin-driver-pgsql/src/",
-            "Lagdo\\DbAdmin\\Driver\\Sqlite\\": "dbadmin-driver-sqlite/src/"
+            "Lagdo\\DbAdmin\\Driver\\Sqlite\\": "dbadmin-driver-sqlite/src/",
+            "Lagdo\\DbAdmin\\Ui\\": "jaxon-dbadmin/app/ui/"
         },
         "files": [
-            "dbadmin-driver-mysql/src/start.php",
-            "dbadmin-driver-pgsql/src/start.php",
-            "dbadmin-driver-sqlite/src/start.php"
+            "dbadmin-driver-mysql/src/register.php",
+            "dbadmin-driver-pgsql/src/register.php",
+            "dbadmin-driver-sqlite/src/register.php"
         ]
     },
     "autoload-dev": {
