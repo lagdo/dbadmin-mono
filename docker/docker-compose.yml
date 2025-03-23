@@ -1,0 +1,62 @@
+services:
+
+  dbadmin:
+    container_name: dbadmin
+    build:
+      context: ./
+      dockerfile: dbadmin/Dockerfile
+      args:
+        - PHP_USER=dbadmin
+        - PHP_UID=${PHP_UID:-1000}
+        - PHP_GID=${PHP_GID:-1000}
+    volumes:
+     - ..:/var/www
+     - ./data/sqlite:/var/lib/sqlite
+     - ./data/bin/sqlite:/usr/local/bin/sqlite
+    ports:
+      - 8090:80
+    networks:
+      - dbadmin-demo
+    extra_hosts:
+      - "pgsql.addr=192.168.5.87"
+    command: [ "unitd", "--no-daemon", "--control", "unix:/var/run/control.unit.sock" ]
+
+  mysql-5:
+    image: mysql:5.7-oracle
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: dbadmin
+    volumes:
+     - ./data/bin/mysql:/usr/local/bin/mysql
+    networks:
+      - dbadmin-demo
+
+  postgresql-14:
+    image: postgres:14.15-alpine3.21
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_PASSWORD: dbadmin
+    volumes:
+     - ./data/bin/pgsql:/usr/local/bin/pgsql
+    networks:
+      - dbadmin-demo
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8091:8080
+    networks:
+      - dbadmin-demo
+
+networks:
+  dbadmin-demo:
+    driver: bridge
