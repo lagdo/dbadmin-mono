@@ -3,7 +3,7 @@ composer.lock
 vendor/
 dbadmin-demo/public/jaxon/*js
 dbadmin-demo/cache/annotations/*php
-docker/data/sqlite/3
-docker/data/bin/pgsql/sql/
-docker/data/bin/mysql/sql/
+docker/sqlite/3/*db
+docker/sh/pgsql/sql/
+docker/sh/mysql/sql/
 .monorepo-split-cache/
