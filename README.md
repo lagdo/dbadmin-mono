@@ -25,7 +25,7 @@ The `docker/docker-compose.yml` file starts a demo app, as well as `PostgreSQL`,
 The `docker/sh` dir contains scripts to populate sample `PostgreSQL`, `MariaDB` and `SQLite` databases with free datasets available online.
 These scripts must be executed in the `dbadmin` container.
 
-Connecting to the `MariaDB` and `MySQL` requires to add the following content in the `${HOME}/.my.cnf` file.
+Connecting to the `MariaDB` and `MySQL` servers requires to add the following content in the `${HOME}/.my.cnf` file.
 ```
 [mysql]
 ssl-verify-server-cert = off
