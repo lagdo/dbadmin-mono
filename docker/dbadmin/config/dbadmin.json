@@ -28,7 +28,9 @@
     "applications": {
         "dbadmin": {
             "type": "php",
-            "root": "/var/www/dbadmin-demo/public/"
+            "root": "/var/www/dbadmin-demo/public/",
+            "user": "dbadmin",
+            "group": "dbadmin"
         }
     }
 }

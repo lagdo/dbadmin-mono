@@ -70,10 +70,10 @@ ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 RUN addgroup -g ${PHP_GID} --system ${PHP_USER}
 RUN adduser -G ${PHP_USER} --system -D -s /bin/sh -u ${PHP_UID} ${PHP_USER}
 
-# Create project root
+# Create project dirs
 RUN mkdir -p /var/www
-
+RUN mkdir -p /var/cache/jaxon
 # Make sure files/folders needed by the processes are accessible
-RUN chown -R ${PHP_USER}:${PHP_USER} /var/www /var/run /run
+RUN chown -R ${PHP_USER}:${PHP_USER} /var/www /var/run /run /var/cache/jaxon
 
 WORKDIR /var/www
