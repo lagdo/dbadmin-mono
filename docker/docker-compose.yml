@@ -11,27 +11,39 @@ services:
         - PHP_GID=${PHP_GID:-1000}
     volumes:
      - ..:/var/www
-     - ./data/sqlite:/var/lib/sqlite
-     - ./data/bin/sqlite:/usr/local/bin/sqlite
+     - ./sqlite:/var/lib/sqlite
     ports:
       - 8090:80
     networks:
       - dbadmin-demo
-    extra_hosts:
-      - "pgsql.addr=192.168.5.87"
     command: [ "unitd", "--no-daemon", "--control", "unix:/var/run/control.unit.sock" ]
 
-  mysql-5:
-    image: mysql:5.7-oracle
+  adminer:
+    image: adminer
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: dbadmin
-    volumes:
-     - ./data/bin/mysql:/usr/local/bin/mysql
+    ports:
+      - 8091:8080
     networks:
       - dbadmin-demo
 
-  postgresql-14:
+  db-mariadb:
+    image: mariadb:10-ubi
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: dbadmin
+    networks:
+      - dbadmin-demo
+
+  db-mysql:
+    image: mysql/mysql-server:8.0
+    restart: always
+    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
+    environment:
+      MYSQL_ROOT_PASSWORD: dbadmin
+    networks:
+      - dbadmin-demo
+
+  db-postgresql:
     image: postgres:14.15-alpine3.21
     restart: always
     # set shared memory limit when using docker-compose
@@ -44,16 +56,6 @@ services:
     #      size: 134217728 # 128*2^20 bytes = 128Mb
     environment:
       POSTGRES_PASSWORD: dbadmin
-    volumes:
-     - ./data/bin/pgsql:/usr/local/bin/pgsql
-    networks:
-      - dbadmin-demo
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8091:8080
     networks:
       - dbadmin-demo
 
