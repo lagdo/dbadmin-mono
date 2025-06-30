@@ -1,4 +1,9 @@
 composer.phar
 composer.lock
-/vendor/
+vendor/
+dbadmin-demo/public/jaxon/*js
+dbadmin-demo/cache/annotations/*php
+docker/sqlite/3/*db
+docker/sh/pgsql/sql/
+docker/sh/mysql/sql/
 .monorepo-split-cache/

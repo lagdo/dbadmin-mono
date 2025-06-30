@@ -1,0 +1,64 @@
+services:
+
+  dbadmin:
+    container_name: dbadmin
+    build:
+      context: ./
+      dockerfile: dbadmin/Dockerfile
+      args:
+        - PHP_USER=dbadmin
+        - PHP_UID=${PHP_UID:-1000}
+        - PHP_GID=${PHP_GID:-1000}
+    volumes:
+     - ..:/var/www
+     - ./sqlite:/var/lib/sqlite
+    ports:
+      - 8090:80
+    networks:
+      - dbadmin-demo
+    command: [ "unitd", "--no-daemon", "--control", "unix:/var/run/control.unit.sock" ]
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8091:8080
+    networks:
+      - dbadmin-demo
+
+  db-mariadb:
+    image: mariadb:10-ubi
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: dbadmin
+    networks:
+      - dbadmin-demo
+
+  db-mysql:
+    image: mysql/mysql-server:8.0
+    restart: always
+    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
+    environment:
+      MYSQL_ROOT_PASSWORD: dbadmin
+    networks:
+      - dbadmin-demo
+
+  db-postgresql:
+    image: postgres:14.15-alpine3.21
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_PASSWORD: dbadmin
+    networks:
+      - dbadmin-demo
+
+networks:
+  dbadmin-demo:
+    driver: bridge

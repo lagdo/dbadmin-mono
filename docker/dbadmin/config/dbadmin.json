@@ -1,0 +1,36 @@
+{
+    "listeners": {
+        "*:80": {
+            "pass": "routes"
+        }
+    },
+
+    "routes": [
+        {
+            "match": {
+                "uri": [
+                    "/",
+                    "/exp/*",
+                    "*.php"
+                ]
+            },
+            "action": {
+                "pass": "applications/dbadmin"
+            }
+        },
+        {
+            "action": {
+                "share": "/var/www/dbadmin-demo/public$uri"
+            }
+        }
+    ],
+
+    "applications": {
+        "dbadmin": {
+            "type": "php",
+            "root": "/var/www/dbadmin-demo/public/",
+            "user": "dbadmin",
+            "group": "dbadmin"
+        }
+    }
+}

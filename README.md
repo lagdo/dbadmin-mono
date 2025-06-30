@@ -18,6 +18,19 @@ The [https://github.com/lagdo/dbadmin-voyager](https://github.com/lagdo/dbadmin-
 
 The driver packages for [PostgreSQL](https://github.com/lagdo/dbadmin-driver-mysql), [MySQL](https://github.com/lagdo/dbadmin-driver-mysql) and [SQLite](https://github.com/lagdo/dbadmin-driver-sqlite) are also installed, so the user just need to add its databases in the config file.
 
+### Docker Compose
+
+The `docker/docker-compose.yml` file starts a demo app, as well as `PostgreSQL`, `MariaDB` and `MySQL` servers.
+
+The `docker/sh` dir contains scripts to populate sample `PostgreSQL`, `MariaDB` and `SQLite` databases with free datasets available online.
+These scripts must be executed in the `dbadmin` container.
+
+Connecting to the `MariaDB` and `MySQL` servers requires to add the following content in the `${HOME}/.my.cnf` file.
+```
+[mysql]
+ssl-verify-server-cert = off
+```
+
 Documentation
 -------------
 
