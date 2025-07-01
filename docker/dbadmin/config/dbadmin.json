@@ -8,19 +8,13 @@
     "routes": [
         {
             "match": {
-                "uri": [
-                    "/",
-                    "/exp/*",
-                    "*.php"
-                ]
+                "uri": ["/*"]
             },
             "action": {
-                "pass": "applications/dbadmin"
-            }
-        },
-        {
-            "action": {
-                "share": "/var/www/dbadmin-demo/public$uri"
+                "share": "/var/www/dbadmin-demo/public$uri",
+                "fallback": {
+                    "pass": "applications/dbadmin"
+                }
             }
         }
     ],

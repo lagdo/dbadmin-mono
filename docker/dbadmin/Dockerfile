@@ -42,12 +42,11 @@ ENV PHP_UID=${PHP_UID}
 ENV PHP_GID=${PHP_GID}
 
 RUN apk add --no-cache bash pcre curl wget zip vim git mysql-client postgresql-client sqlite
-
 RUN set -xe && apk add --no-cache --virtual .build-deps \
   libzip-dev freetype-dev icu-dev libmcrypt-dev libxslt-dev patch openssh-client
 
 RUN --mount=type=bind,from=mlocati/php-extension-installer:2,source=/usr/bin/install-php-extensions,target=/usr/local/bin/install-php-extensions \
-  install-php-extensions opcache zip gmp intl sockets phar redis \
+  install-php-extensions zip gmp intl sockets phar redis \
   tokenizer bcmath ctype curl dom fileinfo gd mbstring openssl \
   # Database
   pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql \
@@ -64,6 +63,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 # Configure Nginx Unit
 COPY dbadmin/config/dbadmin.json /docker-entrypoint.d/config.json
 COPY dbadmin/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 

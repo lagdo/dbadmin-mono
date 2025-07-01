@@ -19,6 +19,7 @@ services:
     command: [ "unitd", "--no-daemon", "--control", "unix:/var/run/control.unit.sock" ]
 
   adminer:
+    container_name: adminer
     image: adminer
     restart: always
     ports:
@@ -27,6 +28,7 @@ services:
       - dbadmin-demo
 
   db-mariadb:
+    container_name: db-mariadb
     image: mariadb:10-ubi
     restart: always
     environment:
@@ -35,6 +37,7 @@ services:
       - dbadmin-demo
 
   db-mysql:
+    container_name: db-mysql
     image: mysql/mysql-server:8.0
     restart: always
     command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
@@ -44,6 +47,7 @@ services:
       - dbadmin-demo
 
   db-postgresql:
+    container_name: db-postgresql
     image: postgres:14.15-alpine3.21
     restart: always
     # set shared memory limit when using docker-compose
