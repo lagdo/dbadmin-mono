@@ -10,8 +10,9 @@ services:
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
     volumes:
-     - ..:/var/www
-     - ./sqlite:/var/lib/sqlite
+      - ..:/var/www
+      - ./sqlite:/var/lib/sqlite
+      - ./sh/mysql/my.cnf:/root/.my.cnf:ro
     ports:
       - 8090:80
     networks:
