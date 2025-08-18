@@ -36,13 +36,13 @@
         "jaxon-php/jaxon-core": "^5.0",
         "jaxon-php/jaxon-dialogs": "^5.0",
         "lagdo/facades": "^1.0",
-        "lagdo/jaxon-ui-builder": "dev-main",
-        "lagdo/ui-builder": "dev-main",
-        "lagdo/ui-builder-bootstrap5": "dev-main"
+        "lagdo/jaxon-ui-builder": "^0.1",
+        "lagdo/ui-builder": "^0.2",
+        "lagdo/ui-builder-bootstrap5": "^0.1"
     },
     "require-dev": {
         "behat/behat": "^3.10",
-        "contao/monorepo-tools": "^0.2.0",
+        "contao/monorepo-tools": "^0.2",
         "dvdoug/behat-code-coverage": "5.0.*",
         "php-coveralls/php-coveralls": "^2.5",
         "phpunit/phpcov": "^8.2",
@@ -73,8 +73,8 @@
             "Lagdo\\DbAdmin\\Tests\\": "jaxon-dbadmin/tests/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "minimum-stability": "stable",
+    "prefer-stable": false,
     "replace": {
         "lagdo/dbadmin-demo": "self.version",
         "lagdo/dbadmin-driver": "self.version",
