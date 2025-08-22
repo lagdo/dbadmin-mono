@@ -19,10 +19,7 @@
         "Ajax",
         "PostgreSQL",
         "MySQL",
-        "Sqlite",
-        "Oracle",
-        "MsSQL",
-        "MongoDb"
+        "Sqlite"
     ],
     "support": {
         "issues": "https://github.com/lagdo/dbadmin/issues",
