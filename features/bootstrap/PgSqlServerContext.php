@@ -46,7 +46,7 @@ class ServerContext implements Context
      */
     public function checkIfTheReadDatabaseListQueryIsExecuted()
     {
-        $queries = $this->driver->queries();
+        $queries = []; //$this->driver->queries();
         Assert::assertGreaterThan(0, count($queries));
         $query = "SELECT datname FROM pg_database WHERE has_database_privilege(datname, 'CONNECT') " .
             "AND datname not in ('postgres','template0','template1') ORDER BY datname";
@@ -90,7 +90,7 @@ class ServerContext implements Context
      */
     public function checkIfTheGetDatabaseSizeQueryIsExecuted(string $database)
     {
-        $queries = $this->driver->queries();
+        $queries = []; //$this->driver->queries();
         $count = count($queries);
         Assert::assertGreaterThan(0, $count);
         $query = "SELECT pg_database_size($database)";

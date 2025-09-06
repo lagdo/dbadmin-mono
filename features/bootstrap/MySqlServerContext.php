@@ -54,7 +54,7 @@ class ServerContext implements Context
      */
     public function checkTheSelectSchemaNameQueryIsExecuted()
     {
-        $queries = $this->driver->queries();
+        $queries = []; //$this->driver->queries();
         Assert::assertGreaterThan(0, count($queries));
         Assert::assertEquals($queries[0]['query'], 'SELECT SCHEMA_NAME FROM information_schema.SCHEMATA ORDER BY SCHEMA_NAME');
     }
@@ -64,7 +64,7 @@ class ServerContext implements Context
      */
     public function checkTheShowDatabasesQueryIsExecuted()
     {
-        $queries = $this->driver->queries();
+        $queries = []; //$this->driver->queries();
         Assert::assertGreaterThan(0, count($queries));
         Assert::assertEquals($queries[0]['query'], 'SHOW DATABASES');
     }
@@ -106,7 +106,7 @@ class ServerContext implements Context
      */
     public function checkIfTheGetDatabaseSizeQueryIsExecuted(string $database)
     {
-        $queries = $this->driver->queries();
+        $queries = []; //$this->driver->queries();
         $count = count($queries);
         Assert::assertGreaterThan(0, $count);
         $query = "SELECT SUM(data_length + index_length) " .
