@@ -14,19 +14,34 @@ services:
       - ./sqlite:/var/lib/sqlite
       - ./sh/mysql/my.cnf:/root/.my.cnf:ro
     ports:
-      - 8090:80
+      - 8090:8080
     networks:
       - dbadmin-demo
-    command: [ "unitd", "--no-daemon", "--control", "unix:/var/run/control.unit.sock" ]
+    extra_hosts:
+      - "postgresql.addr=host-gateway"
 
-  adminer:
-    container_name: adminer
-    image: adminer
+  dbadmin-app:
+    container_name: dbadmin-app
+    image: lagdo/jaxon-dbadmin:0.1.5
     restart: always
+    volumes:
+      - ./dbadmin/config/dbadmin.json:/var/www/config/dbadmin.json
+      - ./sh/mysql/my.cnf:/root/.my.cnf:ro
     ports:
       - 8091:8080
     networks:
       - dbadmin-demo
+    extra_hosts:
+      - "postgresql.addr=host-gateway"
+
+  # adminer:
+  #   container_name: adminer
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8092:8080
+  #   networks:
+  #     - dbadmin-demo
 
   db-mariadb:
     container_name: db-mariadb

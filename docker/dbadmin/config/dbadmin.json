@@ -1,30 +1,31 @@
 {
-    "listeners": {
-        "*:80": {
-            "pass": "routes"
+    "common": {
+        "access": {
+            "server": true,
+            "system": false
         }
     },
-
-    "routes": [
-        {
-            "match": {
-                "uri": ["/*"]
+    "fallback": {
+    },
+    "users": [{
+        "id": {
+            "user": "admin@company.com"
+        },
+        "default": "tontine",
+        "servers": {
+            "tontine": {
+                "driver": "pgsql",
+                "name": "Siak Tontine",
+                "host": "postgresql.addr",
+                "port": "5432",
+                "username": "tontine",
+                "password": "tontine"
             },
-            "action": {
-                "share": "/var/www/dbadmin-demo/public$uri",
-                "fallback": {
-                    "pass": "applications/dbadmin"
-                }
+            "laravel": {
+                "driver": "sqlite",
+                "name": "Local database",
+                "directory": "/var/www/database/"
             }
         }
-    ],
-
-    "applications": {
-        "dbadmin": {
-            "type": "php",
-            "root": "/var/www/dbadmin-demo/public/",
-            "user": "dbadmin",
-            "group": "dbadmin"
-        }
-    }
+    }]
 }

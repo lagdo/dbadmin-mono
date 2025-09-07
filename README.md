@@ -12,11 +12,13 @@ Howtos
 
 This blog post on the `Jaxon` website explains how to install `Jaxon DbAdmin` on [Voyager](https://voyager-docs.devdojo.com), an admin panel based on the `Laravel` framework: [In english](https://www.jaxon-php.org/blog/2021/03/install-jaxon-adminer-on-voyager.html), and [in french](https://www.jaxon-php.org/blog/2021/03/installer-jaxon-adminer-dans-voyager.html).
 
-### Jaxon DbAdmin and Voyager
+### Jaxon DbAdmin applications
 
-The [https://github.com/lagdo/dbadmin-voyager](https://github.com/lagdo/dbadmin-voyager) repo provides a ready-to-use package, made with the [Voyager Admin](https://voyager.devdojo.com/) dashboard, and `Jaxon DbAdmin` included.
+The [https://github.com/lagdo/dbadmin-app](https://github.com/lagdo/dbadmin-app) repo provides a ready-to-use application, made with the [Laravel](https://laravel.com/) dframework, and `Jaxon DbAdmin`.
 
-The driver packages for [PostgreSQL](https://github.com/lagdo/dbadmin-driver-mysql), [MySQL](https://github.com/lagdo/dbadmin-driver-mysql) and [SQLite](https://github.com/lagdo/dbadmin-driver-sqlite) are also installed, so the user just need to add its databases in the config file.
+The [https://github.com/lagdo/dbadmin-voyager](https://github.com/lagdo/dbadmin-voyager) repo provides a ready-to-use application, made with the [Voyager Admin](https://voyager.devdojo.com/) dashboard, and `Jaxon DbAdmin`.
+
+The driver packages for [PostgreSQL](https://github.com/lagdo/dbadmin-driver-mysql), [MySQL](https://github.com/lagdo/dbadmin-driver-mysql) and [SQLite](https://github.com/lagdo/dbadmin-driver-sqlite) are already installed, so the user just need to add its databases in the config file.
 
 ### Docker Compose
 
@@ -35,9 +37,9 @@ Documentation
 -------------
 
 Install the Jaxon library so it bootstraps from a config file and handles ajax requests.
-Here's the [documentation](https://www.jaxon-php.org/docs/v3x/advanced/bootstrap.html).
+Here's the [documentation](https://www.jaxon-php.org/docs/v5x/about/configuration.html).
 
-Install this package with Composer. If a [Jaxon plugin](https://www.jaxon-php.org/docs/v3x/plugins/frameworks.html) exists for your framework, you can also install it. It will automate the previous step.
+Install this package with Composer. If a [Jaxon plugin](https://www.jaxon-php.org/docs/v5x/integrations/about.html) exists for your framework, you can also install it. It will automate the previous step.
 
 ### The database drivers
 

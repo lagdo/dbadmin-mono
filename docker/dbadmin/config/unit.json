@@ -1,0 +1,30 @@
+{
+    "listeners": {
+        "*:8080": {
+            "pass": "routes"
+        }
+    },
+
+    "routes": [
+        {
+            "match": {
+                "uri": ["/*"]
+            },
+            "action": {
+                "share": "/var/www/dbadmin-demo/public$uri",
+                "fallback": {
+                    "pass": "applications/dbadmin"
+                }
+            }
+        }
+    ],
+
+    "applications": {
+        "dbadmin": {
+            "type": "php",
+            "root": "/var/www/dbadmin-demo/public/",
+            "user": "dbadmin",
+            "group": "dbadmin"
+        }
+    }
+}

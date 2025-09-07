@@ -1,38 +1,4 @@
-ARG ALPINE_VERSION=3.19
-ARG PHP_VERSION=8.2
-ARG UNIT_VERSION=1.33.0
-
-# Nginx Unit downloader
-FROM alpine:${ALPINE_VERSION} AS nginx-unit-downloader
-
-ARG UNIT_VERSION
-WORKDIR "/tmp/unit"
-ADD ["https://codeload.github.com/nginx/unit/tar.gz/refs/tags/${UNIT_VERSION}", "/tmp/unit.tar.gz"]
-RUN tar zxvf /tmp/unit.tar.gz --strip=1 -C "/tmp/unit"
-
-# Nginx Unit builder
-ARG PHP_VERSION
-ARG ALPINE_VERSION
-FROM php:${PHP_VERSION}-zts-alpine${ALPINE_VERSION} AS nginx-unit-builder
-
-RUN set -eux \
-  && apk add --update --no-cache alpine-sdk curl openssl-dev pcre-dev
-
-COPY --from=nginx-unit-downloader ["/tmp/unit", "/build/unit/"]
-ENV DESTDIR /opt/unit/
-WORKDIR "/build/unit/"
-ARG PHP_VERSION
-
-RUN set -eux \
-  && ./configure --log=/var/log/unitd.log \
-  && ./configure php --module="php" \
-  && make -j "$(nproc)" \
-  && make -j "$(nproc)" install \
-  && make clean
-
-# Root builder
-FROM alpine:${ALPINE_VERSION}
-FROM php:${PHP_VERSION}-zts-alpine
+FROM lagdo/alpine-php-nginx-unit
 
 ARG PHP_USER
 ARG PHP_UID
@@ -41,39 +7,19 @@ ENV PHP_USER=${PHP_USER}
 ENV PHP_UID=${PHP_UID}
 ENV PHP_GID=${PHP_GID}
 
-RUN apk add --no-cache bash pcre curl wget zip vim git mysql-client postgresql-client sqlite
-RUN set -xe && apk add --no-cache --virtual .build-deps \
-  libzip-dev freetype-dev icu-dev libmcrypt-dev libxslt-dev patch openssh-client
-
 RUN --mount=type=bind,from=mlocati/php-extension-installer:2,source=/usr/bin/install-php-extensions,target=/usr/local/bin/install-php-extensions \
-  install-php-extensions zip gmp intl sockets phar redis \
-  tokenizer bcmath ctype curl dom fileinfo gd mbstring openssl \
-  # Database
-  pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql \
-  # PHP PECL extensions
-  xdebug
-
-# Nginx Unit
-COPY --from=nginx-unit-builder ["/opt/unit/", "/opt/unit/"]
-RUN cp -R /opt/unit/usr/local/* /usr/local
+  install-php-extensions pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql xdebug
 
 # PHP Composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 # Configure Nginx Unit
-COPY dbadmin/config/dbadmin.json /docker-entrypoint.d/config.json
-COPY dbadmin/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+COPY dbadmin/config/unit.json /docker-entrypoint.d/config.json
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-
-RUN addgroup -g ${PHP_GID} --system ${PHP_USER}
-RUN adduser -G ${PHP_USER} --system -D -s /bin/sh -u ${PHP_UID} ${PHP_USER}
-
-# Create project dirs
-RUN mkdir -p /var/www
-RUN mkdir -p /var/cache/jaxon
-# Make sure files/folders needed by the processes are accessible
-RUN chown -R ${PHP_USER}:${PHP_USER} /var/www /var/run /run /var/cache/jaxon
+RUN addgroup -g ${PHP_GID} --system ${PHP_USER} && \
+  adduser -G ${PHP_USER} --system -D -s /bin/sh -u ${PHP_UID} ${PHP_USER} && \
+  mkdir -p /var/cache/jaxon && \
+  chown -R ${PHP_USER}:${PHP_USER} /var/www /var/run /run /var/cache/jaxon
 
 WORKDIR /var/www
+EXPOSE 8080
