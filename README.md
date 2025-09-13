@@ -25,7 +25,7 @@ The driver packages for [PostgreSQL](https://github.com/lagdo/dbadmin-driver-mys
 The `docker/docker-compose.yml` file starts a demo app, as well as `PostgreSQL`, `MariaDB` and `MySQL` servers.
 
 The `docker/sh` dir contains scripts to populate sample `PostgreSQL`, `MariaDB` and `SQLite` databases with free datasets available online.
-These scripts must be executed in the `dbadmin` container.
+These scripts must be executed in the `dbadmin-demo` container.
 
 Connecting to the `MariaDB` and `MySQL` servers requires to add the following content in the `${HOME}/.my.cnf` file.
 ```
