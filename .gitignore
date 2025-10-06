@@ -1,5 +1,4 @@
 composer.phar
-composer.lock
 vendor/
 dbadmin-demo/cache/
 dbadmin-demo/public/jaxon/*js
