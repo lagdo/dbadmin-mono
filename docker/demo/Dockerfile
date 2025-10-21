@@ -7,6 +7,10 @@ ENV PHP_USER=${PHP_USER}
 ENV PHP_UID=${PHP_UID}
 ENV PHP_GID=${PHP_GID}
 
+RUN apk add --no-cache bash pcre curl wget zip vim git mysql-client postgresql-client sqlite
+RUN set -xe && apk add --no-cache --virtual .build-deps \
+  libzip-dev freetype-dev icu-dev libmcrypt-dev libxslt-dev patch openssh-client
+
 RUN --mount=type=bind,from=mlocati/php-extension-installer:2,source=/usr/bin/install-php-extensions,target=/usr/local/bin/install-php-extensions \
   install-php-extensions pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql xdebug
 
