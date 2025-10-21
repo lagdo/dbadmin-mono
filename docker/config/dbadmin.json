@@ -1,0 +1,39 @@
+{
+    "common": {
+        "access": {
+            "server": true,
+            "system": false
+        }
+    },
+    "fallback": {
+    },
+    "users": [{
+        "default": "db-postgresql",
+        "servers": {
+            "db-postgresql": {
+                "driver": "pgsql",
+                "name": "PostgreSQL 14",
+                "host": "pg-postgresql",
+                "port": "5432",
+                "username": "postgres",
+                "password": "dbadmin"
+            },
+            "db-mariadb": {
+                "driver": "mysql",
+                "name": "MariaDB 10",
+                "host": "db-mariadb",
+                "port": "3306",
+                "username": "root",
+                "password": "dbadmin"
+            },
+            "db-mysql": {
+                "driver": "mysql",
+                "name": "MySQL 8",
+                "host": "db-mysql",
+                "port": "3306",
+                "username": "root",
+                "password": "dbadmin"
+            }
+        }
+    }]
+}
