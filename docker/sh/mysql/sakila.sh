@@ -4,7 +4,7 @@ DEST_DIR=$(dirname "$0")/sql
 SAKILA_REPO=https://raw.githubusercontent.com/jOOQ/sakila/refs/heads/main/mysql-sakila-db
 SCHEMA_SCRIPT=mysql-sakila-schema.sql
 DATA_SCRIPT=mysql-sakila-insert-data.sql
-DB_SERVER_NAME=db-mariadb
+DB_SERVER_NAME=dbadmin-mariadb
 
 mkdir -p ${DEST_DIR}
 cd ${DEST_DIR}

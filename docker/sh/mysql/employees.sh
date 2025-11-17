@@ -2,7 +2,7 @@
 
 DEST_DIR=$(dirname "$0")/sql
 EMPLOYEES_REPO=https://raw.githubusercontent.com/datacharmer/test_db/refs/heads/master
-DB_SERVER_NAME=db-mariadb
+DB_SERVER_NAME=dbadmin-mariadb
 
 mkdir -p ${DEST_DIR}
 cd ${DEST_DIR}

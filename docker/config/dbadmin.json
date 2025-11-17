@@ -8,28 +8,36 @@
     "fallback": {
     },
     "users": [{
-        "default": "db-postgresql",
+        "default": "dbadmin-pgsql",
         "servers": {
-            "db-postgresql": {
+            "dbadmin-pgsql-14": {
                 "driver": "pgsql",
                 "name": "PostgreSQL 14",
-                "host": "pg-postgresql",
+                "host": "dbadmin-pgsql",
                 "port": "5432",
                 "username": "postgres",
                 "password": "dbadmin"
             },
-            "db-mariadb": {
+            "dbadmin-pgsql-17": {
+                "driver": "pgsql",
+                "name": "PostgreSQL 17",
+                "host": "dbadmin-pgsql17",
+                "port": "5432",
+                "username": "postgres",
+                "password": "dbadmin"
+            },
+            "dbadmin-mariadb": {
                 "driver": "mysql",
                 "name": "MariaDB 10",
-                "host": "db-mariadb",
+                "host": "dbadmin-mariadb",
                 "port": "3306",
                 "username": "root",
                 "password": "dbadmin"
             },
-            "db-mysql": {
+            "dbadmin-mysql": {
                 "driver": "mysql",
                 "name": "MySQL 8",
-                "host": "db-mysql",
+                "host": "dbadmin-mysql",
                 "port": "3306",
                 "username": "root",
                 "password": "dbadmin"

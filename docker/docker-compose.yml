@@ -1,7 +1,7 @@
 services:
 
-  dbadmin:
-    container_name: dbadmin
+  dbadmin-img:
+    container_name: dbadmin-img
     image: lagdo/jaxon-dbadmin:0.2
     restart: always
     volumes:
@@ -9,7 +9,7 @@ services:
       - ./config/dbadmin.php:/var/www/config/dbadmin.php
       - ./sh/mysql/my.cnf:/root/.my.cnf:ro
     ports:
-      - 8090:8080
+      - 7090:8080
     networks:
       - dbadmin-demo
     extra_hosts:
@@ -29,7 +29,7 @@ services:
       - ./sqlite:/var/lib/sqlite
       - ./sh/mysql/my.cnf:/root/.my.cnf:ro
     ports:
-      - 8091:8080
+      - 7091:8080
     networks:
       - dbadmin-demo
     extra_hosts:
@@ -49,34 +49,34 @@ services:
       - ./sqlite:/var/lib/sqlite
       - ./sh/mysql/my.cnf:/root/.my.cnf:ro
     ports:
-      - 8092:8080
+      - 7092:8080
     networks:
       - dbadmin-demo
     extra_hosts:
       - "postgresql.addr=host-gateway"
 
-  adminer:
-    container_name: adminer
+  dbadmin-adminer:
+    container_name: dbadmin-adminer
     image: adminer
     restart: always
     ports:
-      - 8093:8080
+      - 7093:8080
     networks:
       - dbadmin-demo
 
-  phpmyadmin:
-    container_name: phpmyadmin
+  dbadmin-phpmyadmin:
+    container_name: dbadmin-phpmyadmin
     image: phpmyadmin
     restart: always
     environment:
-      - PMA_HOST=db-mariadb
+      - PMA_HOST=dbadmin-mariadb
     ports:
-      - 8094:80
+      - 7094:80
     networks:
       - dbadmin-demo
 
-  db-mariadb:
-    container_name: db-mariadb
+  dbadmin-mariadb:
+    container_name: dbadmin-mariadb
     image: mariadb:10-ubi
     restart: always
     environment:
@@ -84,8 +84,8 @@ services:
     networks:
       - dbadmin-demo
 
-  db-mysql:
-    container_name: db-mysql
+  dbadmin-mysql:
+    container_name: dbadmin-mysql
     image: mysql/mysql-server:8.0
     restart: always
     command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
@@ -94,8 +94,8 @@ services:
     networks:
       - dbadmin-demo
 
-  db-postgresql:
-    container_name: db-postgresql
+  dbadmin-pgsql:
+    container_name: dbadmin-pgsql
     image: postgres:14.15-alpine3.21
     restart: always
     # set shared memory limit when using docker-compose
@@ -111,8 +111,8 @@ services:
     networks:
       - dbadmin-demo
 
-  postgresql-17:
-    container_name: postgresql-17
+  dbadmin-pgsql17:
+    container_name: dbadmin-pgsql17
     image: postgres:17-alpine3.21
     restart: always
     # set shared memory limit when using docker-compose
