@@ -14,7 +14,7 @@ RUN --mount=type=bind,from=mlocati/php-extension-installer:2,source=/usr/bin/ins
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 # Configure Nginx Unit
-COPY app/config/unit.json /docker-entrypoint.d/config.json
+COPY build/config/unit.json /docker-entrypoint.d/config.json
 
 RUN addgroup -g ${PHP_GID} --system ${PHP_USER} && \
   adduser -G ${PHP_USER} --system -D -s /bin/sh -u ${PHP_UID} ${PHP_USER} && \

@@ -1,20 +1,5 @@
 services:
 
-  dbadmin-img:
-    container_name: dbadmin-img
-    image: lagdo/jaxon-dbadmin:0.2
-    restart: always
-    volumes:
-      - ./config/dbadmin.json:/var/www/config/dbadmin.json
-      - ./config/dbadmin.php:/var/www/config/dbadmin.php
-      - ./sh/mysql/my.cnf:/root/.my.cnf:ro
-    ports:
-      - 7090:8080
-    networks:
-      - dbadmin-demo
-    extra_hosts:
-      - "postgresql.addr=host-gateway"
-
   dbadmin-demo:
     container_name: dbadmin-demo
     build:
@@ -25,33 +10,48 @@ services:
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
     volumes:
+      - ./config/mysql/my.cnf:/root/.my.cnf:ro
       - ..:/var/www
       - ./sqlite:/var/lib/sqlite
-      - ./sh/mysql/my.cnf:/root/.my.cnf:ro
     ports:
-      - 7091:8080
+      - 7090:8080
     networks:
-      - dbadmin-demo
+      - dbadmin-dev-net
     extra_hosts:
       - "postgresql.addr=host-gateway"
 
-  dbadmin-app:
-    container_name: dbadmin-app
+  dbadmin-build:
+    container_name: dbadmin-build
     build:
       context: ./
-      dockerfile: app/Dockerfile
+      dockerfile: build/Dockerfile
       args:
         - PHP_USER=dbadmin
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
     volumes:
+      - ./config/mysql/my.cnf:/root/.my.cnf:ro
       - ../../dbadmin-app:/var/www
       - ./sqlite:/var/lib/sqlite
-      - ./sh/mysql/my.cnf:/root/.my.cnf:ro
+    ports:
+      - 7091:8080
+    networks:
+      - dbadmin-dev-net
+    extra_hosts:
+      - "postgresql.addr=host-gateway"
+
+  dbadmin-app:
+    container_name: dbadmin-app
+    image: lagdo/jaxon-dbadmin:0.2
+    restart: always
+    volumes:
+      - ./config/mysql/my.cnf:/root/.my.cnf:ro
+      - ./config/dbadmin.json:/var/www/config/dbadmin.json
+      - ./config/dbadmin.php:/var/www/config/dbadmin.php
     ports:
       - 7092:8080
     networks:
-      - dbadmin-demo
+      - dbadmin-dev-net
     extra_hosts:
       - "postgresql.addr=host-gateway"
 
@@ -62,7 +62,7 @@ services:
     ports:
       - 7093:8080
     networks:
-      - dbadmin-demo
+      - dbadmin-dev-net
 
   dbadmin-phpmyadmin:
     container_name: dbadmin-phpmyadmin
@@ -73,7 +73,7 @@ services:
     ports:
       - 7094:80
     networks:
-      - dbadmin-demo
+      - dbadmin-dev-net
 
   dbadmin-mariadb:
     container_name: dbadmin-mariadb
@@ -82,7 +82,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: dbadmin
     networks:
-      - dbadmin-demo
+      - dbadmin-dev-net
 
   dbadmin-mysql:
     container_name: dbadmin-mysql
@@ -92,7 +92,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: dbadmin
     networks:
-      - dbadmin-demo
+      - dbadmin-dev-net
 
   dbadmin-pgsql:
     container_name: dbadmin-pgsql
@@ -109,7 +109,7 @@ services:
     environment:
       POSTGRES_PASSWORD: dbadmin
     networks:
-      - dbadmin-demo
+      - dbadmin-dev-net
 
   dbadmin-pgsql17:
     container_name: dbadmin-pgsql17
@@ -126,8 +126,8 @@ services:
     environment:
       POSTGRES_PASSWORD: dbadmin
     networks:
-      - dbadmin-demo
+      - dbadmin-dev-net
 
 networks:
-  dbadmin-demo:
+  dbadmin-dev-net:
     driver: bridge
