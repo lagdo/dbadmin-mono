@@ -24,16 +24,18 @@ services:
     container_name: dbadmin-dev
     build:
       context: ./
-      dockerfile: build/Dockerfile
+      dockerfile: dev/Dockerfile
       args:
         - PHP_USER=dbadmin
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
     volumes:
       - ../../dbadmin-app:/var/www
+      - ./exports:/home/dbadmin/exports
       - ./config/app/.env.dbadmin:/var/www/.env.dbadmin
       - ./config/app/dbadmin.json:/var/www/config/dbadmin.json
       - ./config/app/dbadmin.php:/var/www/config/dbadmin.php
+      - ./config/app/jaxon.php:/var/www/config/jaxon.php
       - ./sqlite:/var/lib/sqlite
       - ./sqlite/3/database.sqlite:/var/www/database/database.sqlite:rw
     ports:
@@ -48,9 +50,11 @@ services:
     image: lagdo/jaxon-dbadmin:0.2
     restart: always
     volumes:
+      - ./exports:/home/dbadmin/exports
       - ./config/app/.env.dbadmin:/var/www/.env.dbadmin
       - ./config/app/dbadmin.json:/var/www/config/dbadmin.json
       - ./config/app/dbadmin.php:/var/www/config/dbadmin.php
+      - ./config/app/jaxon.php:/var/www/config/jaxon.php
       - ./sqlite:/var/lib/sqlite
       - ./sqlite/3/database.sqlite:/var/www/database/database.sqlite:rw
     ports:

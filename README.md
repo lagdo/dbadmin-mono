@@ -276,7 +276,13 @@ Other parameters can also be defined to limit the size of the uploaded files or 
 ### Data export
 
 Databases can also be exported to various types of files: SQL, CSV, and more.
-A directory where the exported files are going to be saved must then be defined in the configuration, as well as an url where they can be downloaded.
+
+The export feature is configured with two callbacks.
+
+The `writer` callback saves the export data content in a file. It takes the content and the filename as parameters.
+
+The `url` callback takes the filename as parameter, and return the URI to the exported file.
+The web app must then be configured to return the file content on a request to the URI.
 
 ```php
     'app' => [
@@ -286,14 +292,14 @@ A directory where the exported files are going to be saved must then be defined 
                     // The database servers
                 ],
                 'export' => [
-                    'dir' => '/path/to/the/export/dir',
-                    'url' => 'http://www.domain.com/exports',
+                    'writer' => fn(string $content, string $filename) =>
+                        @file_put_contents("$exportDir/$filename", "$content\n"),
+                    'url' => fn($filename) => "/export.php?file=$filename",
                 ],
             ],
         ],
     ],
 ```
-The web server needs to be setup to serve the files in the directory `dir` from url `url`.
 
 Contribute
 ----------

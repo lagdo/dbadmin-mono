@@ -6,4 +6,5 @@ docker/sqlite/3/*db
 docker/sqlite/3/*sqlite
 docker/sh/pgsql/sql/
 docker/sh/mysql/sql/
+docker/exports/*
 .monorepo-split-cache/

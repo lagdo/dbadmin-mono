@@ -8,7 +8,15 @@
     "routes": [
         {
             "match": {
-                "uri": ["/*"]
+                "uri": "~^/.*php(.*)?$"
+            },
+            "action": {
+                "pass": "applications/dbadmin"
+            }
+        },
+        {
+            "match": {
+                "uri": "/*"
             },
             "action": {
                 "share": "/var/www/dbadmin-demo/public$uri",
