@@ -4,7 +4,7 @@ DEST_DIR=$(dirname "$0")/sql
 SAKILA_REPO=https://raw.githubusercontent.com/devrimgunduz/pagila/refs/heads/master
 SCHEMA_SCRIPT=pagila-schema.sql
 DATA_SCRIPT=pagila-insert-data.sql
-DB_SERVER_NAME=dbadmin-pgsql
+DB_SERVER_NAME=dbadmin-pgsql-14
 
 mkdir -p ${DEST_DIR}
 cd ${DEST_DIR}

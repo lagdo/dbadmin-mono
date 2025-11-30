@@ -17,29 +17,30 @@ return [
                 'enabled' => false,
             ],
             'enduser' => [
-                'enabled' => false,
+                'enabled' => true,
             ],
             'history' => [
-                'enabled' => false,
+                'enabled' => true,
                 'distinct' => true,
-                'limit' => 15,
+                'limit' => 10,
             ],
             'favorite' => [
-                'enabled' => false,
+                'enabled' => true,
                 'limit' => 10,
             ],
         ],
         'database' => [
             // Same as the "servers" items, but "name" is the database name.
-            // 'driver' => 'pgsql',
-            // 'host' => 'dbadmin-pgsql17',
-            // 'port' => 5432,
-            // 'username' => 'postgres',
-            // 'password' => 'dbadmin',
-            // 'name' => 'logging',
+            'driver' => 'pgsql',
+            'host' => "env(LOGGING_DB_HOST)",
+            'port' => "env(LOGGING_DB_PORT)",
+            'username' => "env(LOGGING_DB_USERNAME)",
+            'password' => "env(LOGGING_DB_PASSWORD)",
+            'name' => 'logging',
         ],
         'allowed' => [
             // The emails of users that are allowed to access the logging page.
+            'admin@company.com'
         ],
     ],
 ];

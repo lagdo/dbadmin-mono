@@ -7,11 +7,7 @@ ENV PHP_USER=${PHP_USER}
 ENV PHP_UID=${PHP_UID}
 ENV PHP_GID=${PHP_GID}
 
-RUN --mount=type=bind,from=mlocati/php-extension-installer:2,source=/usr/bin/install-php-extensions,target=/usr/local/bin/install-php-extensions \
-  install-php-extensions pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql xdebug
-
-# PHP Composer
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+RUN install-php-extensions pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql xdebug
 
 # Configure Nginx Unit
 COPY build/config/unit.json /docker-entrypoint.d/config.json

@@ -8,12 +8,15 @@
     "fallback": {
     },
     "users": [{
-        "default": "dbadmin-pgsql",
+        "default": "dbadmin-pgsql-14",
+        "id": {
+            "user": "admin@company.com"
+        },
         "servers": {
             "dbadmin-pgsql-14": {
                 "driver": "pgsql",
                 "name": "PostgreSQL 14",
-                "host": "dbadmin-pgsql",
+                "host": "dbadmin-pgsql-14",
                 "port": "5432",
                 "username": "postgres",
                 "password": "dbadmin"
@@ -21,7 +24,7 @@
             "dbadmin-pgsql-17": {
                 "driver": "pgsql",
                 "name": "PostgreSQL 17",
-                "host": "dbadmin-pgsql17",
+                "host": "dbadmin-pgsql-17",
                 "port": "5432",
                 "username": "postgres",
                 "password": "dbadmin"
@@ -41,6 +44,11 @@
                 "port": "3306",
                 "username": "root",
                 "password": "dbadmin"
+            },
+            "sqlite-3": {
+                "driver": "sqlite",
+                "name": "Sqlite 3",
+                "directory": "/var/lib/sqlite/3"
             }
         }
     }]
