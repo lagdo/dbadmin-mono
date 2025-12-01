@@ -31,10 +31,11 @@ return [
                     return $reader->getOptions($cfgFilePath, $options);
                 },
                 'export' => [
-                    'writer' => function(string $content, string $filename): bool|int {
+                    'writer' => function(string $content, string $filename): string {
                         $exportDir = '/home/dbadmin/exports/' . Str::slug(auth()->user()->email);
                         @mkdir($exportDir, 0755, true);
-                        return @file_put_contents("$exportDir/$filename", "$content\n");
+                        return !@file_put_contents("$exportDir/$filename", "$content\n") ?
+                            '' : "/export/$filename";
                     },
                     'reader' => function(string $filename): string {
                         $exportDir = '/home/dbadmin/exports/' . Str::slug(auth()->user()->email);
@@ -42,7 +43,6 @@ return [
                         return !is_dir($exportDir) || !is_file($filepath) ?
                             "No file $filepath found." : file_get_contents($filepath);
                     },
-                    'url' => fn(string $filename): string => "/export/$filename",
                 ],
                 'access' => [
                     'server' => true,
@@ -86,8 +86,8 @@ return [
             'app' => [
                 'uri' => '/jaxon/',
                 'dir' => public_path('/jaxon/'),
-                'export' => false,
-                'minify' => false,
+                'export' => true,
+                'minify' => true,
             ],
         ],
     ],
