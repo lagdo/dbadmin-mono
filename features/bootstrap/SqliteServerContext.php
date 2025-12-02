@@ -40,7 +40,7 @@ class ServerContext implements Context
      */
     public function connectToTheDatabase(string $database)
     {
-        $this->driver->open($database);
+        $this->driver->openConnection($database);
     }
 
     /**
@@ -144,7 +144,7 @@ class ServerContext implements Context
      */
     public function openDatabase(string $database)
     {
-        $this->driver->open($database, '');
+        $this->driver->openConnection($database, '');
     }
 
     /**
