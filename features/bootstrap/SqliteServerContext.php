@@ -150,7 +150,7 @@ class ServerContext implements Context
     /**
      * @When I rename the database to :database
      */
-    public function renameDatabase(string $database)
+    public function renameDatabase(string $database): void
     {
         $this->dbResult = $this->driver->renameDatabase($database, '');
     }
