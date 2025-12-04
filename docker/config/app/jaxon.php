@@ -1,8 +1,27 @@
 <?php
 
+use Jaxon\Storage\StorageManager;
 use App\Http\Middleware\DbAdminPackageConfig;
 use Illuminate\Support\Str;
 use Lagdo\DbAdmin\Config\UserFileReader;
+use League\Flysystem\Filesystem;
+use League\Flysystem\FilesystemException;
+use League\Flysystem\UnableToReadFile;
+use League\Flysystem\UnableToWriteFile;
+
+function getExportStorage(): Filesystem
+{
+    // Make a Filesystem object with the storage.exports options.
+    return jaxon()->di()->g(StorageManager::class)->get('exports');
+}
+
+function getExportPath(string $filename): string
+{
+    return Str::slug(auth()->user()->email) . "/$filename";
+}
+
+$uploadDir = '/home/dbadmin/uploads/';
+$exportDir = '/home/dbadmin/exports/';
 
 return [
     'app' => [
@@ -21,6 +40,31 @@ return [
             ],
         ],
         'directories' => [],
+        'dialogs' => [
+            'default' => [
+                'modal' => 'bootbox',
+                'alert' => 'toastr',
+                'confirm' => 'noty',
+            ],
+        ],
+        'storage' => [
+            'uploads' => [
+                'adapter' => 'local',
+                'dir' => $uploadDir,
+            ],
+            'exports' => [
+                'adapter' => 'local',
+                'dir' => $exportDir,
+            ],
+        ],
+        'upload' => [
+            'enabled' => true,
+            'files' => [
+                'sql_files' => [
+                    'storage' => 'uploads',
+                ],
+            ],
+        ],
         'packages' => [
             Lagdo\DbAdmin\DbAdminPackage::class => [
                 'provider' => function(array $options): array {
@@ -30,35 +74,36 @@ return [
                     $reader = $di->g(UserFileReader::class);
                     return $reader->getOptions($cfgFilePath, $options);
                 },
-                'export' => [
-                    'writer' => function(string $content, string $filename): string {
-                        $exportDir = '/home/dbadmin/exports/' . Str::slug(auth()->user()->email);
-                        @mkdir($exportDir, 0755, true);
-                        return !@file_put_contents("$exportDir/$filename", "$content\n") ?
-                            '' : "/export/$filename";
-                    },
-                    'reader' => function(string $filename): string {
-                        $exportDir = '/home/dbadmin/exports/' . Str::slug(auth()->user()->email);
-                        $filepath = "$exportDir/$filename";
-                        return !is_dir($exportDir) || !is_file($filepath) ?
-                            "No file $filepath found." : file_get_contents($filepath);
-                    },
-                ],
                 'access' => [
                     'server' => true,
                     'system' => false,
+                ],
+                'export' => [
+                    'writer' => function(string $content, string $filename): string {
+                        try {
+                            $storage = getExportStorage();
+                            $storage->write(getExportPath($filename), "$content\n");
+                        } catch (FilesystemException|UnableToWriteFile) {
+                            return '';
+                        }
+                        // Return the link to the exported file.
+                        return "/export/$filename";
+                    },
+                    'reader' => function(string $filename): string {
+                        try {
+                            $storage = getExportStorage();
+                            $filepath = getExportPath($filename);
+                            return !$storage->fileExists($filepath) ?
+                                "No file $filename found." : $storage->read($filepath);
+                        } catch (FilesystemException|UnableToReadFile) {
+                            return "No file $filename found.";
+                        }
+                    },
                 ],
             ],
         ],
         'ui' => [
             'template' => 'bootstrap5',
-        ],
-        'dialogs' => [
-            'default' => [
-                'modal' => 'bootbox',
-                'alert' => 'toastr',
-                'confirm' => 'noty',
-            ],
         ],
     ],
     'lib' => [
