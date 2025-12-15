@@ -49,7 +49,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Lagdo\\DbAdmin\\": "jaxon-dbadmin/src/",
+            "Lagdo\\DbAdmin\\Db\\": "jaxon-dbadmin/src/",
             "Lagdo\\DbAdmin\\Ajax\\": "jaxon-dbadmin/app/ajax/",
             "Lagdo\\DbAdmin\\Demo\\": "dbadmin-demo/src/",
             "Lagdo\\DbAdmin\\Driver\\": "dbadmin-driver/src/",

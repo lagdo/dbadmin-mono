@@ -3,7 +3,7 @@
 use Jaxon\Storage\StorageManager;
 use App\Http\Middleware\DbAdminPackageConfig;
 use Illuminate\Support\Str;
-use Lagdo\DbAdmin\Config\UserFileReader;
+use Lagdo\DbAdmin\Db\Config\UserFileReader;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\UnableToReadFile;
@@ -48,13 +48,13 @@ return [
             ],
         ],
         'storage' => [
-            'uploads' => [
-                'adapter' => 'local',
-                'dir' => $uploadDir,
-            ],
             'exports' => [
                 'adapter' => 'local',
                 'dir' => $exportDir,
+            ],
+            'uploads' => [
+                'adapter' => 'local',
+                'dir' => $uploadDir,
             ],
         ],
         'upload' => [
@@ -66,7 +66,7 @@ return [
             ],
         ],
         'packages' => [
-            Lagdo\DbAdmin\DbAdminPackage::class => [
+            Lagdo\DbAdmin\Db\DbAdminPackage::class => [
                 'provider' => function(array $options): array {
                     $di = jaxon()->di();
                     $cfgFilePath = $di->g('dbadmin_config_file_path');
