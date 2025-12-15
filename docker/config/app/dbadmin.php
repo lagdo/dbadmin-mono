@@ -11,7 +11,7 @@ return [
     ],
     'users' => [
     ],
-    'logging' => [
+    'audit' => [
         'options' => [
             'library' => [
                 'enabled' => false,
@@ -39,7 +39,7 @@ return [
             'name' => 'logging',
         ],
         'allowed' => [
-            // The emails of users that are allowed to access the logging page.
+            // The emails of users that are allowed to access the audit page.
             'admin@company.com'
         ],
     ],
