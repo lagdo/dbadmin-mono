@@ -1,9 +1,10 @@
 <?php
 
-use Jaxon\Storage\StorageManager;
 use App\Http\Middleware\DbAdminPackageConfig;
+use Jaxon\Storage\StorageManager;
 use Illuminate\Support\Str;
 use Lagdo\DbAdmin\Db\Config\UserFileReader;
+use Lagdo\DbAdmin\Db\DbAdminPackage;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\UnableToReadFile;
@@ -66,7 +67,7 @@ return [
             ],
         ],
         'packages' => [
-            Lagdo\DbAdmin\Db\DbAdminPackage::class => [
+            DbAdminPackage::class => [
                 'provider' => function(array $options): array {
                     $di = jaxon()->di();
                     $cfgFilePath = $di->g('dbadmin_config_file_path');
