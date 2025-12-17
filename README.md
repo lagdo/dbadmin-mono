@@ -7,6 +7,28 @@ It inserts a database admin dashboard into an existing PHP application.
 Thanks to the [Jaxon library](https://www.jaxon-php.org), it installs and runs in a page of the application.
 All its operations are performed with Ajax requests.
 
+## Features and current status
+
+This application and the related packages are still being actively developed, and the provided features are still basic and need improvements.
+
+The following features are currently available:
+- Browse servers and databases.
+- Show tables and views details.
+- Query a table.
+- Query a view.
+- Execute queries in the query editor.
+- Use a better editor for SQL queries.
+- Save and show the query history.
+- Save queries in user favorites.
+- Import or export data.
+- Insert, modify or delete data in a table.
+
+The following features are either disabled or not yet implemented, and planned for future releases:
+- Navigate through related tables.
+- Create, alter or drop a database, table or view.
+- Code completion for table and field names in the SQL editor.
+- An advanced GUI-based query builder.
+
 Howtos
 ------
 
