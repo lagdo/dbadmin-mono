@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Middleware\DbAdminPackageConfig;
-use Jaxon\Storage\StorageManager;
 use Illuminate\Support\Str;
 use Lagdo\DbAdmin\Db\Config\UserFileReader;
 use Lagdo\DbAdmin\Db\DbAdminPackage;
@@ -10,10 +9,12 @@ use League\Flysystem\FilesystemException;
 use League\Flysystem\UnableToReadFile;
 use League\Flysystem\UnableToWriteFile;
 
+use function Jaxon\Storage\storage;
+
 function getExportStorage(): Filesystem
 {
     // Make a Filesystem object with the storage.exports options.
-    return jaxon()->di()->g(StorageManager::class)->get('exports');
+    return storage()->get('exports');
 }
 
 function getExportPath(string $filename): string
