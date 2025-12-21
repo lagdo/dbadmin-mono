@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8cdab66573d4d3fe2f1c979fb4b90692",
+    "content-hash": "77b1f1d1d907e065e9a126b8da9cf612",
     "packages": [
         {
             "name": "avplab/php-html-builder",
