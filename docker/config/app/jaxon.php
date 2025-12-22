@@ -129,6 +129,7 @@ return [
         ],
         'js' => [
             'lib' => [
+                'uri' => 'https://cdn.jsdelivr.net/gh/jaxon-php/jaxon-js@5.1.0/dist',
             ],
             'app' => [
                 'uri' => '/jaxon/',
