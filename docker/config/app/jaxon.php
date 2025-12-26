@@ -49,6 +49,12 @@ return [
                 'confirm' => 'noty',
             ],
         ],
+        'assets' => [
+            'uri' => '/jaxon/',
+            'dir' => public_path('/jaxon/'),
+            'export' => true,
+            'minify' => true,
+        ],
         'storage' => [
             'exports' => [
                 'adapter' => 'local',
@@ -130,12 +136,6 @@ return [
         'js' => [
             'lib' => [
                 'uri' => 'https://cdn.jsdelivr.net/gh/jaxon-php/jaxon-js@5.1.0/dist',
-            ],
-            'app' => [
-                'uri' => '/jaxon/',
-                'dir' => public_path('/jaxon/'),
-                'export' => true,
-                'minify' => true,
             ],
         ],
     ],
