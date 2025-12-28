@@ -1,7 +1,7 @@
 A database admin dashboard based on Jaxon and Adminer
 =====================================================
 
-This package is based on [Adminer](https://github.com/vrana/adminer).
+This set of packages are a rewrite of the [Adminer](https://github.com/vrana/adminer) database management tool.
 
 It inserts a database admin dashboard into an existing PHP application.
 Thanks to the [Jaxon library](https://www.jaxon-php.org), it installs and runs in a page of the application.
