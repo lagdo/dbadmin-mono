@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "538e8e1ae1a8c2ada2b29bb6bd856256",
+    "content-hash": "0d0d628742c1f8c49b3b03ce8aac8e75",
     "packages": [
         {
             "name": "jaxon-php/jaxon-attributes",
@@ -481,21 +481,21 @@
         },
         {
             "name": "lagdo/jaxon-ui-builder",
-            "version": "v0.2.0",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/jaxon-ui-builder.git",
-                "reference": "927347f0fe3409ef6b8f20ffed7285e7dbebcc76"
+                "reference": "40bc99f435e8f5a3d1ff10788b3d526167b02f92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/jaxon-ui-builder/zipball/927347f0fe3409ef6b8f20ffed7285e7dbebcc76",
-                "reference": "927347f0fe3409ef6b8f20ffed7285e7dbebcc76",
+                "url": "https://api.github.com/repos/lagdo/jaxon-ui-builder/zipball/40bc99f435e8f5a3d1ff10788b3d526167b02f92",
+                "reference": "40bc99f435e8f5a3d1ff10788b3d526167b02f92",
                 "shasum": ""
             },
             "require": {
                 "jaxon-php/jaxon-core": "^5.0",
-                "lagdo/ui-builder": "^0.3",
+                "lagdo/ui-builder": "0.4.*",
                 "php": ">=8.0"
             },
             "type": "library",
@@ -529,20 +529,20 @@
                 "issues": "https://github.com/lagdo/jaxon-ui-builder/issues",
                 "source": "https://github.com/lagdo/jaxon-ui-builder"
             },
-            "time": "2025-12-28T00:25:27+00:00"
+            "time": "2025-12-30T16:36:04+00:00"
         },
         {
             "name": "lagdo/ui-builder",
-            "version": "v0.3.1",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/ui-builder.git",
-                "reference": "47a406f61db34e54dd79df1246ea1f5b23811765"
+                "reference": "6037b2c0dcf32f944973ee6fe8965cbc97863141"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/ui-builder/zipball/47a406f61db34e54dd79df1246ea1f5b23811765",
-                "reference": "47a406f61db34e54dd79df1246ea1f5b23811765",
+                "url": "https://api.github.com/repos/lagdo/ui-builder/zipball/6037b2c0dcf32f944973ee6fe8965cbc97863141",
+                "reference": "6037b2c0dcf32f944973ee6fe8965cbc97863141",
                 "shasum": ""
             },
             "require": {
@@ -575,24 +575,24 @@
                 "issues": "https://github.com/lagdo/ui-builder/issues",
                 "source": "https://github.com/lagdo/ui-builder"
             },
-            "time": "2025-12-28T15:07:05+00:00"
+            "time": "2025-12-30T16:18:15+00:00"
         },
         {
             "name": "lagdo/ui-builder-bootstrap5",
-            "version": "v0.2.1",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/ui-builder-bootstrap5.git",
-                "reference": "1400e28c1bf1c50c8bbb0f71e17ec3fb20221198"
+                "reference": "d286837bfc15759128814c4b268b17a177a64e0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/ui-builder-bootstrap5/zipball/1400e28c1bf1c50c8bbb0f71e17ec3fb20221198",
-                "reference": "1400e28c1bf1c50c8bbb0f71e17ec3fb20221198",
+                "url": "https://api.github.com/repos/lagdo/ui-builder-bootstrap5/zipball/d286837bfc15759128814c4b268b17a177a64e0b",
+                "reference": "d286837bfc15759128814c4b268b17a177a64e0b",
                 "shasum": ""
             },
             "require": {
-                "lagdo/ui-builder": "^0.3",
+                "lagdo/ui-builder": "0.4.*",
                 "php": ">=8.0"
             },
             "type": "library",
@@ -622,7 +622,7 @@
                 "issues": "https://github.com/lagdo/ui-builder-bootstrap/issues",
                 "source": "https://github.com/lagdo/ui-builder-bootstrap"
             },
-            "time": "2025-12-28T15:07:05+00:00"
+            "time": "2025-12-30T16:36:04+00:00"
         },
         {
             "name": "league/flysystem",
