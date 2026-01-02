@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d0d628742c1f8c49b3b03ce8aac8e75",
+    "content-hash": "5f4538390e4b89b127e7165d501497f1",
     "packages": [
         {
             "name": "jaxon-php/jaxon-attributes",
@@ -198,16 +198,16 @@
         },
         {
             "name": "jaxon-php/jaxon-dialogs",
-            "version": "v5.1.1",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaxon-php/jaxon-dialogs.git",
-                "reference": "4f010f7dd40f50b84d38ba3125fb69dd53e1a13b"
+                "reference": "d0c1140d2fca8851cb780d6d2eb2399981811c94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaxon-php/jaxon-dialogs/zipball/4f010f7dd40f50b84d38ba3125fb69dd53e1a13b",
-                "reference": "4f010f7dd40f50b84d38ba3125fb69dd53e1a13b",
+                "url": "https://api.github.com/repos/jaxon-php/jaxon-dialogs/zipball/d0c1140d2fca8851cb780d6d2eb2399981811c94",
+                "reference": "d0c1140d2fca8851cb780d6d2eb2399981811c94",
                 "shasum": ""
             },
             "require": {
@@ -254,7 +254,7 @@
                 "issues": "https://github.com/jaxon-php/jaxon-dialogs/issues",
                 "source": "https://github.com/jaxon-php/jaxon-dialogs"
             },
-            "time": "2025-12-26T03:58:25+00:00"
+            "time": "2026-01-02T02:00:39+00:00"
         },
         {
             "name": "jaxon-php/jaxon-storage",
@@ -481,21 +481,21 @@
         },
         {
             "name": "lagdo/jaxon-ui-builder",
-            "version": "v0.3.0",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/jaxon-ui-builder.git",
-                "reference": "40bc99f435e8f5a3d1ff10788b3d526167b02f92"
+                "reference": "7da6ca89b16622f6c8b7b20fca1f83cf84ec9e5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/jaxon-ui-builder/zipball/40bc99f435e8f5a3d1ff10788b3d526167b02f92",
-                "reference": "40bc99f435e8f5a3d1ff10788b3d526167b02f92",
+                "url": "https://api.github.com/repos/lagdo/jaxon-ui-builder/zipball/7da6ca89b16622f6c8b7b20fca1f83cf84ec9e5e",
+                "reference": "7da6ca89b16622f6c8b7b20fca1f83cf84ec9e5e",
                 "shasum": ""
             },
             "require": {
                 "jaxon-php/jaxon-core": "^5.0",
-                "lagdo/ui-builder": "0.4.*",
+                "lagdo/ui-builder": "0.5.*",
                 "php": ">=8.0"
             },
             "type": "library",
@@ -529,20 +529,20 @@
                 "issues": "https://github.com/lagdo/jaxon-ui-builder/issues",
                 "source": "https://github.com/lagdo/jaxon-ui-builder"
             },
-            "time": "2025-12-30T16:36:04+00:00"
+            "time": "2026-01-02T17:36:52+00:00"
         },
         {
             "name": "lagdo/ui-builder",
-            "version": "v0.4.0",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/ui-builder.git",
-                "reference": "6037b2c0dcf32f944973ee6fe8965cbc97863141"
+                "reference": "e8b2a608882e540cfaa749774f31fceb2dca1dfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/ui-builder/zipball/6037b2c0dcf32f944973ee6fe8965cbc97863141",
-                "reference": "6037b2c0dcf32f944973ee6fe8965cbc97863141",
+                "url": "https://api.github.com/repos/lagdo/ui-builder/zipball/e8b2a608882e540cfaa749774f31fceb2dca1dfb",
+                "reference": "e8b2a608882e540cfaa749774f31fceb2dca1dfb",
                 "shasum": ""
             },
             "require": {
@@ -575,24 +575,24 @@
                 "issues": "https://github.com/lagdo/ui-builder/issues",
                 "source": "https://github.com/lagdo/ui-builder"
             },
-            "time": "2025-12-30T16:18:15+00:00"
+            "time": "2026-01-02T17:36:52+00:00"
         },
         {
             "name": "lagdo/ui-builder-bootstrap5",
-            "version": "v0.3.0",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/ui-builder-bootstrap5.git",
-                "reference": "d286837bfc15759128814c4b268b17a177a64e0b"
+                "reference": "942ef6eaa8b9490539b3bd286ff335ceda9e63eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/ui-builder-bootstrap5/zipball/d286837bfc15759128814c4b268b17a177a64e0b",
-                "reference": "d286837bfc15759128814c4b268b17a177a64e0b",
+                "url": "https://api.github.com/repos/lagdo/ui-builder-bootstrap5/zipball/942ef6eaa8b9490539b3bd286ff335ceda9e63eb",
+                "reference": "942ef6eaa8b9490539b3bd286ff335ceda9e63eb",
                 "shasum": ""
             },
             "require": {
-                "lagdo/ui-builder": "0.4.*",
+                "lagdo/ui-builder": "0.5.*",
                 "php": ">=8.0"
             },
             "type": "library",
@@ -622,7 +622,7 @@
                 "issues": "https://github.com/lagdo/ui-builder-bootstrap/issues",
                 "source": "https://github.com/lagdo/ui-builder-bootstrap"
             },
-            "time": "2025-12-30T16:36:04+00:00"
+            "time": "2026-01-02T17:31:38+00:00"
         },
         {
             "name": "league/flysystem",
