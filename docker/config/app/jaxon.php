@@ -9,7 +9,7 @@ use League\Flysystem\FilesystemException;
 use League\Flysystem\UnableToReadFile;
 use League\Flysystem\UnableToWriteFile;
 
-use function Jaxon\Storage\storage;
+use function Jaxon\storage;
 
 function getExportStorage(): Filesystem
 {

@@ -115,16 +115,16 @@
         },
         {
             "name": "jaxon-php/jaxon-core",
-            "version": "v5.3.2",
+            "version": "v5.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaxon-php/jaxon-core.git",
-                "reference": "afd6cfa2e18eed07d6a6d81bea842a4e8dc81a24"
+                "reference": "df1cdda355a2aa2e64cdaa750dfc850b2bef37c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaxon-php/jaxon-core/zipball/afd6cfa2e18eed07d6a6d81bea842a4e8dc81a24",
-                "reference": "afd6cfa2e18eed07d6a6d81bea842a4e8dc81a24",
+                "url": "https://api.github.com/repos/jaxon-php/jaxon-core/zipball/df1cdda355a2aa2e64cdaa750dfc850b2bef37c1",
+                "reference": "df1cdda355a2aa2e64cdaa750dfc850b2bef37c1",
                 "shasum": ""
             },
             "require": {
@@ -144,8 +144,9 @@
                 "psr/log": "^1.0|^2.0|^3.0"
             },
             "require-dev": {
-                "jaxon-php/jaxon-dialogs": "^5.1",
-                "jaxon-php/jaxon-upload": "^2.0",
+                "jaxon-php/jaxon-dialogs": "dev-test",
+                "jaxon-php/jaxon-upload": "dev-test",
+                "league/flysystem-memory": "^3.0|^2.2",
                 "php-coveralls/php-coveralls": "^2.5",
                 "phpunit/phpcov": "^8.2",
                 "phpunit/phpunit": "^9.5"
@@ -194,20 +195,20 @@
                 "issues": "https://github.com/jaxon-php/jaxon-core/issues",
                 "source": "https://github.com/jaxon-php/jaxon-core"
             },
-            "time": "2025-12-26T15:24:08+00:00"
+            "time": "2026-01-09T04:38:20+00:00"
         },
         {
             "name": "jaxon-php/jaxon-dialogs",
-            "version": "v5.1.2",
+            "version": "v5.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaxon-php/jaxon-dialogs.git",
-                "reference": "d0c1140d2fca8851cb780d6d2eb2399981811c94"
+                "reference": "96241cdea6a9713983b50339ee3b8877e25811ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaxon-php/jaxon-dialogs/zipball/d0c1140d2fca8851cb780d6d2eb2399981811c94",
-                "reference": "d0c1140d2fca8851cb780d6d2eb2399981811c94",
+                "url": "https://api.github.com/repos/jaxon-php/jaxon-dialogs/zipball/96241cdea6a9713983b50339ee3b8877e25811ac",
+                "reference": "96241cdea6a9713983b50339ee3b8877e25811ac",
                 "shasum": ""
             },
             "require": {
@@ -254,20 +255,20 @@
                 "issues": "https://github.com/jaxon-php/jaxon-dialogs/issues",
                 "source": "https://github.com/jaxon-php/jaxon-dialogs"
             },
-            "time": "2026-01-02T02:00:39+00:00"
+            "time": "2026-01-09T01:09:08+00:00"
         },
         {
             "name": "jaxon-php/jaxon-storage",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaxon-php/jaxon-storage.git",
-                "reference": "5d77de9db96aabac55a403a2db2ea90199918e14"
+                "reference": "2219e42f69419d5460f1c1774fff6a328df6580c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaxon-php/jaxon-storage/zipball/5d77de9db96aabac55a403a2db2ea90199918e14",
-                "reference": "5d77de9db96aabac55a403a2db2ea90199918e14",
+                "url": "https://api.github.com/repos/jaxon-php/jaxon-storage/zipball/2219e42f69419d5460f1c1774fff6a328df6580c",
+                "reference": "2219e42f69419d5460f1c1774fff6a328df6580c",
                 "shasum": ""
             },
             "require": {
@@ -278,7 +279,6 @@
                 "php": ">=8.0"
             },
             "require-dev": {
-                "jaxon-php/jaxon-core": "^5.2",
                 "league/flysystem-memory": "^3.0|^2.2",
                 "php-coveralls/php-coveralls": "^2.5",
                 "phpunit/phpcov": "^8.2",
@@ -287,7 +287,7 @@
             "type": "library",
             "autoload": {
                 "files": [
-                    "src/register.php"
+                    "src/helpers.php"
                 ],
                 "psr-4": {
                     "Jaxon\\Storage\\": "src/"
@@ -314,7 +314,7 @@
                 "issues": "https://github.com/jaxon-php/jaxon-storage/issues",
                 "source": "https://github.com/jaxon-php/jaxon-storage"
             },
-            "time": "2025-12-24T19:47:48+00:00"
+            "time": "2026-01-09T02:35:55+00:00"
         },
         {
             "name": "jaxon-php/jaxon-upload",
