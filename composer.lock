@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3dfcacb911ee4926b156d33721406f1",
+    "content-hash": "ace25177cf41a8779013bcca34aab55d",
     "packages": [
         {
             "name": "jaxon-php/jaxon-attributes",
@@ -115,16 +115,16 @@
         },
         {
             "name": "jaxon-php/jaxon-core",
-            "version": "v5.3.5",
+            "version": "v5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaxon-php/jaxon-core.git",
-                "reference": "df1cdda355a2aa2e64cdaa750dfc850b2bef37c1"
+                "reference": "4ee0a3c5e6491db4e7f82e8b84ce7976428b0912"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaxon-php/jaxon-core/zipball/df1cdda355a2aa2e64cdaa750dfc850b2bef37c1",
-                "reference": "df1cdda355a2aa2e64cdaa750dfc850b2bef37c1",
+                "url": "https://api.github.com/repos/jaxon-php/jaxon-core/zipball/4ee0a3c5e6491db4e7f82e8b84ce7976428b0912",
+                "reference": "4ee0a3c5e6491db4e7f82e8b84ce7976428b0912",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 "issues": "https://github.com/jaxon-php/jaxon-core/issues",
                 "source": "https://github.com/jaxon-php/jaxon-core"
             },
-            "time": "2026-01-09T04:38:20+00:00"
+            "time": "2026-01-15T22:42:00+00:00"
         },
         {
             "name": "jaxon-php/jaxon-dialogs",
