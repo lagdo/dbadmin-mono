@@ -56,13 +56,15 @@ return [
             'minify' => true,
         ],
         'storage' => [
-            'exports' => [
-                'adapter' => 'local',
-                'dir' => $exportDir,
-            ],
-            'uploads' => [
-                'adapter' => 'local',
-                'dir' => $uploadDir,
+            'stores' => [
+                'exports' => [
+                    'adapter' => 'local',
+                    'dir' => $exportDir,
+                ],
+                'uploads' => [
+                    'adapter' => 'local',
+                    'dir' => $uploadDir,
+                ],
             ],
         ],
         'upload' => [
