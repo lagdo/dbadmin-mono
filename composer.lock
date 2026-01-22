@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ace25177cf41a8779013bcca34aab55d",
+    "content-hash": "89b7f9d47931c2a6af9a9487b0fae031",
     "packages": [
         {
             "name": "jaxon-php/jaxon-attributes",
@@ -115,16 +115,16 @@
         },
         {
             "name": "jaxon-php/jaxon-core",
-            "version": "v5.4.3",
+            "version": "v5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaxon-php/jaxon-core.git",
-                "reference": "4d549c91ae71e0c8fb87e4b22f565c8460122a1c"
+                "reference": "c6f95865271686579b14ac5f86589543f0b39666"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaxon-php/jaxon-core/zipball/4d549c91ae71e0c8fb87e4b22f565c8460122a1c",
-                "reference": "4d549c91ae71e0c8fb87e4b22f565c8460122a1c",
+                "url": "https://api.github.com/repos/jaxon-php/jaxon-core/zipball/c6f95865271686579b14ac5f86589543f0b39666",
+                "reference": "c6f95865271686579b14ac5f86589543f0b39666",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 "issues": "https://github.com/jaxon-php/jaxon-core/issues",
                 "source": "https://github.com/jaxon-php/jaxon-core"
             },
-            "time": "2026-01-18T12:01:25+00:00"
+            "time": "2026-01-23T12:43:51+00:00"
         },
         {
             "name": "jaxon-php/jaxon-dialogs",
@@ -259,16 +259,16 @@
         },
         {
             "name": "jaxon-php/jaxon-storage",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaxon-php/jaxon-storage.git",
-                "reference": "2219e42f69419d5460f1c1774fff6a328df6580c"
+                "reference": "92dd2ea1f440b675f92ff6e211b07324658ffe3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaxon-php/jaxon-storage/zipball/2219e42f69419d5460f1c1774fff6a328df6580c",
-                "reference": "2219e42f69419d5460f1c1774fff6a328df6580c",
+                "url": "https://api.github.com/repos/jaxon-php/jaxon-storage/zipball/92dd2ea1f440b675f92ff6e211b07324658ffe3c",
+                "reference": "92dd2ea1f440b675f92ff6e211b07324658ffe3c",
                 "shasum": ""
             },
             "require": {
@@ -314,7 +314,7 @@
                 "issues": "https://github.com/jaxon-php/jaxon-storage/issues",
                 "source": "https://github.com/jaxon-php/jaxon-storage"
             },
-            "time": "2026-01-09T02:35:55+00:00"
+            "time": "2026-01-22T16:02:09+00:00"
         },
         {
             "name": "jaxon-php/jaxon-upload",
@@ -481,20 +481,20 @@
         },
         {
             "name": "lagdo/jaxon-ui-builder",
-            "version": "v0.5.0",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/jaxon-ui-builder.git",
-                "reference": "0ffbf19a3c952ec2c7da4301a43f690e57044cd4"
+                "reference": "5f6a15b80f06cf836e52ebf9e09c66e2ea6fa2ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/jaxon-ui-builder/zipball/0ffbf19a3c952ec2c7da4301a43f690e57044cd4",
-                "reference": "0ffbf19a3c952ec2c7da4301a43f690e57044cd4",
+                "url": "https://api.github.com/repos/lagdo/jaxon-ui-builder/zipball/5f6a15b80f06cf836e52ebf9e09c66e2ea6fa2ce",
+                "reference": "5f6a15b80f06cf836e52ebf9e09c66e2ea6fa2ce",
                 "shasum": ""
             },
             "require": {
-                "jaxon-php/jaxon-core": "^5.0",
+                "jaxon-php/jaxon-core": "^5.4",
                 "lagdo/ui-builder": "0.6.*",
                 "php": ">=8.0"
             },
@@ -529,7 +529,7 @@
                 "issues": "https://github.com/lagdo/jaxon-ui-builder/issues",
                 "source": "https://github.com/lagdo/jaxon-ui-builder"
             },
-            "time": "2026-01-05T12:08:07+00:00"
+            "time": "2026-01-23T12:56:53+00:00"
         },
         {
             "name": "lagdo/ui-builder",
