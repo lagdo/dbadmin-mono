@@ -10,7 +10,7 @@ services:
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
     volumes:
-      - ./config/mysql/my.cnf:/root/.my.cnf:ro
+      - ./config/mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
       - ..:/var/www
       - ./sqlite:/var/lib/sqlite
     ports:
@@ -63,80 +63,6 @@ services:
       - dbadmin-dev-net
     extra_hosts:
       - "postgresql.addr=host-gateway"
-
-  dbadmin-adminer:
-    container_name: dbadmin-adminer
-    image: adminer
-    restart: always
-    ports:
-      - 7093:8080
-    networks:
-      - dbadmin-dev-net
-
-  # dbadmin-phpmyadmin:
-  #   container_name: dbadmin-phpmyadmin
-  #   image: phpmyadmin
-  #   restart: always
-  #   environment:
-  #     - PMA_HOST=dbadmin-mariadb
-  #   ports:
-  #     - 7094:80
-  #   networks:
-  #     - dbadmin-dev-net
-
-  dbadmin-mariadb:
-    container_name: dbadmin-mariadb
-    image: mariadb:10-ubi
-    restart: always
-    environment:
-      MARIADB_ROOT_PASSWORD: dbadmin
-    networks:
-      - dbadmin-dev-net
-
-  dbadmin-mysql:
-    container_name: dbadmin-mysql
-    image: mysql:8.0
-    # volumes:
-    #   - ./config/mysql/server.cnf:/etc/my.cnf
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: dbadmin
-    networks:
-      - dbadmin-dev-net
-
-  dbadmin-pgsql-14:
-    container_name: dbadmin-pgsql-14
-    image: postgres:14.15-alpine3.21
-    restart: always
-    # set shared memory limit when using docker-compose
-    shm_size: 128mb
-    # or set shared memory limit when deploy via swarm stack
-    #volumes:
-    #  - type: tmpfs
-    #    target: /dev/shm
-    #    tmpfs:
-    #      size: 134217728 # 128*2^20 bytes = 128Mb
-    environment:
-      POSTGRES_PASSWORD: dbadmin
-    networks:
-      - dbadmin-dev-net
-
-  dbadmin-pgsql-17:
-    container_name: dbadmin-pgsql-17
-    image: postgres:17-alpine3.21
-    restart: always
-    # set shared memory limit when using docker-compose
-    shm_size: 128mb
-    # or set shared memory limit when deploy via swarm stack
-    #volumes:
-    #  - type: tmpfs
-    #    target: /dev/shm
-    #    tmpfs:
-    #      size: 134217728 # 128*2^20 bytes = 128Mb
-    environment:
-      POSTGRES_PASSWORD: dbadmin
-    networks:
-      - dbadmin-dev-net
 
 networks:
   dbadmin-dev-net:

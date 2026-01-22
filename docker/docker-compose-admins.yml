@@ -1,0 +1,21 @@
+services:
+
+  dbadmin-adminer:
+    container_name: dbadmin-adminer
+    image: adminer
+    restart: always
+    ports:
+      - 7093:8080
+    networks:
+      - dbadmin-dev-net
+
+  dbadmin-phpmyadmin:
+    container_name: dbadmin-phpmyadmin
+    image: phpmyadmin
+    restart: always
+    environment:
+      - PMA_HOST=dbadmin-mariadb
+    ports:
+      - 7094:80
+    networks:
+      - dbadmin-dev-net
