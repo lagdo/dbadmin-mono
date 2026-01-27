@@ -1,0 +1,107 @@
+services:
+
+  seed:
+    container_name: dbserver-seed
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    build:
+      context: ./
+      dockerfile: seed/Dockerfile
+      args:
+        - SEED_USER=seed
+        - SEED_UID=${SEED_UID:-1000}
+        - SEED_GID=${SEED_GID:-1000}
+    volumes:
+      - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
+      - ../../jaxon-dbadmin/migrations:/home/seed/migrations
+      - ../seed:/home/seed/scripts
+    networks:
+      - dbserver-dev-net
+
+  maria:
+    container_name: dbserver-maria
+    image: mariadb:10-ubi
+    volumes:
+      - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: dbadmin
+    networks:
+      - dbserver-dev-net
+
+  mysql:
+    container_name: dbserver-mysql
+    image: mysql:8.0
+    volumes:
+      - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
+    restart: always
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: dbadmin
+    networks:
+      - dbserver-dev-net
+
+  pgsql-14:
+    container_name: dbserver-pgsql-14
+    image: postgres:14.15-alpine3.21
+    restart: always
+    ports:
+      - 5433:5432
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_PASSWORD: dbadmin
+    networks:
+      - dbserver-dev-net
+
+  pgsql-17:
+    container_name: dbserver-pgsql-17
+    image: postgres:17-alpine3.21
+    restart: always
+    ports:
+      - 5434:5432
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_PASSWORD: dbadmin
+    networks:
+      - dbserver-dev-net
+
+  adminer:
+    container_name: dbserver-adminer
+    image: adminer
+    restart: always
+    ports:
+      - 7093:8080
+    networks:
+      - dbserver-dev-net
+
+  phpmyadmin:
+    container_name: dbserver-phpmyadmin
+    image: phpmyadmin
+    restart: always
+    environment:
+      - PMA_HOST=dbserver-mariadb
+    ports:
+      - 7094:80
+    networks:
+      - dbserver-dev-net
+
+networks:
+  dbserver-dev-net:
+    driver: bridge
