@@ -34,10 +34,10 @@ services:
     volumes:
       - ../../../dbadmin-app:/var/www
       - ../exports:/home/dbadmin/exports
-      - ../config/app/.env.dbadmin:/var/www/.env.dbadmin
-      - ../config/app/dbadmin.json:/var/www/config/dbadmin.json
-      - ../config/app/dbadmin.php:/var/www/config/dbadmin.php
-      - ../config/app/jaxon.php:/var/www/config/jaxon.php
+      - ./config/.env.dbadmin:/var/www/.env.dbadmin
+      - ./config/dbadmin.json:/var/www/config/dbadmin.json
+      - ./config/dbadmin.php:/var/www/config/dbadmin.php
+      - ./config/jaxon.php:/var/www/config/jaxon.php
       - ../sqlite:/var/lib/sqlite
       - ../sqlite/3/database.sqlite:/var/www/database/database.sqlite:rw
     ports:
@@ -56,10 +56,10 @@ services:
     restart: always
     volumes:
       - ../exports:/home/dbadmin/exports
-      - ../config/app/.env.dbadmin:/var/www/.env.dbadmin
-      - ../config/app/dbadmin.json:/var/www/config/dbadmin.json
-      - ../config/app/dbadmin.php:/var/www/config/dbadmin.php
-      - ../config/app/jaxon.php:/var/www/config/jaxon.php
+      - ./config/.env.dbadmin:/var/www/.env.dbadmin
+      - ./config/dbadmin.json:/var/www/config/dbadmin.json
+      - ./config/dbadmin.php:/var/www/config/dbadmin.php
+      - ./config/jaxon.php:/var/www/config/jaxon.php
       - ../sqlite:/var/lib/sqlite
       - ../sqlite/3/database.sqlite:/var/www/database/database.sqlite:rw
     ports:
