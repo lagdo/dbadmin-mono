@@ -23,9 +23,7 @@
         "dbadmin": {
             "type": "php",
             "root": "/var/www/public/",
-            "script": "index.php",
-            "user": "dbadmin",
-            "group": "dbadmin"
+            "script": "index.php"
         }
     }
 }
