@@ -51,16 +51,10 @@ It runs the [Laravel based DbAdmin application](https://github.com/lagdo/dbadmin
 
 ### Docker Compose
 
-The `docker/docker-compose.yml` file starts a demo app, as well as `PostgreSQL`, `MariaDB` and `MySQL` servers.
+The `docker/` dir provides 3 Docker Compose files to start the database servers (`PostgreSQL`, `MariaDB` and `MySQL`), the [Infisical secret management service](https://infisical.com/), and the DBAdmin demo apps.
 
-The `docker/sh` dir contains scripts to populate sample `PostgreSQL`, `MariaDB` and `SQLite` databases with free datasets available online.
-These scripts must be executed in the `dbadmin-demo` container.
-
-Connecting to the `MariaDB` and `MySQL` servers requires to add the following content in the `${HOME}/.my.cnf` file.
-```
-[mysql]
-ssl-verify-server-cert = off
-```
+The `seed` container in the `docker/compose-dbserver` Docker Compose can be used to populate the databases with popular freely online available data.
+These scripts are located in the `seed` dir, which is mounted in the `/home/seed/scripts` dir in the `seed` container.
 
 Documentation
 -------------
