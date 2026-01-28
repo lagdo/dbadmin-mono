@@ -38,7 +38,8 @@
         "lagdo/jaxon-ui-builder": "0.6.*",
         "lagdo/ui-builder": "0.6.*",
         "lagdo/ui-builder-bootstrap5": "0.5.*",
-        "vlucas/phpdotenv": "^5.4.1"
+        "vlucas/phpdotenv": "^5.4.1",
+        "infisical/php-sdk": "^0.0.1"
     },
     "require-dev": {
         "behat/behat": "^3.10",

@@ -20,6 +20,7 @@ services:
       - "pgsql.addr=host-gateway"
       - "maria.addr=host-gateway"
       - "mysql.addr=host-gateway"
+      - "infisical.local=host-gateway"
 
   dbadmin-dev:
     container_name: dbadmin-dev
@@ -47,6 +48,7 @@ services:
       - "pgsql.addr=host-gateway"
       - "maria.addr=host-gateway"
       - "mysql.addr=host-gateway"
+      - "infisical.local=host-gateway"
 
   dbadmin-app:
     container_name: dbadmin-app
@@ -68,6 +70,7 @@ services:
       - "pgsql.addr=host-gateway"
       - "maria.addr=host-gateway"
       - "mysql.addr=host-gateway"
+      - "infisical.local=host-gateway"
 
 networks:
   dbadmin-dev-net:
