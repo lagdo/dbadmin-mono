@@ -8,13 +8,13 @@ services:
       context: ./
       dockerfile: seed/Dockerfile
       args:
-        - SEED_USER=seed
+        - SEED_USER=dbadmin
         - SEED_UID=${SEED_UID:-1000}
         - SEED_GID=${SEED_GID:-1000}
     volumes:
       - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
-      - ../../jaxon-dbadmin/migrations:/home/seed/migrations
-      - ../seed:/home/seed/scripts
+      - ../seed:/home/dbadmin/scripts
+      - ../../jaxon-dbadmin/migrations:/home/dbadmin/migrations
     networks:
       - dbserver-dev-net
 
