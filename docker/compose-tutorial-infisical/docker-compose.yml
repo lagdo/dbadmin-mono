@@ -1,0 +1,21 @@
+services:
+
+  jaxon-dbadmin:
+    container_name: jaxon-dbadmin
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./config/.env.dbadmin:/var/www/.env.dbadmin
+      - ./config/dbadmin.json:/var/www/config/dbadmin.json
+      - ./config/dbadmin.php:/var/www/config/dbadmin.php
+      - ./config/jaxon.php:/var/www/config/jaxon.php
+      - ./config/InfisicalConfigReader.php:/var/www/app/Infisical/InfisicalConfigReader.php
+    ports:
+      - 7096:8080
+    extra_hosts:
+      - "pgsql.addr=host-gateway"
+      - "maria.addr=host-gateway"
+      - "mysql.addr=host-gateway"
+      - "infisical.local=host-gateway"

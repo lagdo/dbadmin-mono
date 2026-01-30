@@ -1,0 +1,41 @@
+{
+    "common": {
+        "access": {
+            "server": true,
+            "system": false
+        }
+    },
+    "fallback": {},
+    "users": [{
+        "default": "dbadmin-pgsql-14",
+        "id": {
+            "user": "admin@company.com"
+        },
+        "servers": {
+            "dbadmin-pgsql-14": {
+                "driver": "pgsql",
+                "name": "PostgreSQL 14",
+                "host": "env(PGSQL_DB_HOST)",
+                "port": "env(PGSQL_DB_PORT)"
+            },
+            "dbadmin-pgsql-17": {
+                "driver": "pgsql",
+                "name": "PostgreSQL 17",
+                "host": "env(AUDIT_DB_HOST)",
+                "port": "env(AUDIT_DB_PORT)"
+            },
+            "dbadmin-mariadb": {
+                "driver": "mysql",
+                "name": "MariaDB 10",
+                "host": "env(MARIA_DB_HOST)",
+                "port": "env(MARIA_DB_PORT)"
+            },
+            "dbadmin-mysql": {
+                "driver": "mysql",
+                "name": "MySQL 8",
+                "host": "env(MYSQL_DB_HOST)",
+                "port": "env(MYSQL_DB_PORT)"
+            }
+        }
+    }]
+}
