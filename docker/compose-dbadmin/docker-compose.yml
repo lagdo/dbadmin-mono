@@ -14,8 +14,6 @@ services:
       - ../sqlite:/var/lib/sqlite
     ports:
       - 7090:8080
-    networks:
-      - dbadmin-dev-net
     extra_hosts:
       - "pgsql.addr=host-gateway"
       - "maria.addr=host-gateway"
@@ -42,8 +40,6 @@ services:
       - ../sqlite/3/database.sqlite:/var/www/database/database.sqlite:rw
     ports:
       - 7091:8080
-    networks:
-      - dbadmin-dev-net
     extra_hosts:
       - "pgsql.addr=host-gateway"
       - "maria.addr=host-gateway"
@@ -64,14 +60,8 @@ services:
       - ../sqlite/3/database.sqlite:/var/www/database/database.sqlite:rw
     ports:
       - 7092:8080
-    networks:
-      - dbadmin-dev-net
     extra_hosts:
       - "pgsql.addr=host-gateway"
       - "maria.addr=host-gateway"
       - "mysql.addr=host-gateway"
       - "infisical.local=host-gateway"
-
-networks:
-  dbadmin-dev-net:
-    driver: bridge
