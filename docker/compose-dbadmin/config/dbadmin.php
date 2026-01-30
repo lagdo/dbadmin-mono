@@ -36,7 +36,7 @@ return [
             'port' => "env(LOGGING_DB_PORT)",
             'username' => "env(LOGGING_DB_USERNAME)",
             'password' => "env(LOGGING_DB_PASSWORD)",
-            'name' => 'logging',
+            'name' => 'auditdb',
         ],
         'allowed' => [
             // The emails of users that are allowed to access the audit page.
