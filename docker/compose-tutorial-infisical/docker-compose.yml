@@ -13,7 +13,7 @@ services:
       - ./config/jaxon.php:/var/www/config/jaxon.php
       - ./config/InfisicalConfigReader.php:/var/www/app/Infisical/InfisicalConfigReader.php
     ports:
-      - 7096:8080
+      - 8080:8080
     extra_hosts:
       - "pgsql.addr=host-gateway"
       - "maria.addr=host-gateway"
