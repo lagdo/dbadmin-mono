@@ -7,7 +7,6 @@ use Infisical\SDK\Models\Secret;
 use Infisical\SDK\Services\SecretsService;
 use Lagdo\DbAdmin\Db\Config\AuthInterface;
 use Lagdo\DbAdmin\Db\Config\ConfigReader;
-use Lagdo\Facades\Logger;
 
 class InfisicalConfigReader extends ConfigReader
 {
@@ -30,12 +29,10 @@ class InfisicalConfigReader extends ConfigReader
 
     private function getSecretValue(string $prefix, string $option): string
     {
-        // Make the Infisical secret key. The injected auth interface can be
+        // Make the Infisical secret key. The injected AuthInterface can be
         // used here to customize the secret key depending on the current user.
         $secretKey = "users.{$prefix}.{$option}";
-        $secretValue = $this->getSecret($secretKey)->secretValue;
-        Logger::info('Read secret', compact('secretKey', 'secretValue'));
-        return $secretValue;
+        return $this->getSecret($secretKey)->secretValue;
     }
 
     /**

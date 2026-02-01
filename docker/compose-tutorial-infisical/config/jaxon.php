@@ -7,6 +7,7 @@ use Jaxon\Di\Container;
 use Lagdo\DbAdmin\Db\Config\AuthInterface;
 use Lagdo\DbAdmin\Db\Config\UserFileReader;
 use Lagdo\DbAdmin\Db\DbAdminPackage;
+use Lagdo\DbAdmin\Db\DbAuditPackage;
 
 return [
     'app' => [
@@ -27,8 +28,7 @@ return [
         'directories' => [],
         'packages' => [
             DbAdminPackage::class => [
-                'provider' => function(array $options) {
-                    $di = jaxon()->di();
+                'provider' => function(array $options, Container $di) {
                     $reader = $di->g(UserFileReader::class);
                     $cfgFilePath = $di->g('dbadmin_config_file_path');
                     return $reader->getOptions($cfgFilePath, $options);
@@ -39,6 +39,11 @@ return [
                 'access' => [
                     'server' => true,
                     'system' => false,
+                ],
+            ],
+            DbAuditPackage::class => [
+                'config' => [
+                    'reader' => InfisicalConfigReader::class,
                 ],
             ],
         ],
