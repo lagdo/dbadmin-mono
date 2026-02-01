@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\DbAdminPackageConfig;
 use Illuminate\Support\Str;
+use Jaxon\Di\Container;
 use Lagdo\DbAdmin\Db\Config\UserFileReader;
 use Lagdo\DbAdmin\Db\DbAdminPackage;
 use League\Flysystem\Filesystem;
@@ -77,8 +78,7 @@ return [
         ],
         'packages' => [
             DbAdminPackage::class => [
-                'provider' => function(array $options): array {
-                    $di = jaxon()->di();
+                'provider' => function(array $options, Container $di): array {
                     $cfgFilePath = $di->g('dbadmin_config_file_path');
                     /** @var UserFileReader */
                     $reader = $di->g(UserFileReader::class);
@@ -137,7 +137,7 @@ return [
         ],
         'js' => [
             'lib' => [
-                'uri' => 'https://cdn.jsdelivr.net/gh/jaxon-php/jaxon-js@5.1.0/dist',
+                // 'uri' => '',
             ],
         ],
     ],
