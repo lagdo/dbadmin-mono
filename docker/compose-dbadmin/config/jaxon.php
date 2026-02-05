@@ -49,6 +49,9 @@ return [
                 'alert' => 'sweetalert',
                 'confirm' => 'sweetalert',
             ],
+            'lib' => [
+                'use' => ['notyf'],
+            ],
         ],
         'assets' => [
             'uri' => '/jaxon/',
@@ -78,6 +81,9 @@ return [
         ],
         'packages' => [
             DbAdminPackage::class => [
+                'toast' => [
+                    'lib' => 'notyf',
+                ],
                 'provider' => function(array $options, Container $di): array {
                     $cfgFilePath = $di->g('dbadmin_config_file_path');
                     /** @var UserFileReader */
