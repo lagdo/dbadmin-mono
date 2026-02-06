@@ -19,3 +19,36 @@ services:
       - "maria.addr=host-gateway"
       - "mysql.addr=host-gateway"
       - "infisical.local=host-gateway"
+
+  tutorial-backpack:
+    container_name: tutorial-backpack
+    build:
+      context: ./
+      dockerfile: backpack/Dockerfile
+      args:
+        - PHP_USER=dbadmin
+        - PHP_UID=${PHP_UID:-1000}
+        - PHP_GID=${PHP_GID:-1000}
+    restart: always
+    volumes:
+      - ./backpack/app/.env:/var/www/backpack/.env
+      - ./config/.env.dbadmin:/var/www/backpack/.env.dbadmin
+      - ./config/dbadmin.json:/var/www/backpack/config/dbadmin.json
+      - ./config/dbadmin.php:/var/www/backpack/config/dbadmin.php
+      - ./config/jaxon.php:/var/www/backpack/config/jaxon.php
+      - ./config/InfisicalConfigReader.php:/var/www/backpack/app/Infisical/InfisicalConfigReader.php
+      - ./backpack/app/view/dbadmin.blade.php:/var/www/backpack/resources/views/dbadmin.blade.php
+      - ./backpack/app/view/menu_items.blade.php:/var/www/backpack/resources/views/vendor/backpack/ui/inc/menu_items.blade.php
+      - ./backpack/app/bootstrap/app.php:/var/www/backpack/bootstrap/app.php
+      - ./backpack/app/bootstrap/providers.php:/var/www/backpack/bootstrap/providers.php
+      - ./backpack/app/route/custom.php:/var/www/backpack/routes/backpack/custom.php
+      - ./backpack/app/provider/DbAdminServiceProvider.php:/var/www/backpack/app/Providers/DbAdminServiceProvider.php
+      - ./backpack/app/middleware/DbAdminPackageConfig.php:/var/www/backpack/app/Http/Middleware/DbAdminPackageConfig.php
+      - ./backpack/app/middleware/DbAuditPackageConfig.php:/var/www/backpack/app/Http/Middleware/DbAuditPackageConfig.php
+    ports:
+      - 8081:8080
+    extra_hosts:
+      - "pgsql.addr=host-gateway"
+      - "maria.addr=host-gateway"
+      - "mysql.addr=host-gateway"
+      - "infisical.local=host-gateway"

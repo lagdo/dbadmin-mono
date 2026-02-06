@@ -1,0 +1,29 @@
+{
+    "listeners": {
+        "*:8080": {
+            "pass": "routes"
+        }
+    },
+
+    "routes": [
+        {
+            "match": {
+                "uri": "!/index.php"
+            },
+            "action": {
+                "share": "/var/www/backpack/public$uri",
+                "fallback": {
+                    "pass": "applications/backpack"
+                }
+            }
+        }
+    ],
+
+    "applications": {
+        "backpack": {
+            "type": "php",
+            "root": "/var/www/backpack/public/",
+            "script": "index.php"
+        }
+    }
+}
