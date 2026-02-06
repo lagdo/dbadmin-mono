@@ -12,7 +12,7 @@ RUN set -xe && \
   install-php-extensions pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql xdebug
 
 # Configure Nginx Unit
-COPY backpack/config/unit.json /docker-entrypoint.d/config.json
+COPY backpack/unit/config.json /docker-entrypoint.d/config.json
 
 RUN addgroup -g ${PHP_GID} --system ${PHP_USER} && \
   adduser -G ${PHP_USER} --system -D -s /bin/sh -u ${PHP_UID} ${PHP_USER} && \
