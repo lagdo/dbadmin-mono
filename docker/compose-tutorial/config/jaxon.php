@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\DbAdminPackageConfig;
 use App\Infisical\InfisicalConfigReader;
 use Infisical\SDK\InfisicalSDK;
 use Jaxon\Di\Container;
@@ -17,17 +16,20 @@ return [
                 'dir' => '/var/cache/jaxon/attributes',
             ],
         ],
-        'request' => [
+        /*'request' => [
             'route' => 'jaxon.ajax', // The route name
             'middlewares' => [
                 'web', // Includes the Illuminate\Session\Middleware\StartSession
                 // middleware, which returns a 419 error when the sessions has expired.
                 DbAdminPackageConfig::class,
             ],
-        ],
+	    ],*/
         'directories' => [],
         'packages' => [
             DbAdminPackage::class => [
+                'toast' => [
+                    'lib' => 'notyf',
+                ],
                 'provider' => function(array $options, Container $di) {
                     $reader = $di->g(UserFileReader::class);
                     $cfgFilePath = $di->g('dbadmin_config_file_path');
@@ -50,7 +52,7 @@ return [
         'container' => [
             'set' => [
                 InfisicalConfigReader::class => function(Container $di) {
-                    $auth = $di->g(AuthInterface::class);
+                    $auth = $di->get(AuthInterface::class);
 
                     $infisicalSdk = new InfisicalSDK(env('INFISICAL_SERVER_URL'));
                     $clientId = env('INFISICAL_MACHINE_CLIENT_ID');
@@ -60,7 +62,7 @@ return [
                     // Create the Infisical secrets service.
                     $secrets = $infisicalSdk->secrets();
                     $projectId = env('INFISICAL_PROJECT_ID');
-                    return new  InfisicalConfigReader($auth, $secrets, $projectId, 'dev');
+                    return new InfisicalConfigReader($auth, $secrets, $projectId, 'dev');
                 },
             ],
         ],
@@ -78,6 +80,9 @@ return [
                 'modal' => 'bootbox',
                 'alert' => 'sweetalert',
                 'confirm' => 'sweetalert',
+            ],
+            'lib' => [
+                'use' => ['notyf'],
             ],
         ],
     ],

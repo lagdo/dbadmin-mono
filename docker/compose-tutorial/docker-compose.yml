@@ -1,10 +1,10 @@
 services:
 
-  jaxon-dbadmin:
-    container_name: jaxon-dbadmin
+  tutorial-infisical:
+    container_name: tutorial-infisical
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: infisical/Dockerfile
     restart: always
     volumes:
       - ./config/.env.dbadmin:/var/www/.env.dbadmin
