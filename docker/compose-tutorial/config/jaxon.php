@@ -32,8 +32,7 @@ return [
                 ],
                 'provider' => function(array $options, Container $di) {
                     $reader = $di->g(UserFileReader::class);
-                    $cfgFilePath = $di->g('dbadmin_config_file_path');
-                    return $reader->getOptions($cfgFilePath, $options);
+                    return $reader->getOptions($options);
                 },
                 'config' => [
                     'reader' => InfisicalConfigReader::class,

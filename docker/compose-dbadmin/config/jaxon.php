@@ -85,10 +85,8 @@ return [
                     'lib' => 'notyf',
                 ],
                 'provider' => function(array $options, Container $di): array {
-                    $cfgFilePath = $di->g('dbadmin_config_file_path');
-                    /** @var UserFileReader */
                     $reader = $di->g(UserFileReader::class);
-                    return $reader->getOptions($cfgFilePath, $options);
+                    return $reader->getOptions($options);
                 },
                 'access' => [
                     'server' => true,
