@@ -48,7 +48,7 @@ services:
 
   dbadmin-app:
     container_name: dbadmin-app
-    image: lagdo/jaxon-dbadmin:0.6
+    image: lagdo/jaxon-dbadmin:latest
     restart: always
     volumes:
       - ../exports:/home/dbadmin/exports
