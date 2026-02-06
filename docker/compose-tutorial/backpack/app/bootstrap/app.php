@@ -44,13 +44,12 @@ return Application::configure(basePath: dirname(__DIR__))
             'jaxon.config',
         ]);
         $middleware->group('jaxon.dbaudit.config', [
-            'can:dbaudit',
+            // 'can:dbaudit',
             DbAuditPackageConfig::class,
             'jaxon.config',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
         // When the session expires, redirect any Jaxon request to the login page.
         $exceptions->respond(function (Response $response) {
             /** @var Jaxon */

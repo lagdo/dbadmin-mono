@@ -11,6 +11,6 @@
 </li>
 <li class="nav-item">
   <a class="nav-link" href="{{ backpack_url('dbaudit') }}">
-    <i class="la la-database nav-icon"></i> DB Audit Logs
+    <i class="la la-table nav-icon"></i> DB Audit Logs
   </a>
 </li>

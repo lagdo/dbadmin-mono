@@ -3,13 +3,16 @@
 namespace App\Providers;
 
 use Dotenv\Dotenv;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Lagdo\DbAdmin\Db\Config\AuthInterface;
 use Lagdo\DbAdmin\Db\Config\UserFileReader;
 
 use function auth;
 use function dirname;
+use function config;
 use function config_path;
+use function in_array;
 use function is_file;
 use function jaxon;
 
@@ -61,6 +64,13 @@ class DbAdminServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Auth gate for the DbAdmin audit page
+        Gate::define('dbaudit', function() {
+            $email = auth('backpack')->user()->email;
+            $allowed = config('dbadmin.audit.allowed', []);
+            return in_array($email, $allowed);
+        });
+
         // Load the custom env file
         $path = dirname(__DIR__, 2);
         $dotenv = Dotenv::createImmutable($path, '.env.dbadmin');
