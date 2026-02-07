@@ -32,7 +32,7 @@ Route::group([
     //     ->name('export');
     Route::get('/dbaudit', fn() => view('dbaudit'))
         ->middleware(['jaxon.dbaudit.config'])
-        ->name('dbaudit');
+	    ->name('dbaudit');
     Route::post('/dbaudit/jaxon', fn() => response()->json([]))
         ->middleware(['jaxon.dbaudit.config', 'jaxon.ajax'])
         ->name('dbaudit.jaxon');

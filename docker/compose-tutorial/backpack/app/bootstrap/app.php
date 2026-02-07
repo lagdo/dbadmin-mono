@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\DbAdminPackageConfig;
 use App\Http\Middleware\DbAuditPackageConfig;
+use App\Http\Middleware\BackpackUserResolver;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -40,11 +41,13 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         //
         $middleware->group('jaxon.dbadmin.config', [
+            BackpackUserResolver::class,
             DbAdminPackageConfig::class,
             'jaxon.config',
         ]);
         $middleware->group('jaxon.dbaudit.config', [
-            // 'can:dbaudit',
+            BackpackUserResolver::class,
+            'can:dbaudit',
             DbAuditPackageConfig::class,
             'jaxon.config',
         ]);

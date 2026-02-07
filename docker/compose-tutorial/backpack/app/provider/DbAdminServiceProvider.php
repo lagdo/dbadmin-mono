@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Dotenv\Dotenv;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -50,11 +51,11 @@ class DbAdminServiceProvider extends ServiceProvider
             fn() => new class implements AuthInterface {
                 public function user(): string
                 {
-                    return auth('backpack')->user()->email ?? '';
+                    return auth()->user()->email ?? '';
                 }
                 public function role(): string
                 {
-                    return auth('backpack')->user()->role?->name ?? '';
+                    return auth()->user()->role?->name ?? '';
                 }
             });
     }
@@ -65,10 +66,9 @@ class DbAdminServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Auth gate for the DbAdmin audit page
-        Gate::define('dbaudit', function() {
-            $email = auth('backpack')->user()->email;
+        Gate::define('dbaudit', function(User $user) {
             $allowed = config('dbadmin.audit.allowed', []);
-            return in_array($email, $allowed);
+            return in_array($user->email, $allowed);
         });
 
         // Load the custom env file

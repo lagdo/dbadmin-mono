@@ -38,11 +38,13 @@ services:
       - ./config/jaxon.php:/var/www/backpack/config/jaxon.php
       - ./config/InfisicalConfigReader.php:/var/www/backpack/app/Infisical/InfisicalConfigReader.php
       - ./backpack/app/view/dbadmin.blade.php:/var/www/backpack/resources/views/dbadmin.blade.php
+      - ./backpack/app/view/dbaudit.blade.php:/var/www/backpack/resources/views/dbaudit.blade.php
       - ./backpack/app/view/menu_items.blade.php:/var/www/backpack/resources/views/vendor/backpack/ui/inc/menu_items.blade.php
       - ./backpack/app/bootstrap/app.php:/var/www/backpack/bootstrap/app.php
       - ./backpack/app/bootstrap/providers.php:/var/www/backpack/bootstrap/providers.php
       - ./backpack/app/route/custom.php:/var/www/backpack/routes/backpack/custom.php
       - ./backpack/app/provider/DbAdminServiceProvider.php:/var/www/backpack/app/Providers/DbAdminServiceProvider.php
+      - ./backpack/app/middleware/BackpackUserResolver.php:/var/www/backpack/app/Http/Middleware/BackpackUserResolver.php
       - ./backpack/app/middleware/DbAdminPackageConfig.php:/var/www/backpack/app/Http/Middleware/DbAdminPackageConfig.php
       - ./backpack/app/middleware/DbAuditPackageConfig.php:/var/www/backpack/app/Http/Middleware/DbAuditPackageConfig.php
     ports:
