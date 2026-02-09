@@ -1,10 +1,7 @@
 <?php
 
-use Lagdo\Dbadmin\Backpack\Infisical\InfisicalConfigReader;
-use Infisical\SDK\InfisicalSDK;
 use Jaxon\Di\Container;
-use Lagdo\DbAdmin\Db\Config\AuthInterface;
-use Lagdo\DbAdmin\Db\Config\UserFileReader;
+use Lagdo\DbAdmin\Db\Config;
 use Lagdo\DbAdmin\Db\DbAdminPackage;
 use Lagdo\DbAdmin\Db\DbAuditPackage;
 
@@ -23,11 +20,11 @@ return [
                     'lib' => 'notyf',
                 ],
                 'provider' => function(array $options, Container $di) {
-                    $reader = $di->g(UserFileReader::class);
+                    $reader = $di->g(Config\UserFileReader::class);
                     return $reader->getOptions($options);
                 },
                 'config' => [
-                    'reader' => InfisicalConfigReader::class,
+                    'reader' => Config\InfisicalConfigReader::class,
                 ],
                 'access' => [
                     'server' => true,
@@ -36,25 +33,8 @@ return [
             ],
             DbAuditPackage::class => [
                 'config' => [
-                    'reader' => InfisicalConfigReader::class,
+                    'reader' => Config\InfisicalConfigReader::class,
                 ],
-            ],
-        ],
-        'container' => [
-            'set' => [
-                InfisicalConfigReader::class => function(Container $di) {
-                    $auth = $di->get(AuthInterface::class);
-
-                    $infisicalSdk = new InfisicalSDK(env('INFISICAL_SERVER_URL'));
-                    $clientId = env('INFISICAL_MACHINE_CLIENT_ID');
-                    $clientSecret = env('INFISICAL_MACHINE_CLIENT_SECRET');
-                    // Authenticate on the Infisical server.
-                    $infisicalSdk->auth()->universalAuth()->login($clientId, $clientSecret);
-                    // Create the Infisical secrets service.
-                    $secrets = $infisicalSdk->secrets();
-                    $projectId = env('INFISICAL_PROJECT_ID');
-                    return new InfisicalConfigReader($auth, $secrets, $projectId, 'dev');
-                },
             ],
         ],
         'ui' => [

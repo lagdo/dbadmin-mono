@@ -2,16 +2,13 @@ services:
 
   tutorial-infisical:
     container_name: tutorial-infisical
-    build:
-      context: ./
-      dockerfile: infisical/Dockerfile
+    image: lagdo/jaxon-dbadmin:latest
     restart: always
     volumes:
       - ./config/.env.dbadmin:/var/www/.env.dbadmin
       - ./config/dbadmin.json:/var/www/config/dbadmin.json
       - ./config/dbadmin.php:/var/www/config/dbadmin.php
       - ./config/jaxon.php:/var/www/config/jaxon.php
-      - ./config/InfisicalConfigReader.php:/var/www/app/Infisical/InfisicalConfigReader.php
     ports:
       - 8080:8080
     extra_hosts:

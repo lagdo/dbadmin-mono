@@ -627,16 +627,16 @@
         },
         {
             "name": "jaxon-php/jaxon-core",
-            "version": "v5.6.2",
+            "version": "v5.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaxon-php/jaxon-core.git",
-                "reference": "1060a129b103e40b1f054ebeb110ad80cf0d9a84"
+                "reference": "b99e633ac0e9ae832b810811ca1788eb98b7db18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaxon-php/jaxon-core/zipball/1060a129b103e40b1f054ebeb110ad80cf0d9a84",
-                "reference": "1060a129b103e40b1f054ebeb110ad80cf0d9a84",
+                "url": "https://api.github.com/repos/jaxon-php/jaxon-core/zipball/b99e633ac0e9ae832b810811ca1788eb98b7db18",
+                "reference": "b99e633ac0e9ae832b810811ca1788eb98b7db18",
                 "shasum": ""
             },
             "require": {
@@ -707,7 +707,7 @@
                 "issues": "https://github.com/jaxon-php/jaxon-core/issues",
                 "source": "https://github.com/jaxon-php/jaxon-core"
             },
-            "time": "2026-02-03T00:20:18+00:00"
+            "time": "2026-02-09T17:52:37+00:00"
         },
         {
             "name": "jaxon-php/jaxon-dialogs",
