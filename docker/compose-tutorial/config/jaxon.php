@@ -1,6 +1,6 @@
 <?php
 
-use App\Infisical\InfisicalConfigReader;
+use Lagdo\Dbadmin\Backpack\Infisical\InfisicalConfigReader;
 use Infisical\SDK\InfisicalSDK;
 use Jaxon\Di\Container;
 use Lagdo\DbAdmin\Db\Config\AuthInterface;
@@ -16,14 +16,6 @@ return [
                 'dir' => '/var/cache/jaxon/attributes',
             ],
         ],
-        /*'request' => [
-            'route' => 'jaxon.ajax', // The route name
-            'middlewares' => [
-                'web', // Includes the Illuminate\Session\Middleware\StartSession
-                // middleware, which returns a 419 error when the sessions has expired.
-                DbAdminPackageConfig::class,
-            ],
-	    ],*/
         'directories' => [],
         'packages' => [
             DbAdminPackage::class => [

@@ -31,14 +31,8 @@ WORKDIR /var/www
 RUN composer create-project laravel/laravel backpack 12.x && \
   (cd backpack && \
     mkdir public/jaxon && \
-    mkdir -p app/Http/Middleware && \
     php artisan key:generate --ansi && \
-    php artisan storage:link && \
-    composer update psr/log:^3.0 && \
-    composer require jaxon-php/jaxon-laravel jaxon-php/jaxon-dialogs jaxon-php/jaxon-upload && \
-    # composer require lagdo/jaxon-dbadmin lagdo/dbadmin-driver-mysql lagdo/dbadmin-driver-pgsql && \
-    # composer require lagdo/dbadmin-driver-sqlite lagdo/ui-builder-bootstrap5 && \
     composer require backpack/crud:"^7.0" && \
-    composer require infisical/php-sdk:^0.0.1)
+    php artisan storage:link)
 
 EXPOSE 8080
