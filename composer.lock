@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ddc55e27bcd301a4895f6abc18befdf",
+    "content-hash": "59cf134d433859441772fe5346a6f58c",
     "packages": [
         {
             "name": "cuyz/valinor",
@@ -942,16 +942,16 @@
         },
         {
             "name": "lagdo/facades",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/facades.git",
-                "reference": "818e8f677dd30f0b49bb272d4c30d332fe443e08"
+                "reference": "da6fda83fadfc7936e71740e84d5137e6925489c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/facades/zipball/818e8f677dd30f0b49bb272d4c30d332fe443e08",
-                "reference": "818e8f677dd30f0b49bb272d4c30d332fe443e08",
+                "url": "https://api.github.com/repos/lagdo/facades/zipball/da6fda83fadfc7936e71740e84d5137e6925489c",
+                "reference": "da6fda83fadfc7936e71740e84d5137e6925489c",
                 "shasum": ""
             },
             "require": {
@@ -989,7 +989,7 @@
                 "issues": "https://github.com/lagdo/facades/issues",
                 "source": "https://github.com/lagdo/facades"
             },
-            "time": "2025-12-26T04:26:49+00:00"
+            "time": "2026-02-11T23:05:52+00:00"
         },
         {
             "name": "lagdo/jaxon-ui-builder",

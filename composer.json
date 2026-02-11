@@ -34,7 +34,7 @@
         "jaxon-php/jaxon-dialogs": "^5.1",
         "jaxon-php/jaxon-storage": "^1.1",
         "jaxon-php/jaxon-upload": "^2.1",
-        "lagdo/facades": "^1.1",
+        "lagdo/facades": "^1.2",
         "lagdo/jaxon-ui-builder": "0.6.*",
         "lagdo/ui-builder": "0.6.*",
         "lagdo/ui-builder-bootstrap5": "0.5.*",
