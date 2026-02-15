@@ -14,6 +14,7 @@ This application and the related packages are still being actively developed, an
 The following features are currently available:
 - Browse servers and databases in multiple tabs.
 - Open the query editor in multiple tabs, with query text retention.
+- Save the current tabs in user preferences.
 - Save and show the query history.
 - Save queries in user favorites.
 - Read database credentials with an extensible config reader.
@@ -30,7 +31,6 @@ The following features are currently available:
 - Drop a table or view.
 
 The following features are not yet implemented, and planned for future releases:
-- Save the current tabs in user preferences.
 - Navigate through related tables.
 - Code completion for table and field names in the SQL editor.
 - An advanced GUI-based query builder.
