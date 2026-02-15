@@ -20,7 +20,7 @@ return [
                     'lib' => 'notyf',
                 ],
                 'provider' => function(array $options, Container $di) {
-                    $reader = $di->g(Config\UserFileReader::class);
+                    $reader = $di->g(Config\ConfigProvider::class);
                     return $reader->getOptions($options);
                 },
                 'config' => [

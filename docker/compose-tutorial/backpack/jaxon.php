@@ -4,7 +4,7 @@ use App\Infisical\InfisicalConfigReader;
 use Infisical\SDK\InfisicalSDK;
 use Jaxon\Di\Container;
 use Lagdo\DbAdmin\Db\Config\AuthInterface;
-use Lagdo\DbAdmin\Db\Config\UserFileReader;
+use Lagdo\DbAdmin\Db\Config\ConfigProvider;
 use Lagdo\DbAdmin\Db\DbAdminPackage;
 use Lagdo\DbAdmin\Db\DbAuditPackage;
 
@@ -31,7 +31,7 @@ return [
                     'lib' => 'notyf',
                 ],
                 'provider' => function(array $options, Container $di) {
-                    $reader = $di->g(UserFileReader::class);
+                    $reader = $di->g(ConfigProvider::class);
                     return $reader->getOptions($options);
                 },
                 'config' => [

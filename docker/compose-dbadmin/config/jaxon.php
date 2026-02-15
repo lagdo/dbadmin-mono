@@ -3,7 +3,7 @@
 use App\Http\Middleware\DbAdminPackageConfig;
 use Illuminate\Support\Str;
 use Jaxon\Di\Container;
-use Lagdo\DbAdmin\Db\Config\UserFileReader;
+use Lagdo\DbAdmin\Db\Config\ConfigProvider;
 use Lagdo\DbAdmin\Db\DbAdminPackage;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
@@ -85,7 +85,7 @@ return [
                     'lib' => 'notyf',
                 ],
                 'provider' => function(array $options, Container $di): array {
-                    $reader = $di->g(UserFileReader::class);
+                    $reader = $di->g(ConfigProvider::class);
                     return $reader->getOptions($options);
                 },
                 'access' => [
