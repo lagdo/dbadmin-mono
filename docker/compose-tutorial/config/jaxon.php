@@ -17,7 +17,7 @@ return [
         'packages' => [
             DbAdminPackage::class => [
                 'toast' => [
-                    'lib' => 'notyf',
+                    'lib' => 'butterup',
                 ],
                 'provider' => function(array $options, Container $di) {
                     $reader = $di->g(Config\ConfigProvider::class);
@@ -53,7 +53,7 @@ return [
                 'confirm' => 'sweetalert',
             ],
             'lib' => [
-                'use' => ['notyf'],
+                'use' => ['butterup'],
             ],
         ],
     ],
