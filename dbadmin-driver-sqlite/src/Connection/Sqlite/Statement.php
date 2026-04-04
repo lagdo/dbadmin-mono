@@ -1,0 +1,84 @@
+<?php
+
+namespace Lagdo\DbAdmin\Support\Sqlite\Connection\Sqlite;
+
+use Lagdo\DbAdmin\Support\Db\Engine\Connection\StatementInterface;
+use Lagdo\DbAdmin\Support\Dto\StatementFieldDto;
+use SQLite3Result;
+
+class Statement implements StatementInterface
+{
+    /**
+     * The query result
+     *
+     * @var SQLite3Result
+     */
+    protected $result = null;
+
+    /**
+     * Undocumented variable
+     *
+     * @var int
+     */
+    protected $offset = 0;
+
+    /**
+     * The constructor
+     *
+     * @param SQLite3Result $result
+     */
+    public function __construct(SQLite3Result $result)
+    {
+        $this->result = $result;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function rowCount(): int
+    {
+        // Todo: find a simpler way to count the rows.
+        $rowCount = 0;
+        $this->result->reset();
+        while ($this->result->fetchArray()) {
+            $rowCount++;
+        }
+        $this->result->reset();
+        return $rowCount;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function fetchAssoc(): array|null
+    {
+        return $this->result->fetchArray(SQLITE3_ASSOC) ?: null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function fetchRow(): array|null
+    {
+        return $this->result->fetchArray(SQLITE3_NUM) ?: null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function fetchField(): StatementFieldDto|null
+    {
+        $column = $this->offset++;
+        $type = $this->result->columnType($column);
+        $name = $this->result->columnName($column);
+        return new StatementFieldDto($type, $type === SQLITE3_BLOB, $name, $name);
+    }
+
+    /**
+     * The destructor
+     */
+    public function __destruct()
+    {
+        $this->result->finalize();
+    }
+}

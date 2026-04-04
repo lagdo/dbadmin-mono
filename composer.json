@@ -54,10 +54,10 @@
             "Lagdo\\DbAdmin\\Ajax\\": "jaxon-dbadmin/app/ajax/",
             "Lagdo\\DbAdmin\\Db\\": "jaxon-dbadmin/src/",
             "Lagdo\\DbAdmin\\Demo\\": "dbadmin-demo/src/",
-            "Lagdo\\DbAdmin\\Driver\\": "dbadmin-driver/src/",
-            "Lagdo\\DbAdmin\\Driver\\MySql\\": "dbadmin-driver-mysql/src/",
-            "Lagdo\\DbAdmin\\Driver\\PgSql\\": "dbadmin-driver-pgsql/src/",
-            "Lagdo\\DbAdmin\\Driver\\Sqlite\\": "dbadmin-driver-sqlite/src/",
+            "Lagdo\\DbAdmin\\Support\\": "dbadmin-driver/src/",
+            "Lagdo\\DbAdmin\\Support\\MySql\\": "dbadmin-driver-mysql/src/",
+            "Lagdo\\DbAdmin\\Support\\PgSql\\": "dbadmin-driver-pgsql/src/",
+            "Lagdo\\DbAdmin\\Support\\Sqlite\\": "dbadmin-driver-sqlite/src/",
             "Lagdo\\DbAdmin\\Ui\\": "jaxon-dbadmin/app/ui/"
         },
         "files": [
@@ -68,9 +68,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Lagdo\\DbAdmin\\Driver\\MySql\\Tests\\": "dbadmin-driver-mysql/tests/",
-            "Lagdo\\DbAdmin\\Driver\\PgSql\\Tests\\": "dbadmin-driver-pgsql/tests/",
-            "Lagdo\\DbAdmin\\Driver\\Sqlite\\Tests\\": "dbadmin-driver-sqlite/tests/",
+            "Lagdo\\DbAdmin\\Support\\MySql\\Tests\\": "dbadmin-driver-mysql/tests/",
+            "Lagdo\\DbAdmin\\Support\\PgSql\\Tests\\": "dbadmin-driver-pgsql/tests/",
+            "Lagdo\\DbAdmin\\Support\\Sqlite\\Tests\\": "dbadmin-driver-sqlite/tests/",
             "Lagdo\\DbAdmin\\Tests\\": "jaxon-dbadmin/tests/"
         }
     },

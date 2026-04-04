@@ -1,6 +1,6 @@
 <?php
 
-use Lagdo\DbAdmin\Driver\Sqlite\Tests\Driver;
+use Lagdo\DbAdmin\Support\Sqlite\Tests\Driver;
 
 use Behat\Behat\Context\Context;
 use PHPUnit\Framework\Assert;
@@ -145,14 +145,6 @@ class ServerContext implements Context
     public function openDatabase(string $database)
     {
         $this->driver->openConnection($database, '');
-    }
-
-    /**
-     * @When I rename the database to :database
-     */
-    public function renameDatabase(string $database): void
-    {
-        $this->dbResult = $this->driver->renameDatabase($database, '');
     }
 
     /**

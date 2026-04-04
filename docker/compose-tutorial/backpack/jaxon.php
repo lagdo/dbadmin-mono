@@ -23,7 +23,7 @@ return [
                 // middleware, which returns a 419 error when the sessions has expired.
                 DbAdminPackageConfig::class,
             ],
-	    ],*/
+        ],*/
         'directories' => [],
         'packages' => [
             DbAdminPackage::class => [

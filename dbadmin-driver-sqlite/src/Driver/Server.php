@@ -1,0 +1,191 @@
+<?php
+
+namespace Lagdo\DbAdmin\Support\Sqlite\Driver;
+
+use Lagdo\DbAdmin\Support\Db\Engine\Connection\StatementInterface;
+use Lagdo\DbAdmin\Support\Db\Engine\Driver\AbstractServer;
+use Lagdo\DbAdmin\Support\Exception\DbException;
+use Lagdo\DbAdmin\Support\Sqlite\Connection\Traits\ConfigTrait;
+use DirectoryIterator;
+use Exception;
+
+use function count;
+use function explode;
+use function get_current_user;
+use function intval;
+use function is_a;
+use function preg_match;
+use function rename;
+use function str_replace;
+use function unlink;
+
+class Server extends AbstractServer
+{
+    use ConfigTrait;
+
+    /**
+     * The database file extensions
+     *
+     * @var string
+     */
+    protected $extensions = "db|sdb|sqlite";
+
+    /**
+     * @var array
+     */
+    protected $variableNames = ["auto_vacuum", "cache_size", "count_changes", "default_cache_size",
+        "empty_result_callbacks", "encoding", "foreign_keys", "full_column_names", "fullfsync",
+        "journal_mode", "journal_size_limit", "legacy_file_format", "locking_mode", "page_size",
+        "max_page_count", "read_uncommitted", "recursive_triggers", "reverse_unordered_selects",
+        "secure_delete", "short_column_names", "synchronous", "temp_store", "temp_store_directory",
+        "schema_version", "integrity_check", "quick_check"];
+
+    /**
+     * @inheritDoc
+     */
+    public function user(): string
+    {
+        return get_current_user(); // should return effective user
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function databases(bool $flush): array
+    {
+        $databases = [];
+        $directory = $this->directory($this->driver->options());
+        $iterator = new DirectoryIterator($directory);
+        // Iterate on dir content
+        foreach($iterator as $file)
+        {
+            // Skip everything except Sqlite files
+            if(!$file->isFile() || !$this->validateName($filename = $file->getFilename()))
+            {
+                continue;
+            }
+            $databases[] = $filename;
+        }
+        return $databases;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function databaseSize(string $database): int
+    {
+        $connection = $this->driver->newConnection($database); // New connection
+        if (!$connection) {
+            return 0;
+        }
+        $pageSize = 0;
+        $statement = $connection->query('pragma page_size');
+        if (is_a($statement, StatementInterface::class) &&
+            ($row = $statement->fetchRow())) {
+            $pageSize = intval($row[0]);
+        }
+        $pageCount = 0;
+        $statement = $connection->query('pragma page_count');
+        if (is_a($statement, StatementInterface::class) &&
+            ($row = $statement->fetchRow())) {
+            $pageCount = intval($row[0]);
+        }
+        return $pageSize * $pageCount;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function databaseCollation(string $database, array $collations): string
+    {
+        // there is no database list so $database == $this->driver->database()
+        return $this->driver->result("PRAGMA encoding");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function collations(): array
+    {
+        return $this->utils->input->hasTable() ?
+            $this->driver->values("PRAGMA collation_list", 1) : [];
+    }
+
+    /**
+     * Validate a name
+     *
+     * @param string $name
+     *
+     * @return bool
+     */
+    private function validateName(string $name)
+    {
+        // Avoid creating PHP files on unsecured servers
+        return preg_match("~^[^\\0]*\\.({$this->extensions})\$~", $name) > 0;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function createDatabase(string $database, string $collation): bool
+    {
+        $options = $this->driver->options();
+        if ($this->fileExists($database, $options)) {
+            throw new DbException($this->utils->trans->lang('File exists.'));
+        }
+        $filename = $this->filename($database, $options);
+        if (!$this->validateName($filename)) {
+            throw new DbException($this->utils->trans->lang('Please use one of the extensions %s.',
+                str_replace("|", ", ", $this->extensions)));
+        }
+        try {
+            $connection = $this->driver->newConnection($database, '__create__'); // New connection
+            $connection->query('PRAGMA encoding = "UTF-8"');
+            $connection->query('CREATE TABLE dbadmin (i)'); // otherwise creates empty file
+            $connection->query('DROP TABLE dbadmin');
+        } catch (Exception $ex) {
+            throw new DbException($ex->getMessage());
+        }
+        return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function dropDatabase(string $database): bool
+    {
+        $filename = $this->filename($database, $this->driver->options());
+        if (!@unlink($filename)) {
+            throw new DbException($this->utils->trans->lang('File exists.'));
+        }
+        return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function variables(): array
+    {
+        $variables = [];
+        foreach ($this->variableNames as $key) {
+            $variables[$key] = $this->driver->result("PRAGMA $key");
+        }
+        return $variables;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function statusVariables(): array
+    {
+        $variables = [];
+        if (!($options = $this->driver->values("PRAGMA compile_options"))) {
+            return [];
+        }
+        foreach ($options as $option) {
+            $values = explode("=", $option, 2);
+            $variables[$values[0]] = count($values) > 1 ? $values[1] : "true";
+        }
+        return $variables;
+    }
+}
