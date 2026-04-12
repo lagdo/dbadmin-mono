@@ -1,0 +1,164 @@
+<?php
+
+namespace Lagdo\DbAdmin\Driver\Sqlite\Statement;
+
+use Lagdo\DbAdmin\Driver\Sql\Specific\Statement\AbstractTable;
+use Lagdo\DbAdmin\Driver\Sql\Dto\ColumnDto;
+use Lagdo\DbAdmin\Driver\Sql\Dto\TableAlterDto;
+use Lagdo\DbAdmin\Driver\Sql\Dto\TableCreateDto;
+
+use function array_map;
+use function array_reverse;
+use function implode;
+use function uniqid;
+
+class Table extends AbstractTable
+{
+    /**
+     * @param string $table
+     * @param int $autoIncrement
+     *
+     * @return string[]
+     */
+    private function getAutoIncrementQueries(string $table, int $autoIncrement): array
+    {
+        return [
+            "UPDATE sqlite_sequence SET seq = $autoIncrement WHERE name = $table",
+            "INSERT INTO sqlite_sequence (name, seq) VALUES ($table, $autoIncrement)",
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCreateTableQueries(TableCreateDto $table): array
+    {
+        // $useAllFields = true;
+
+        $columns = array_map(fn(ColumnDto $column) => $column->clause(), $table->columns);
+        $columns = [
+            ...$columns,
+            ...$this->getForeignKeyClauses($table),
+        ];
+        $quotedTableName = $this->_engine()->quote($table->name);
+        $autoIncrementQueries = $table->autoIncrement <= 0 ? [] :
+            $this->getAutoIncrementQueries($quotedTableName, $table->autoIncrement);
+
+        $tableName = $this->_statement()->escapeTableName($table->name);
+        return [
+            "CREATE TABLE $tableName (\n" . implode(",\n", $columns) . "\n)",
+            ...$autoIncrementQueries,
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getAlterTableQueries(TableAlterDto $table): array
+    {
+        // $useAllFields = count($table->foreignKeys) > 0 || count($table->changedColumns) > 0;
+        // if (!$useAllFields) {
+        //     foreach ($table->addedColumns as $column) {
+        //         if (!$field[1] || $field[2]) {
+        //             $useAllFields = true;
+        //         }
+        //     }
+        // }
+
+        $tableName = $this->_statement()->escapeTableName($table->name);
+        $queries = [];
+        foreach ($table->addedColumns as $column) {
+            $queries[] = "ALTER TABLE $tableName ADD " . $column->clause();
+        }
+        foreach ($table->changedColumns as $fieldName => $column) {
+            if ($fieldName !== $column->field->name) {
+                $fieldName = $this->_statement()->escapeId($fieldName);
+                $queries[] = "ALTER TABLE $tableName RENAME $fieldName TO {$column->name}";
+            }
+            // SQLite doesn't directly support other changes on a table structure.
+            // $queries[] = "ALTER TABLE $tableName " . $column->clause();
+        }
+        foreach ($table->droppedColumns as $fieldName) {
+            $queries[] = "ALTER TABLE $tableName DROP " . $this->_statement()->escapeId($fieldName);
+        }
+        if ($table->name !== $table->current->name) {
+            $currTableName = $this->_statement()->escapeTableName($table->current->name);
+            $queries[] = "ALTER TABLE $currTableName RENAME TO $tableName";
+        }
+
+        $quotedTableName = $this->_engine()->quote($table->name);
+        $autoIncrementQueries = $table->autoIncrement <= 0 ? [] :
+            $this->getAutoIncrementQueries($quotedTableName, $table->autoIncrement);
+
+        return [
+            ...$queries,
+            ...$autoIncrementQueries,
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getExportTableQueries(string $table, bool $autoIncrement, string $style): string
+    {
+        $query = $this->_engine()->result("SELECT sql FROM sqlite_master " .
+            "WHERE type IN ('table', 'view') AND name = " . $this->_engine()->quote($table));
+        foreach ($this->_engine()->indexes($table) as $name => $index) {
+            if ($name == '') {
+                continue;
+            }
+            $columns = implode(", ", array_map(function ($key) {
+                return $this->_statement()->escapeId($key);
+            }, $index->columns));
+            $query .= ";\n\n" . $this->getCreateIndexQuery($table, $index->type, $name, "($columns)");
+        }
+        return $query;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCreateIndexQuery(string $table, string $type, string $name, string $columns): string
+    {
+        return "CREATE $type " . ($type != "INDEX" ? "INDEX " : "") .
+            $this->_statement()->escapeId($name != "" ? $name : uniqid($table . "_")) .
+            " ON " . $this->_statement()->escapeTableName($table) . " $columns";
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTruncateTableQuery(string $table): string
+    {
+        return "DELETE FROM " . $this->_statement()->escapeTableName($table);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCreateTriggerQuery(string $table): string
+    {
+        $query = "SELECT sql || ';;\n' FROM sqlite_master WHERE type = 'trigger' AND tbl_name = " .
+            $this->_engine()->quote($table);
+        return implode($this->_engine()->values($query));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getAlterIndexQueries(string $table, array $alter, array $drop): array
+    {
+        $queries = [];
+        foreach (array_reverse($drop) as $index) {
+            $queries[] = 'DROP INDEX ' . $this->_statement()->escapeId($index->name);
+        }
+        foreach (array_reverse($alter) as $index) {
+            // Can't alter primary keys
+            if ($index->type !== 'PRIMARY') {
+                $queries[] =  $this->_statement()->getCreateIndexQuery($table, $index->type,
+                    $index->name, '(' . implode(', ', $index->columns) . ')');
+            }
+        }
+        return $queries;
+    }
+}
