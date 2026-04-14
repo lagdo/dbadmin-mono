@@ -1,6 +1,6 @@
 <?php
 
-use Lagdo\DbAdmin\Support\PgSql\Tests\Driver;
+use Lagdo\DbAdmin\Driver\PgSql\Tests\Driver;
 
 use Behat\Behat\Context\Context;
 use PHPUnit\Framework\Assert;

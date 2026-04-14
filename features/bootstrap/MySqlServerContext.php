@@ -1,6 +1,6 @@
 <?php
 
-use Lagdo\DbAdmin\Support\MySql\Tests\Driver;
+use Lagdo\DbAdmin\Driver\MySql\Tests\Driver;
 
 use Behat\Behat\Context\Context;
 use PHPUnit\Framework\Assert;

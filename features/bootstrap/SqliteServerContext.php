@@ -1,6 +1,6 @@
 <?php
 
-use Lagdo\DbAdmin\Support\Sqlite\Tests\Driver;
+use Lagdo\DbAdmin\Driver\Sqlite\Tests\Driver;
 
 use Behat\Behat\Context\Context;
 use PHPUnit\Framework\Assert;
