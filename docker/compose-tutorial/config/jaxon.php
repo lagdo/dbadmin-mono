@@ -1,9 +1,9 @@
 <?php
 
 use Jaxon\Di\Container;
+use Lagdo\DbAdmin\App\DbAdminPackage;
+use Lagdo\DbAdmin\App\DbAuditPackage;
 use Lagdo\DbAdmin\Db\Config;
-use Lagdo\DbAdmin\Db\DbAdminPackage;
-use Lagdo\DbAdmin\Db\DbAuditPackage;
 
 return [
     'app' => [

@@ -3,8 +3,8 @@
 use App\Http\Middleware\DbAdminPackageConfig;
 use Illuminate\Support\Str;
 use Jaxon\Di\Container;
+use Lagdo\DbAdmin\App\DbAdminPackage;
 use Lagdo\DbAdmin\Db\Config\ConfigProvider;
-use Lagdo\DbAdmin\Db\DbAdminPackage;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\UnableToReadFile;

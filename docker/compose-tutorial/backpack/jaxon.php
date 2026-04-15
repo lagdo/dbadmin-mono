@@ -3,10 +3,10 @@
 use App\Infisical\InfisicalConfigReader;
 use Infisical\SDK\InfisicalSDK;
 use Jaxon\Di\Container;
+use Lagdo\DbAdmin\App\DbAdminPackage;
+use Lagdo\DbAdmin\App\DbAuditPackage;
 use Lagdo\DbAdmin\Db\Config\AuthInterface;
 use Lagdo\DbAdmin\Db\Config\ConfigProvider;
-use Lagdo\DbAdmin\Db\DbAdminPackage;
-use Lagdo\DbAdmin\Db\DbAuditPackage;
 
 return [
     'app' => [
