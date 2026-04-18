@@ -1,7 +1,7 @@
 services:
 
   seed:
-    container_name: dbserver-seed
+    container_name: dbadmin-seed
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     build:
@@ -19,7 +19,7 @@ services:
       - dbserver-dev-net
 
   maria:
-    container_name: dbserver-maria
+    container_name: dbadmin-maria
     image: mariadb:10-ubi
     volumes:
       - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
@@ -32,7 +32,7 @@ services:
       - dbserver-dev-net
 
   mysql:
-    container_name: dbserver-mysql
+    container_name: dbadmin-mysql
     image: mysql:8.0
     volumes:
       - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
@@ -45,7 +45,7 @@ services:
       - dbserver-dev-net
 
   pgsql-14:
-    container_name: dbserver-pgsql-14
+    container_name: dbadmin-pgsql-14
     image: postgres:14.15-alpine3.21
     restart: always
     ports:
@@ -64,7 +64,7 @@ services:
       - dbserver-dev-net
 
   pgsql-17:
-    container_name: dbserver-pgsql-17
+    container_name: dbadmin-pgsql-17
     image: postgres:17-alpine3.21
     restart: always
     ports:
@@ -83,7 +83,7 @@ services:
       - dbserver-dev-net
 
   adminer:
-    container_name: dbserver-adminer
+    container_name: dbadmin-adminer
     image: adminer
     restart: always
     ports:
@@ -92,11 +92,12 @@ services:
       - dbserver-dev-net
 
   phpmyadmin:
-    container_name: dbserver-phpmyadmin
+    container_name: dbadmin-phpmyadmin
     image: phpmyadmin
     restart: always
     environment:
-      - PMA_HOST=dbserver-mariadb
+      # - PMA_HOST=dbserver-mariadb
+      - PMA_ARBITRARY=1
     ports:
       - 7094:80
     networks:
