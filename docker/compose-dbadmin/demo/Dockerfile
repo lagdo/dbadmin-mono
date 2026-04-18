@@ -8,7 +8,7 @@ ENV PHP_UID=${PHP_UID}
 ENV PHP_GID=${PHP_GID}
 
 RUN set -xe && \
-  apk add --no-cache bash pcre curl wget zip vim git sqlite && \
+  apk add --no-cache bash pcre curl wget zip vim git sqlite aws-cli && \
   install-php-extensions pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql xdebug
 
 # Configure Nginx Unit

@@ -47,10 +47,38 @@ services:
     #   timeout: 10s
     #   retries: 10
 
+  ministack:
+    container_name: ministack
+    image: ministackorg/ministack:latest
+    ports:
+      - "4566:4566"
+    volumes:
+      - ministack_data:/tmp/ministack-data
+    environment:
+      - PERSIST_STATE=1
+      - AWS_DEFAULT_REGION=us-east-1
+
+  # Disabled because for now, Floci doesn't provide secrets persistance, while Ministack does.
+  # floci:
+  #   container_name: floci
+  #   image: hectorvent/floci:latest
+  #   ports:
+  #     - "4566:4566"
+  #   environment:
+  #     - FLOCI_STORAGE_MODE=persistent
+  #     - FLOCI_STORAGE_PERSISTENT_PATH=/data/floci
+  #     - FLOCI_DEFAULT_REGION=us-east-1
+  #   volumes:
+  #     - floci_data:/data/floci
+
 volumes:
   pgsql_data:
     driver: local
   redis_data:
+    driver: local
+  floci_data:
+    driver: local
+  ministack_data:
     driver: local
 
 networks:

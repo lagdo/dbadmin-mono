@@ -42,6 +42,7 @@
         "vlucas/phpdotenv": "^5.4.1"
     },
     "require-dev": {
+        "aws/aws-sdk-php": "^3.379",
         "behat/behat": "^3.10",
         "contao/monorepo-tools": "^0.2",
         "dvdoug/behat-code-coverage": "5.0.*",
@@ -67,11 +68,12 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Lagdo\\DbAdmin\\App\\Tests\\": "jaxon-dbadmin/tests/app/",
             "Lagdo\\DbAdmin\\Driver\\MySql\\Tests\\": "dbadmin-driver-mysql/tests/",
             "Lagdo\\DbAdmin\\Driver\\PgSql\\Tests\\": "dbadmin-driver-pgsql/tests/",
             "Lagdo\\DbAdmin\\Driver\\Sqlite\\Tests\\": "dbadmin-driver-sqlite/tests/",
             "Lagdo\\DbAdmin\\Driver\\Tests\\": "dbadmin-driver/tests/",
-            "Lagdo\\DbAdmin\\Support\\Tests\\": "jaxon-dbadmin/tests/"
+            "Lagdo\\DbAdmin\\Support\\Tests\\": "jaxon-dbadmin/tests/src/"
         }
     },
     "replace": {
