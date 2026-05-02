@@ -42,6 +42,13 @@
         "vlucas/phpdotenv": "^5.4.1"
     },
     "require-dev": {
+        "ext-mysqli": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysqli": "*",
+        "ext-pdo_pgsql": "*",
+        "ext-pdo_sqlite": "*",
+        "ext-pgsql": "*",
+        "ext-sqlite3": "*",
         "aws/aws-sdk-php": "^3.379",
         "behat/behat": "^3.10",
         "contao/monorepo-tools": "^0.2",
