@@ -1,0 +1,41 @@
+{
+    "listeners": {
+        "*:8080": {
+            "pass": "routes"
+        }
+    },
+
+    "routes": [
+        {
+            "match": {
+                "uri": ["/", "~^/.*php(.*)?$"]
+            },
+            "action": {
+                "pass": "applications/adminer"
+            }
+        },
+        {
+            "match": {
+                "uri": "/static/*"
+            },
+            "action": {
+                "share": "/var/www/adminer$uri"
+            }
+        },
+        {
+            "match": {
+                "uri": "/*"
+            },
+            "action": {
+                "share": "/var/www$uri"
+            }
+        }
+    ],
+
+    "applications": {
+        "adminer": {
+            "type": "php",
+            "root": "/var/www/adminer/"
+        }
+    }
+}

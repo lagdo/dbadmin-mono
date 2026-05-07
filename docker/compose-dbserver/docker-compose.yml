@@ -103,6 +103,23 @@ services:
     networks:
       - dbserver-dev-net
 
+  adminer-dev:
+    container_name: dbadmin-adminer-dev
+    build:
+      context: ./
+      dockerfile: adminer/Dockerfile
+      args:
+        - PHP_USER=adminer
+        - PHP_UID=${PHP_UID:-1000}
+        - PHP_GID=${PHP_GID:-1000}
+    volumes:
+      - ../../../adminer:/var/www
+      - ../sqlite:/var/lib/sqlite
+    ports:
+      - 7080:8080
+    networks:
+      - dbserver-dev-net
+
 networks:
   dbserver-dev-net:
     driver: bridge
