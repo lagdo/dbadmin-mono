@@ -1,6 +1,6 @@
 <?php
 
-namespace Lagdo\DbAdmin\Support\Driver\UiDto\Ddl;
+namespace Lagdo\DbAdmin\Driver\Sql\Dto;
 
 /**
  * Actions on a table column for create or alter operations.
@@ -11,7 +11,7 @@ enum ColumnAction: string
 
     case ADD = 'add';
 
-    case CHANGE = 'change';
+    case EDIT = 'edit';
 
     case DROP = 'drop';
 
