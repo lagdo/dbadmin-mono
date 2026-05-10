@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DB_SERVER_NAME=pgsql-17
+DB_SERVER_NAME=dbadmin-pgsql-17
 
 MIGRATIONS_DIR="$HOME/migrations"
 LOGGING_SCRIPT="${MIGRATIONS_DIR}/pgsql/01-create-command-tables.up.sql"

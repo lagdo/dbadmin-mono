@@ -21,9 +21,9 @@ cd ${DEST_DIR}
 [ -f ./${DATA_SCRIPT} ] || curl ${SAKILA_REPO}/${DATA_SCRIPT} -o ./${DATA_SCRIPT}
 
 # Create the databases in the MariaDB server
-create_databases maria
+create_databases dbadmin-maria
 
 # Create the databases in the MySQL server
-create_databases mysql
+create_databases dbadmin-mysql
 
 cd -

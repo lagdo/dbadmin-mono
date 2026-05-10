@@ -30,7 +30,7 @@ services:
     networks:
       - infisical
     volumes:
-      - redis_data:/data
+      - infisical_redis_data:/data
 
   pgsql:
     container_name: infisical-pgsql
@@ -38,7 +38,7 @@ services:
     restart: always
     env_file: .env
     volumes:
-      - pgsql_data:/var/lib/postgresql/data
+      - infisical_pgsql_data:/var/lib/postgresql/data
     networks:
       - infisical
     # healthcheck:
@@ -53,7 +53,7 @@ services:
     ports:
       - "4566:4566"
     volumes:
-      - ministack_data:/tmp/ministack-data
+      - ministack_server_data:/tmp/ministack-data
     environment:
       - PERSIST_STATE=1
       - AWS_DEFAULT_REGION=us-east-1
@@ -69,17 +69,21 @@ services:
   #     - FLOCI_STORAGE_PERSISTENT_PATH=/data/floci
   #     - FLOCI_DEFAULT_REGION=us-east-1
   #   volumes:
-  #     - floci_data:/data/floci
+  #     - floci_server_data:/data/floci
 
 volumes:
-  pgsql_data:
+  infisical_pgsql_data:
     driver: local
-  redis_data:
+    name: infisical_pgsql_data
+  infisical_redis_data:
     driver: local
-  floci_data:
+    name: infisical_redis_data
+  # floci_server_data:
+  #   driver: local
+  #   name: floci_server_data
+  ministack_server_data:
     driver: local
-  ministack_data:
-    driver: local
+    name: ministack_server_data
 
 networks:
   infisical:

@@ -1,10 +1,10 @@
 services:
 
-  dbadmin-demo:
-    container_name: dbadmin-demo
+  dbadmin-dev:
+    container_name: dbadmin-dev
     build:
       context: ./
-      dockerfile: demo/Dockerfile
+      dockerfile: dbadmin/Dockerfile
       args:
         - PHP_USER=dbadmin
         - PHP_UID=${PHP_UID:-1000}
@@ -23,3 +23,32 @@ services:
       - "infisical.local=host-gateway"
       - "ministack.local=host-gateway"
       - "floci.local=host-gateway"
+    networks:
+      - dbserver-dev-net
+
+  adminer-dev:
+    container_name: adminer-dev
+    build:
+      context: ./
+      dockerfile: adminer/Dockerfile
+      args:
+        - PHP_USER=adminer
+        - PHP_UID=${PHP_UID:-1000}
+        - PHP_GID=${PHP_GID:-1000}
+    volumes:
+      - ../../../adminer:/var/www
+      - ../sqlite:/var/lib/sqlite
+      # Database connection scripts.
+      - ./adminer/editor/pgsql14.php:/var/www/editor/pgsql14.php
+      # - ./adminer/editor/pgsql17.php:/var/www/editor/pgsql17.php
+      - ./adminer/editor/mysql.php:/var/www/editor/mysql.php
+      - ./adminer/editor/maria.php:/var/www/editor/maria.php
+    ports:
+      - 7080:8080
+      - 7081:8081
+    networks:
+      - dbserver-dev-net
+
+networks:
+  dbserver-dev-net:
+    external: true

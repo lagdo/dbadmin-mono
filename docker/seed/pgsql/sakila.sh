@@ -4,7 +4,7 @@ DEST_DIR=$(dirname "$0")/sql
 SAKILA_REPO=https://raw.githubusercontent.com/jOOQ/sakila/refs/heads/main/postgres-sakila-db
 SCHEMA_SCRIPT=postgres-sakila-schema.sql
 DATA_SCRIPT=postgres-sakila-insert-data.sql
-DB_SERVER_NAME=dbserver-pgsql-14
+DB_SERVER_NAME=dbadmin-pgsql-14
 
 mkdir -p ${DEST_DIR}
 cd ${DEST_DIR}

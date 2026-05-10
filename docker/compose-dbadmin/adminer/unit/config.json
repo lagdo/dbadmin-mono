@@ -1,0 +1,76 @@
+{
+    "listeners": {
+        "*:8080": {
+            "pass": "routes/adminer"
+        },
+        "*:8081": {
+            "pass": "routes/editor"
+        }
+    },
+
+    "routes": {
+        "adminer": [
+            {
+                "match": {
+                    "uri": ["/", "~^/.*php(.*)?$"]
+                },
+                "action": {
+                    "pass": "applications/adminer"
+                }
+            },
+            {
+                "match": {
+                    "uri": "/static/*"
+                },
+                "action": {
+                    "share": "/var/www/adminer$uri"
+                }
+            },
+            {
+                "match": {
+                    "uri": "/*"
+                },
+                "action": {
+                    "share": "/var/www$uri"
+                }
+            }
+        ],
+        "editor": [
+            {
+                "match": {
+                    "uri": ["/", "~^/.*php(.*)?$"]
+                },
+                "action": {
+                    "pass": "applications/editor"
+                }
+            },
+            {
+                "match": {
+                    "uri": "/static/*"
+                },
+                "action": {
+                    "share": "/var/www/editor$uri"
+                }
+            },
+            {
+                "match": {
+                    "uri": "/*"
+                },
+                "action": {
+                    "share": "/var/www$uri"
+                }
+            }
+        ]
+    },
+
+    "applications": {
+        "adminer": {
+            "type": "php",
+            "root": "/var/www/adminer/"
+        },
+        "editor": {
+            "type": "php",
+            "root": "/var/www/editor/"
+        }
+    }
+}

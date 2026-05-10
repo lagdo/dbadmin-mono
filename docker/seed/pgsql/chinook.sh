@@ -3,7 +3,7 @@
 DEST_DIR=$(dirname "$0")/sql
 CHINOOK_REPO=https://github.com/neondatabase-labs/postgres-sample-dbs/raw/refs/heads/main
 CHINOOK_SCRIPT=chinook.sql
-DB_SERVER_NAME=dbserver-pgsql-14
+DB_SERVER_NAME=dbadmin-pgsql-14
 
 mkdir -p ${DEST_DIR}
 cd ${DEST_DIR}
