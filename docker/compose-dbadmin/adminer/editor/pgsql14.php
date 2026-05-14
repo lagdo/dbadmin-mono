@@ -13,7 +13,7 @@ function adminer_object() {
 
 		function database() {
 			// will be escaped by Adminer
-			return 'sakila';
+			return 'chinook';
 		}
 
 		function login($login, $password) {
@@ -46,6 +46,9 @@ function adminer_object() {
 	return new AdminerPgSQL14;
 }
 
-$_GET["pgsql"] = true; // Load the PostgreSQL driver
+$_GET["pgsql"] = ""; // Load the PostgreSQL driver
+if (isset($_POST["auth"]) && is_array($_POST["auth"])) {
+	$_POST["auth"]["driver"] = "pgsql";
+}
 
 include "./index.php";

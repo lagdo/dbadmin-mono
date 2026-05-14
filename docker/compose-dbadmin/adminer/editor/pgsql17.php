@@ -46,6 +46,9 @@ function adminer_object() {
 	return new AdminerPgSQL17;
 }
 
-$_GET["pgsql"] = true; // Load the PostgreSQL driver
+$_GET["pgsql"] = ""; // Load the PostgreSQL driver
+if (isset($_POST["auth"]) && is_array($_POST["auth"])) {
+	$_POST["auth"]["driver"] = "pgsql";
+}
 
 include "./index.php";
