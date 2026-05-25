@@ -29,12 +29,19 @@ The following features are currently available:
 - Create or drop a database.
 - Create or alter a table or view.
 - Drop a table or view.
+- Code completion for table and field names in the SQL editor.
+- Support Ace and CodeMirror 6 as SQL editors (chosen in config).
 
 The following features are not yet implemented, and planned for future releases:
 - Navigate through related tables.
-- Code completion for table and field names in the SQL editor.
 - An advanced GUI-based query builder.
 - Automated tests.
+- Advanced SQL edition and code completion with the Ace linters
+  - https://github.com/mkslanc/ace-linters
+  - https://www.npmjs.com/package/ace-sql-linter
+- Provide a TailwindCSS UI template
+  - Built with base UI framework
+- Use an advanced UI component for HTML tables.
 
 Documentation and howtos
 ------------------------
