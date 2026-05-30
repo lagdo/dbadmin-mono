@@ -3,7 +3,7 @@
 use Jaxon\Di\Container;
 use Lagdo\DbAdmin\App\DbAdminPackage;
 use Lagdo\DbAdmin\App\DbAuditPackage;
-use Lagdo\DbAdmin\Db\Config;
+use Lagdo\DbAdmin\Support\Provider;
 
 return [
     'app' => [
@@ -20,11 +20,11 @@ return [
                     'lib' => 'butterup',
                 ],
                 'provider' => function(array $options, Container $di) {
-                    $reader = $di->g(Config\ConfigProvider::class);
+                    $reader = $di->g(Provider\ConfigProvider::class);
                     return $reader->getOptions($options);
                 },
                 'config' => [
-                    'reader' => Config\InfisicalConfigReader::class,
+                    'reader' => Provider\InfisicalConfigReader::class,
                 ],
                 'access' => [
                     'server' => true,
@@ -33,7 +33,7 @@ return [
             ],
             DbAuditPackage::class => [
                 'config' => [
-                    'reader' => Config\InfisicalConfigReader::class,
+                    'reader' => Provider\InfisicalConfigReader::class,
                 ],
             ],
         ],

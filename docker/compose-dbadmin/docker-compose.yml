@@ -12,8 +12,9 @@ services:
     volumes:
       - ../..:/var/www
       - ../sqlite:/var/lib/sqlite
-      - ./aws/aws-setup-client.sh:/home/dbadmin/aws-setup-client.sh
-      - ./aws/aws-create-secrets.sh:/home/dbadmin/aws-create-secrets.sh
+      - ./aws:/home/dbadmin/setup/aws
+      - ./gcp:/home/dbadmin/setup/gcp
+      - ./bao:/home/dbadmin/setup/bao
     ports:
       - 7090:8080
     extra_hosts:
@@ -22,7 +23,8 @@ services:
       - "mysql.addr=host-gateway"
       - "infisical.local=host-gateway"
       - "ministack.local=host-gateway"
-      - "floci.local=host-gateway"
+      - "gcp.secrets.local=host-gateway"
+      - "bao.secrets.local=host-gateway"
     networks:
       - dbserver-dev-net
 

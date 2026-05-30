@@ -49,6 +49,14 @@ Documentation and howtos
 The [documentation](https://github.com/lagdo/jaxon-dbadmin) explains how to install and configure the package.
 This blog post on the `Jaxon` website explains how to install `Jaxon DbAdmin` on [Backpack](https://backpackforlaravel.com), a Laravel-based admin panel: https://www.jaxon-php.org/blog/2025/07/install-jaxon-dbadmin-on-backpack.html.
 
+Note about Docker
+-----------------
+
+The Google Secret Manager client connects to its server only with HTTPS.
+For the dev env, a root CA must be created to trust local certificates, and the rootCA.crt file copied to the `docker/compose-dbadmin/ssl` dir.
+
+See https://blog.stephane-robert.info/post/homelab-certificats-https-ssl-mkcert/ for more information.
+
 Contribute
 ----------
 
