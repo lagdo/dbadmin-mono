@@ -36,9 +36,9 @@
         "jaxon-php/jaxon-storage": "^1.2",
         "jaxon-php/jaxon-upload": "^2.1",
         "lagdo/facades": "^1.2",
-        "lagdo/jaxon-ui-builder": "0.9.*",
-        "lagdo/ui-builder": "0.9.*",
-        "lagdo/ui-builder-bootstrap5": "0.8.*",
+        "lagdo/jaxon-ui-builder": "0.11.*",
+        "lagdo/ui-builder": "0.11.*",
+        "lagdo/ui-builder-bootstrap5": "0.10.*",
         "league/climate": "^3.11",
         "nategood/commando": "^1.0",
         "vlucas/phpdotenv": "^5.4.1"
