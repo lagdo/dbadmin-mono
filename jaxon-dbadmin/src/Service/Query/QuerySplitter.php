@@ -1,9 +1,7 @@
 <?php
 
-namespace Lagdo\DbAdmin\Driver\Sql\Standard\Statement;
+namespace Lagdo\DbAdmin\Support\Service\Query;
 
-use Lagdo\DbAdmin\Driver\Sql\DbProxyTrait;
-use Lagdo\DbAdmin\Driver\Sql\Dto\QueryStreamDto;
 use Generator;
 
 use function array_filter;
@@ -19,10 +17,8 @@ use function substr;
 use function substr_replace;
 use function trim;
 
-trait SplitterTrait
+class QuerySplitter
 {
-    use DbProxyTrait;
-
     /**
      * @var string
      */
@@ -39,11 +35,11 @@ trait SplitterTrait
     private string $delimiterQueryRegex = "~^\\s*+DELIMITER\\s+(\\S+)~i";
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      *
      * @return string
      */
-    private function getBufferedQuery(QueryStreamDto $stream): string
+    private function getBufferedQuery(QueryStream $stream): string
     {
         $query = trim(implode('', $stream->queryBuffer));
         $stream->queryBuffer = [];
@@ -52,11 +48,11 @@ trait SplitterTrait
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      *
      * @return int|null
      */
-    private function findEndOfQuery(QueryStreamDto $stream): int|null
+    private function findEndOfQuery(QueryStream $stream): int|null
     {
         $offset = strpos($stream->inputLine, $stream->queryDelimiter);
         return $offset === false ? null : $offset;
@@ -65,13 +61,13 @@ trait SplitterTrait
     /**
      * Return the delimiter position, or null.
      *
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      * @param string $delimiter
      * @param bool $withLength
      *
      * @return int|null
      */
-    private function findDelimiterPosition(QueryStreamDto $stream,
+    private function findDelimiterPosition(QueryStream $stream,
         string $delimiter, bool $withLength): int|null
     {
         $regex = "/^{$this->queryRegex}*[^'\"`]*\$/s";
@@ -92,16 +88,12 @@ trait SplitterTrait
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      *
      * @return bool
      */
-    private function parseMultiLineCommentEnd(QueryStreamDto $stream): bool
+    private function parseMultiLineCommentEnd(QueryStream $stream): bool
     {
-        if (!$stream->inMultilineComment) {
-            return true;
-        }
-
         // Find the end of comment delimiter.
         $offset = $this->findDelimiterPosition($stream, '*/', true);
         if ($offset === null) {
@@ -112,18 +104,18 @@ trait SplitterTrait
         // Last line of a multiline comment. Truncate the start.
         $this->truncateStartOfLine($stream, $offset);
 
-        // Switch the comment mode.
-        $stream->inMultilineComment = false;
+        // Switch out of the comment context.
+        $stream->context = QueryStreamContext::NONE;
 
         return true;
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      *
      * @return void
      */
-    private function bufferLineContent(QueryStreamDto $stream): void
+    private function bufferLineContent(QueryStream $stream): void
     {
         if ($stream->queryLine !== '') {
             $stream->queryBuffer[] = $stream->queryLine;
@@ -132,12 +124,12 @@ trait SplitterTrait
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      * @param int $offset
      *
      * @return void
      */
-    private function bufferEndOfQuery(QueryStreamDto $stream, int $offset): void
+    private function bufferEndOfQuery(QueryStream $stream, int $offset): void
     {
         // Copy the start of the line to the buffer.
         $stream->queryBuffer[] = substr($stream->queryLine, 0, $offset);
@@ -148,48 +140,48 @@ trait SplitterTrait
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      * @param int $offset
      *
      * @return void
      */
-    private function truncateStartOfLine(QueryStreamDto $stream, int $offset): void
+    private function truncateStartOfLine(QueryStream $stream, int $offset): void
     {
         $stream->queryLine = substr($stream->queryLine, $offset);
         $stream->inputLine = substr($stream->inputLine, $offset);
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      * @param int $offset
      *
      * @return void
      */
-    private function truncateEndOfLine(QueryStreamDto $stream, int $offset): void
+    private function truncateEndOfLine(QueryStream $stream, int $offset): void
     {
         $stream->queryLine = substr($stream->queryLine, 0, $offset);
         $stream->inputLine = substr($stream->inputLine, 0, $offset);
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      * @param int $length
      *
      * @return void
      */
-    private function maskStartOfLine(QueryStreamDto $stream, int $length): void
+    private function maskStartOfLine(QueryStream $stream, int $length): void
     {
         $spaces = str_repeat(' ', $length);
         $stream->inputLine = substr_replace($stream->inputLine, $spaces, 0, $length);
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      * @param int $offset
      *
      * @return void
      */
-    private function maskEndOfLine(QueryStreamDto $stream, int $offset): void
+    private function maskEndOfLine(QueryStream $stream, int $offset): void
     {
         $length = strlen($stream->inputLine) - $offset;
         $spaces = str_repeat(' ', $length);
@@ -197,16 +189,12 @@ trait SplitterTrait
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      *
      * @return bool
      */
-    private function parseMultiLineStringEnd(QueryStreamDto $stream): bool
+    private function parseMultiLineStringEnd(QueryStream $stream): bool
     {
-        if (!$stream->inMultilineString) {
-            return true;
-        }
-
         $regex = "/('\s*)/s";
         $flags = PREG_OFFSET_CAPTURE;
         $found = preg_match($regex, $stream->inputLine, $matches, $flags);
@@ -219,23 +207,19 @@ trait SplitterTrait
         // Last line of a multiline string.
         $this->maskStartOfLine($stream, $matches[1][1] + strlen($matches[1][0]));
 
-        // Switch the string mode.
-        $stream->inMultilineString = false;
+        // Switch out of the string context.
+        $stream->context = QueryStreamContext::NONE;
 
         return true;
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      *
      * @return bool
      */
-    private function parseMultiLineFunctionEnd(QueryStreamDto $stream): bool
+    private function parseMultiLineFunctionEnd(QueryStream $stream): bool
     {
-        if (!$stream->inMultilineFunction) {
-            return true;
-        }
-
         // Find the end of function delimiter.
         $regex = "/{$stream->functionDelimiterRegex}/si";
         $flags = PREG_OFFSET_CAPTURE;
@@ -249,19 +233,19 @@ trait SplitterTrait
         // Last line of a multiline function.
         $this->maskStartOfLine($stream, $matches[1][1] + strlen($matches[1][0]));
 
-        // Switch the function mode.
-        $stream->inMultilineFunction = false;
+        // Switch out of the function context.
+        $stream->context = QueryStreamContext::NONE;
         $stream->functionDelimiterRegex = '';
 
         return true;
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      *
      * @return void
      */
-    private function parseTokensAfterDelimiter(QueryStreamDto $stream): void
+    private function parseTokensAfterDelimiter(QueryStream $stream): void
     {
         // Find the start of comment or multiline string.
         $regex = "/('|--|\/\*|#|BEGIN|{$this->functionDelimiterRegex})/si";
@@ -279,8 +263,8 @@ trait SplitterTrait
         if ($delimiter === "'") {
             // Mask the end of the line.
             $this->maskEndOfLine($stream, $offset);
-            // Switch the string mode.
-            $stream->inMultilineString = true;
+            // Switch into the string context.
+            $stream->context = QueryStreamContext::MULTILINE_STRING;
             return;
         }
 
@@ -288,8 +272,8 @@ trait SplitterTrait
         if ($delimiter === '/*') {
             // Truncate the end of the line.
             $this->truncateEndOfLine($stream, $offset);
-            // Switch the comment mode.
-            $stream->inMultilineComment = true;
+            // Switch into the comment context.
+            $stream->context = QueryStreamContext::MULTILINE_COMMENT;
             return;
         }
 
@@ -303,20 +287,20 @@ trait SplitterTrait
         // Start of multiline function found
         // Mask the end of the line.
         $this->maskEndOfLine($stream, $offset);
-        // Switch the comment mode.
-        $stream->inMultilineFunction = true;
-        // "END" must always be followed by a delimiter. No "END IF", for example.
+        // Switch into the function context.
+        $stream->context = QueryStreamContext::MULTILINE_FUNCTION;
+        // "END" must always be followed by a delimiter. Not "END IF", for example.
         $stream->functionDelimiterRegex = strtoupper($delimiter) === 'BEGIN' ?
             "(END)\\s*{$stream->pregQueryDelimiter}" : '(' . preg_quote($delimiter) . ')';
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      * @param array $regexes
      *
      * @return void
      */
-    private function maskTokens(QueryStreamDto $stream, array $regexes): void
+    private function maskTokens(QueryStream $stream, array $regexes): void
     {
         // Make sure the delimiter is not masked.
         $regexes = array_filter($regexes, fn($regex) => $regex !== $stream->pregQueryDelimiter);
@@ -330,11 +314,11 @@ trait SplitterTrait
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      *
      * @return bool
      */
-    private function setDelimiter(QueryStreamDto $stream): bool
+    private function setDelimiter(QueryStream $stream): bool
     {
         // Delimiter queries are not sent to the server.
         // $copyRegex = "~^(\\s*+COPY\\s+)[^;]+\\s+FROM\\s+stdin;~i";
@@ -352,11 +336,11 @@ trait SplitterTrait
     }
 
     /**
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      *
      * @return bool
      */
-    private function makeInputLine(QueryStreamDto $stream): bool
+    private function makeInputLine(QueryStream $stream): bool
     {
         if ($this->setDelimiter($stream)) {
             $stream->queryLine = '';
@@ -374,7 +358,8 @@ trait SplitterTrait
             "\\\\\"",
         ]);
 
-        if (!$this->parseMultiLineStringEnd($stream)) {
+        if ($stream->context === QueryStreamContext::MULTILINE_STRING &&
+            !$this->parseMultiLineStringEnd($stream)) {
             return false;
         }
 
@@ -385,11 +370,13 @@ trait SplitterTrait
             "\"[^\"]*\"",
         ]);
 
-        if (!$this->parseMultiLineFunctionEnd($stream)) {
+        if ($stream->context === QueryStreamContext::MULTILINE_FUNCTION &&
+            !$this->parseMultiLineFunctionEnd($stream)) {
             return false;
         }
 
-        if (!$this->parseMultiLineCommentEnd($stream)) {
+        if ($stream->context === QueryStreamContext::MULTILINE_COMMENT &&
+            !$this->parseMultiLineCommentEnd($stream)) {
             return false;
         }
 
@@ -416,12 +403,14 @@ trait SplitterTrait
     /**
      * Split a string or a file containing SQL queries.
      *
-     * @param QueryStreamDto $stream
+     * @param QueryStream $stream
      *
      * @return Generator
      */
-    public function splitQueries(QueryStreamDto $stream): Generator
+    public function splitQueries(QueryStream $stream): Generator
     {
+        $stream->context = QueryStreamContext::NONE;
+
         while (($stream->queryLineReader)($stream)) {
             if (!$this->makeInputLine($stream)) {
                 continue;

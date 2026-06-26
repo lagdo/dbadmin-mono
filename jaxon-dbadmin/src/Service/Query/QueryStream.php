@@ -1,10 +1,10 @@
 <?php
 
-namespace Lagdo\DbAdmin\Driver\Sql\Dto;
+namespace Lagdo\DbAdmin\Support\Service\Query;
 
 use Closure;
 
-class QueryStreamDto
+class QueryStream
 {
     /**
      * @var string
@@ -42,19 +42,9 @@ class QueryStreamDto
     public string $pregQueryDelimiter = ';';
 
     /**
-     * @var bool
+     * @var QueryStreamContext
      */
-    public bool $inMultilineComment = false;
-
-    /**
-     * @var bool
-     */
-    public bool $inMultilineString = false;
-
-    /**
-     * @var bool
-     */
-    public bool $inMultilineFunction = false;
+    public QueryStreamContext $context;
 
     /**
      * @var string
