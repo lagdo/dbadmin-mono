@@ -1,6 +1,6 @@
 <?php
 
-namespace Lagdo\DbAdmin\Demo;
+namespace Lagdo\DbAdmin\Tools;
 
 use Commando\Command;
 use Lagdo\DbAdmin\Support\Service\Query\QuerySplitter;

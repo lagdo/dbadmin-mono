@@ -1,7 +1,5 @@
 composer.phar
 vendor/
-dbadmin-demo/cache/
-dbadmin-demo/public/jaxon/*js
 docker/sqlite/3/*db
 docker/sqlite/3/*sqlite
 docker/sh/pgsql/sql/

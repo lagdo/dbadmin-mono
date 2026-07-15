@@ -1,0 +1,31 @@
+{
+    "name": "lagdo/dbadmin-tools",
+    "type": "application",
+    "description": "Tools for the Jaxon DbAdmin Database management dashboard",
+    "authors": [
+        {
+            "name": "Thierry Feuzeu",
+            "email": "thierry.feuzeu@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/lagdo/dbadmin-tools",
+    "license": "Apache-2.0",
+    "keywords": ["Database", "Admin", "Jaxon", "Tools"],
+    "support": {
+        "issues": "https://github.com/lagdo/dbadmin-tools/issues",
+        "source": "https://github.com/lagdo/dbadmin-tools"
+    },
+    "require": {
+        "php": ">=8.1.0",
+        "lagdo/jaxon-dbadmin": "0.31.*",
+        "league/climate": "^3.11",
+        "nategood/commando": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lagdo\\DbAdmin\\Tools\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
