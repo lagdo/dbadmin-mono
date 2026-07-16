@@ -11,10 +11,10 @@ use RecursiveIteratorIterator;
 
 use function dirname;
 use function fopen;
-use function in_array;
 use function Jaxon\jaxon;
 use function Jaxon\storage;
 use function strlen;
+use function str_starts_with;
 use function substr;
 
 class InstallCommand
@@ -28,11 +28,6 @@ class InstallCommand
      * @var Command
      */
     private Command $command;
-
-    /**
-     * @var array
-     */
-    private array $sources = ['app', 'editor', 'jaxon', 'ui-builder'];
 
     /**
      */
@@ -49,15 +44,10 @@ class InstallCommand
             ->must(fn(string $path) => file_exists($path))
             ->map($this->config(...))
             ->require()
-            ->option('s')
-            ->aka('source')
-            ->describedAs('The source dir')
-            ->must(fn(string $source) => in_array($source, $this->sources))
-            ->require()
-            ->option('a')
-            ->aka('assets')
-            ->describedAs('The assets dir')
-            ->map(fn(string $assets) => storage()->get($assets))
+            ->option('o')
+            ->aka('option')
+            ->describedAs('The assets storage config option')
+            ->map(fn(string $option) => storage()->get($option))
             ->require();
     }
 
@@ -78,34 +68,40 @@ class InstallCommand
     public function run(): void
     {
         /** @var Filesystem */
-        $storage = $this->command['assets'];
+        $storage = $this->command['option'];
 
-        $assetsSubdir = $this->command['source'];
-        $assetsSource = dirname(__DIR__) . "/assets/$assetsSubdir";
+        $assetsSource = dirname(__DIR__) . '/assets';
         $offset = strlen($assetsSource);
 
         $itDir = new RecursiveDirectoryIterator($assetsSource);
         $itFile = new RecursiveIteratorIterator($itDir);
         foreach($itFile as $file)
         {
-            $subdir = "$assetsSubdir/" . substr($file->getPath(), $offset);
-
-            if($file->isDir())
-            {
-                $this->io->blue('>>> Copy directory: ' . $file->getPath());
-                $storage->createDirectory($subdir);
+            // Ignore hidden files.
+            if($file->isFile() && str_starts_with($file->getFilename(), '.')) {
                 continue;
             }
 
-            if(!$file->isFile() || !$file->isReadable())
-            {
-                $this->io->red('>>> Unknown file type: ' . $file->getFilename());
+            $subdir = substr($file->getPath(), $offset);
+
+            if($file->isDir()) {
+                $this->io->blue('>>> In directory: ' . $file->getPath());
+                if ($subdir !== '') {
+                    $storage->createDirectory($subdir);
+                }
+                continue;
+            }
+
+            if(!$file->isFile() || !$file->isReadable()) {
+                $this->io->red('>>> Incorrect file: ' . $file->getFilename());
                 continue;
             }
 
             $this->io->green('>>> Copy file: ' . $file->getFilename());
             $stream = fopen($file->getRealPath(), 'r');
-            $storage->writeStream("$subdir/" . $file->getFilename(), $stream);
+            $destFile = $subdir === '' ? $file->getFilename() :
+                "$subdir/" . $file->getFilename();
+            $storage->writeStream($destFile, $stream);
         }
     }
 }

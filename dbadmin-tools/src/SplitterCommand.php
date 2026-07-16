@@ -57,8 +57,8 @@ class SplitterCommand
         $stream->queryLine = $queryLine;
         $stream->lineNumber++;
         // Remove the newline char.
-        $this->io->green(">>> Line number {$stream->lineNumber}: " . rtrim($queryLine));
-
+        $queryLine = rtrim($queryLine);
+        $this->io->green(">>> Line number {$stream->lineNumber}: $queryLine");
         return true;
     }
 

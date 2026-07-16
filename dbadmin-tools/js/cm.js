@@ -1,9 +1,8 @@
-(function(self, types) {
-    /**
-     * @var {object} lib Filled with functions from the CodeMirror modules.
-     */
-    self.lib = {};
+import { EditorView, basicSetup } from "codemirror";
+import { EditorState } from '@codemirror/state';
+import { sql, MySQL, PostgreSQL, SQLite, StandardSQL } from '@codemirror/lang-sql';
 
+(function(self, types) {
     /**
      * @param {string} containerId
      * @param {bool} readOnly
@@ -98,7 +97,71 @@
         if (!instance) {
             return;
         }
+
         const { state: { selection: { main: { from, to } } } } = instance;
         instance.dispatch({ changes: { from, to, insert: query } });
     };
+
+    const modes = {
+        mysql: MySQL,
+        pgsql: PostgreSQL,
+        sqlite: SQLite,
+        default: StandardSQL,
+    };
+
+    const extensions = [
+        basicSetup,
+        EditorState.allowMultipleSelections.of(false),
+        EditorView.lineWrapping,
+        EditorView.theme({
+            "&": {
+                height: "100%",
+                fontSize: "13px"
+            },
+            ".cm-content": {
+                fontFamily: "'JetBrains Mono', 'Fira Code', 'Monaco', 'Menlo', monospace",
+                padding: "5px"
+            },
+            ".cm-gutters": {
+                backgroundColor: "#f8f9fa",
+                borderRight: "1px solid #e9ecef"
+            },
+        }),
+    ];
+
+    /**
+     * @var {object} lib Functions from the CodeMirror modules.
+     */
+    self.lib = {};
+
+    jaxon.dom.ready(() => {
+        /**
+         * Create a CodeMirror editor instance.
+         *
+         * @param {HTMLElement} parent The parent element to attach the editor to.
+         * @param {string} queryText The initial query text to display in the editor.
+         * @param {boolean} readOnly Whether the editor should be read-only.
+         * @param {string} driver The database driver (e.g., "mysql", "pgsql", "sqlite").
+         * @param {object|null} schema The database schema information, if available.
+         *
+         * @returns {EditorView} The created CodeMirror editor instance.
+         */
+        self.lib.editor = (parent, queryText, readOnly, driver, schema) => {
+            const sqlOptions = {
+                dialect: modes[driver] ?? modes.default,
+                upperCaseKeywords: true,
+                ...(!schema ? {} : { schema }),
+            };
+            const state = EditorState.create({
+                doc: queryText,
+                extensions: [
+                    ...extensions,
+                    EditorState.readOnly.of(readOnly),
+                    sql(sqlOptions),
+                ],
+            });
+
+            return new EditorView({ state, parent });
+        };
+    });
 })(jaxon.dbadmin.editor, jaxon.utils.types);
