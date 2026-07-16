@@ -29,6 +29,8 @@
         "php": ">=8.1.0",
         "ext-iconv": "*",
         "ext-json": "*",
+        "csharpru/vault-php": "^4.4",
+        "google/cloud-secret-manager": "^2.3",
         "infisical/php-sdk": "^0.0.1",
         "jaxon-php/jaxon-attributes": "^1.2",
         "jaxon-php/jaxon-core": "^5.7",
@@ -39,8 +41,6 @@
         "lagdo/jaxon-ui-builder": "0.11.*",
         "lagdo/ui-builder": "0.11.*",
         "lagdo/ui-builder-bootstrap5": "0.10.*",
-        "league/climate": "^3.11",
-        "nategood/commando": "^1.0",
         "vlucas/phpdotenv": "^5.4.1"
     },
     "require-dev": {
@@ -53,10 +53,10 @@
         "ext-sqlite3": "*",
         "aws/aws-sdk-php": "^3.379",
         "behat/behat": "^3.10",
-        "csharpru/vault-php": "^4.4",
         "contao/monorepo-tools": "^0.2",
         "dvdoug/behat-code-coverage": "5.0.*",
-        "google/cloud-secret-manager": "^2.3",
+        "league/climate": "^3.11",
+        "nategood/commando": "^1.0",
         "php-coveralls/php-coveralls": "^2.5",
         "phpunit/phpcov": "^8.2",
         "phpunit/phpunit": "^9.5"
@@ -64,7 +64,6 @@
     "autoload": {
         "psr-4": {
             "Lagdo\\DbAdmin\\App\\": "jaxon-dbadmin/app/",
-            "Lagdo\\DbAdmin\\Demo\\": "dbadmin-demo/src/",
             "Lagdo\\DbAdmin\\Driver\\": "dbadmin-driver/src/",
             "Lagdo\\DbAdmin\\Driver\\MySql\\": "dbadmin-driver-mysql/src/",
             "Lagdo\\DbAdmin\\Driver\\PgSql\\": "dbadmin-driver-pgsql/src/",
@@ -84,7 +83,8 @@
             "Lagdo\\DbAdmin\\Driver\\PgSql\\Tests\\": "dbadmin-driver-pgsql/tests/",
             "Lagdo\\DbAdmin\\Driver\\Sqlite\\Tests\\": "dbadmin-driver-sqlite/tests/",
             "Lagdo\\DbAdmin\\Driver\\Tests\\": "dbadmin-driver/tests/",
-            "Lagdo\\DbAdmin\\Support\\Tests\\": "jaxon-dbadmin/tests/src/"
+            "Lagdo\\DbAdmin\\Support\\Tests\\": "jaxon-dbadmin/tests/src/",
+            "Lagdo\\DbAdmin\\Tools\\": "dbadmin-tools/src/"
         }
     },
     "replace": {
@@ -93,6 +93,7 @@
         "lagdo/dbadmin-driver-mysql": "self.version",
         "lagdo/dbadmin-driver-pgsql": "self.version",
         "lagdo/dbadmin-driver-sqlite": "self.version",
+        "lagdo/dbadmin-tools": "self.version",
         "lagdo/jaxon-dbadmin": "self.version"
     },
     "extra": {

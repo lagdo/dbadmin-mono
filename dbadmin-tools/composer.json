@@ -17,11 +17,13 @@
     },
     "require": {
         "php": ">=8.1.0",
-        "lagdo/jaxon-dbadmin": "0.31.*",
+        "lagdo/jaxon-dbadmin": "0.31.*"
+    },
+    "require-dev": {
         "league/climate": "^3.11",
         "nategood/commando": "^1.0"
     },
-    "autoload": {
+    "autoload-dev": {
         "psr-4": {
             "Lagdo\\DbAdmin\\Tools\\": "src/"
         }
