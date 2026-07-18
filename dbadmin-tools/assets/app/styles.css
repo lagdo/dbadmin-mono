@@ -110,8 +110,11 @@
     width: 80px;
     padding-left: 5px;
 }
-#jaxon-dbadmin .dbadmin-table-edit-column {
-    padding: 5px;
+#jaxon-dbadmin .dbadmin-table-edit-column,
+#jaxon-dbadmin .dbadmin-table-edit-foreign-key {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 4px 5px;
     border-radius: 5px;
 }
 #jaxon-dbadmin .dbadmin-table-columns-form-column {

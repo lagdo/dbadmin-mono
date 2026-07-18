@@ -69,6 +69,66 @@ jaxon.dbadmin = {};
     };
 
     /**
+     * @param {string} columnType
+     * @param {array} unsignedTypes
+     * @param {array} collationTypes
+     * @param {array} onUpdateTypes
+     *
+     * @returns {string}
+     */
+    const editedColumnOption = (columnType, unsignedTypes, collationTypes, onUpdateTypes) => {
+        const find = element => element === columnType;
+        if (unsignedTypes.find(find)) {
+            return 'unsigned';
+        }
+        if (collationTypes.find(find)) {
+            return 'collation';
+        }
+        if (onUpdateTypes.find(find)) {
+            return 'onupdate';
+        }
+        return '';
+    }
+
+    /**
+     * @param {string} formId
+     * @param {array} unsignedTypes
+     * @param {array} collationTypes
+     * @param {array} onUpdateTypes
+     *
+     * @returns {void}
+     */
+    self.onColumnTypeChanged = (formId, unsignedTypes, collationTypes, onUpdateTypes) => {
+        const form = $(`#${formId}`);
+        const columnType = $('.dbadmin-column-edit-type', form).first().val();
+        if (columnType === undefined) {
+            return;
+        }
+
+        $('.dbadmin-column-option-edit-row', `#${formId}`).css('display', 'none');
+        const option = editedColumnOption(columnType, unsignedTypes, collationTypes, onUpdateTypes);
+        if (option !== '') {
+            $(`.dbadmin-column-option-${option}`, form).css('display', 'flex');
+        }
+    }
+
+    /**
+     * @param {string} formId
+     *
+     * @returns {void}
+     */
+    self.onForeignKeyChanged = (formId) => {
+        const form = $(`#${formId}`);
+        const foreignKey = $('.dbadmin-column-foreign-key', form).first().val();
+        if (foreignKey === undefined) {
+            return;
+        }
+
+        const display = foreignKey === '' ? 'none' : 'flex';
+        $('.dbadmin-column-foreign-key-edit-row', `#${formId}`).css('display', display);
+    };
+
+    /**
      * @param {string} url
      * @param {string} filename
      *
