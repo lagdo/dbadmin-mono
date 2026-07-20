@@ -154,11 +154,11 @@ class TableContent extends AbstractDriverProxy
 
     /**
      * @param ColumnDto $column
-     * @param ForeignKeyDdDto|null $foreignKey
+     * @param ForeignKeyFormDto|null $foreignKey
      *
      * @return ColumnFormDto
      */
-    private function getColumnInput(ColumnDto $column, ForeignKeyDdDto|null $foreignKey): ColumnFormDto
+    private function getColumnInput(ColumnDto $column, ForeignKeyFormDto|null $foreignKey): ColumnFormDto
     {
         $types = $this->getColumnTypes($column->type);
         return new ColumnFormDto($column, $foreignKey, $types);
@@ -167,7 +167,7 @@ class TableContent extends AbstractDriverProxy
     /**
      * @param string $table
      *
-     * @return array<ForeignKeyDdDto>
+     * @return array<ForeignKeyFormDto>
      */
     private function getForeignKeysForDropDown(string $table): array
     {
@@ -178,7 +178,7 @@ class TableContent extends AbstractDriverProxy
         $foreignKeys = array_filter($this->engine()->foreignKeys($table),
             fn(ForeignKeyDto $foreignKey) => count($foreignKey->source) === 1);
         $dtoBuilder = function(ForeignKeyDto $foreignKey, string $name) {
-            $dto = new ForeignKeyDdDto();
+            $dto = new ForeignKeyFormDto();
             $dto->name = is_numeric($name) ? '' : $name;;
             $dto->table = $foreignKey->table;
             $dto->column = $foreignKey->target[0];
@@ -242,7 +242,7 @@ class TableContent extends AbstractDriverProxy
     {
         $foreignKey = null;
         if ($values !== null && ($fkId = $values['foreignKey']) !== '') {
-            $foreignKey = new ForeignKeyDdDto();
+            $foreignKey = new ForeignKeyFormDto();
             [$foreignKey->table, $foreignKey->column] = explode('::', $fkId);
             $foreignKey->onUpdate = $values['fkOnUpdate'];
             $foreignKey->onDelete = $values['fkOnDelete'];
@@ -260,7 +260,7 @@ class TableContent extends AbstractDriverProxy
      *
      * @return ColumnDdDto
      */
-    private function makeColumnInput(ColumnFormDto $input): ColumnDdDto
+    private function makeColumnDdDto(ColumnFormDto $input): ColumnDdDto
     {
         $values = $input->values();
 
@@ -310,8 +310,9 @@ class TableContent extends AbstractDriverProxy
             return $errorDto;
         }
 
-        $columns = array_values(array_map($this->makeColumnInput(...), $table->columns));
-        $createDto = new TableCreateDto((array)$table->values(), $columns);
+        $values = (array)$table->values();
+        $columns = array_values(array_map($this->makeColumnDdDto(...), $table->columns));
+        $createDto = new TableCreateDto($values, $columns);
 
         $foreignKeys = $this->getForeignKeys();
         $createDto->setForeignKeys($foreignKeys, $this->getReferencableColumns());
@@ -335,8 +336,9 @@ class TableContent extends AbstractDriverProxy
             return $errorDto;
         }
 
-        $columns = array_values(array_map($this->makeColumnInput(...), $table->columns));
-        $alterDto = new TableAlterDto((array)$table->values(), $columns);
+        $values = (array)$table->values();
+        $columns = array_values(array_map($this->makeColumnDdDto(...), $table->columns));
+        $alterDto = new TableAlterDto($values, $columns);
         $alterDto->status = $table->status;
 
         $foreignKeys = $this->getForeignKeys($table->status->name);
