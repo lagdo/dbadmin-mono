@@ -5,6 +5,7 @@ services:
     build:
       context: ./
       dockerfile: dbadmin/Dockerfile
+      target: dbadmin-dev-no-secret
       args:
         - PHP_USER=dbadmin
         - PHP_UID=${PHP_UID:-1000}
@@ -12,19 +13,32 @@ services:
     volumes:
       - ../..:/var/www
       - ../sqlite:/var/lib/sqlite
-      - ./aws:/home/dbadmin/setup/aws
-      - ./gcp:/home/dbadmin/setup/gcp
-      - ./bao:/home/dbadmin/setup/bao
     ports:
       - 7090:8080
     extra_hosts:
-      - "pgsql.addr=host-gateway"
-      - "maria.addr=host-gateway"
-      - "mysql.addr=host-gateway"
-      - "infisical.local=host-gateway"
-      - "ministack.local=host-gateway"
-      - "gcp.secrets.local=host-gateway"
-      - "bao.secrets.local=host-gateway"
+      - pgsql.addr=host-gateway
+      - maria.addr=host-gateway
+      - mysql.addr=host-gateway
+    networks:
+      - dbserver-dev-net
+
+  dbadmin-cli:
+    container_name: dbadmin-cli
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    build:
+      context: ./
+      dockerfile: tools/Dockerfile
+      target: dbadmin-cli-no-secret
+      args:
+        - CLI_USER=dbadmin
+        - CLI_UID=${CLI_UID:-1000}
+        - CLI_GID=${CLI_GID:-1000}
+    volumes:
+      - ./tools/mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
+      - ../scripts/seeds:/home/dbadmin/seeds
+      - ../../jaxon-dbadmin/migrations:/home/dbadmin/migrations
+      - ../sqlite:/var/lib/sqlite
     networks:
       - dbserver-dev-net
 
@@ -42,7 +56,6 @@ services:
       - ../sqlite:/var/lib/sqlite
       # Database connection scripts.
       - ./adminer/editor/pgsql14.php:/var/www/editor/pgsql14.php
-      # - ./adminer/editor/pgsql17.php:/var/www/editor/pgsql17.php
       - ./adminer/editor/mysql.php:/var/www/editor/mysql.php
       - ./adminer/editor/maria.php:/var/www/editor/maria.php
     ports:

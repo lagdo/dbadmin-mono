@@ -18,7 +18,11 @@ The following features are currently available:
 - Save and show the query history.
 - Save queries in user favorites.
 - Read database credentials with an extensible config reader.
-- Read database credentials from an [Infisical](https://infisical.com/) server.
+- Read database credentials from a secret manager. Currently supported:
+  - [Infisical](https://infisical.com/)
+  - [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)
+  - [GCP Secret Manager](https://cloud.google.com/security/products/secret-manager)
+  - [OpenBao](https://openbao.org) (compatible with [HashiCorp Vault](https://www.hashicorp.com/fr/products/vault))
 - Show tables and views details.
 - Query a table.
 - Query a view.
@@ -39,7 +43,8 @@ The following features are not yet implemented, and planned for future releases:
 - Advanced SQL edition and code completion with the Ace linters
   - https://github.com/mkslanc/ace-linters
   - https://www.npmjs.com/package/ace-sql-linter
-- Provide a TailwindCSS UI template
+- Provide a WebAwesome based UI template
+- Provide a TailwindCSS based UI template
   - Built with base UI framework
 - Use an advanced UI component for HTML tables.
 
@@ -49,13 +54,7 @@ Documentation and howtos
 The [documentation](https://github.com/lagdo/jaxon-dbadmin) explains how to install and configure the package.
 This blog post on the `Jaxon` website explains how to install `Jaxon DbAdmin` on [Backpack](https://backpackforlaravel.com), a Laravel-based admin panel: https://www.jaxon-php.org/blog/2025/07/install-jaxon-dbadmin-on-backpack.html.
 
-Note about Docker
------------------
-
-The Google Secret Manager client connects to its server only with HTTPS.
-For the dev env, a root CA must be created to trust local certificates, and the rootCA.crt file copied to the `docker/compose-dbadmin/ssl` dir.
-
-See https://blog.stephane-robert.info/post/homelab-certificats-https-ssl-mkcert/ for more information.
+Follow [this manual](SECRETS.md) to learn how to configure a secret manager for the dev env.
 
 Contribute
 ----------

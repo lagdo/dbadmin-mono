@@ -1,23 +1,5 @@
 services:
 
-  seed:
-    container_name: dbadmin-seed
-    stdin_open: true # docker run -i
-    tty: true        # docker run -t
-    build:
-      context: ./
-      dockerfile: seed/Dockerfile
-      args:
-        - SEED_USER=dbadmin
-        - SEED_UID=${SEED_UID:-1000}
-        - SEED_GID=${SEED_GID:-1000}
-    volumes:
-      - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
-      - ../seed:/home/dbadmin/scripts
-      - ../../jaxon-dbadmin/migrations:/home/dbadmin/migrations
-    networks:
-      - dbserver-dev-net
-
   maria:
     container_name: dbadmin-maria
     image: mariadb:10-ubi

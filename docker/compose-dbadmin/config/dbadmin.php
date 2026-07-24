@@ -37,7 +37,7 @@ return [
         'audit' => [
             'users' => [
                 // The emails of users that are allowed to access the audit page.
-                'admin@company.com'
+                'admin@company.com',
             ],
         ],
         'database' => [

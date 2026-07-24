@@ -1,2 +1,9 @@
-certs/
-compose-dbadmin/ssl
+ssl/*
+exports/*
+sqlite/3/*db
+sqlite/3/*sqlite
+scripts/seeds/pgsql/sql/
+scripts/seeds/mysql/sql/
+scripts/secrets/infisical/.infisical.json
+compose-dbadmin/tools/aws/*
+compose-dbadmin/tools/gcp/*

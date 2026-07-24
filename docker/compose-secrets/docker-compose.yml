@@ -1,7 +1,38 @@
-version: "3"
-
 services:
-  backend:
+
+  secrets-certs:
+    container_name: secrets-certs
+    build:
+      context: ./
+      dockerfile: certs/Dockerfile
+    volumes:
+      - ../ssl/:/data/ssl/
+
+  secrets-nginx:
+    container_name: secrets-nginx
+    depends_on:
+      secrets-certs:
+        condition: service_completed_successfully
+    build:
+      context: ./
+      dockerfile: nginx/Dockerfile
+    volumes:
+      - ../ssl/:/etc/nginx/ssl/:ro
+      - ./nginx/secrets.conf:/etc/nginx/conf.d/secrets.conf:ro
+    restart: always
+    ports:
+      - 7200:80
+      - 7201:443
+    networks:
+      secrets-net:
+      secrets-ssl-net:
+        aliases:
+          - inf.secrets.loc
+          - aws.secrets.loc
+          - gcp.secrets.loc
+          - bao.secrets.loc
+
+  secrets-infisical:
     image: infisical/infisical:v0.160.7
     container_name: infisical-backend
     restart: unless-stopped
@@ -13,12 +44,15 @@ services:
         condition: service_started
     # pull_policy: always
     env_file: .env
-    ports:
-      - 7200:8080
+    expose:
+      - 8080
     environment:
       - NODE_ENV=production
     networks:
-      - infisical
+      infisical-net:
+      secrets-net:
+        aliases:
+          - inf.secrets
 
   redis:
     image: redis
@@ -28,7 +62,7 @@ services:
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     networks:
-      - infisical
+      - infisical-net
     volumes:
       - infisical_redis_data:/data
 
@@ -40,30 +74,34 @@ services:
     volumes:
       - infisical_pgsql_data:/var/lib/postgresql/data
     networks:
-      - infisical
+      - infisical-net
     # healthcheck:
     #   test: "pg_isready --username=${POSTGRES_USER} && psql --username=${POSTGRES_USER} --list"
     #   interval: 5s
     #   timeout: 10s
     #   retries: 10
 
-  ministack:
+  secrets-ministack:
     container_name: ministack
     image: ministackorg/ministack:latest
-    ports:
-      - "7201:4566"
+    expose:
+      - 4566
     volumes:
       - ministack_server_data:/tmp/ministack-state
     environment:
       - PERSIST_STATE=1
       - AWS_DEFAULT_REGION=us-east-1
+    networks:
+      secrets-net:
+        aliases:
+          - aws.secrets
 
   # GCP
   # gcp-iam-emulator:
   #   container_name: gcp-iam-emulator
   #   image: ghcr.io/blackwell-systems/gcp-iam-emulator:latest
-  #   ports:
-  #     - "7202:8080"
+  #   expose:
+  #     - 8080
   #   environment:
   #     - IAM_PORT=8080
   #     - IAM_LOG_LEVEL=info
@@ -73,12 +111,12 @@ services:
   #     timeout: 3s
   #     retries: 5
 
-  gcp-secret-manager:
-    container_name: gcp-secret-manager
+  secrets-gcp-emulator:
+    container_name: gcp-secret-emulator
     image: ghcr.io/blackwell-systems/gcp-secret-manager-emulator-dual:latest
-    ports:
-      - "7203:9090"  # gRPC
-      - "7204:8080"  # REST (avoid conflict with IAM)
+    expose:
+      - 9090  # gRPC
+      - 8080  # REST (avoid conflict with IAM)
     environment:
       - GCP_MOCK_GRPC_PORT=9090
       - GCP_MOCK_HTTP_PORT=8080
@@ -87,40 +125,39 @@ services:
     # depends_on:
     #   gcp-iam-emulator:
     #     condition: service_healthy
+    networks:
+      secrets-net:
+        aliases:
+          - gcp.secrets
 
-  openbao:
+  secrets-openbao:
     container_name: openbao
     image: openbao/openbao
     volumes:
       - openbao_server_data:/openbao/config
-    ports:
-      - "7205:8200"
+    expose:
+      - 8200
     environment:
       - BAO_DEV_ROOT_TOKEN_ID=dbadmin
       - BAO_DEV_LISTEN_ADDRESS=0.0.0.0:8200
+    networks:
+      secrets-net:
+        aliases:
+          - bao.secrets
 
   # azure-vault:
   #   container_name: azure-vault
   #   image: jamesgoulddev/azure-keyvault-emulator:latest
   #   volumes:
   #     - ../certs/azure:/certs
-  #   ports:
-  #     - "7206:4997"
+  #   expose:
+  #     - 4997
   #   environment:
   #     - Persist=true
-
-  # Disabled because for now, Floci doesn't provide secrets persistance, while Ministack does.
-  # floci:
-  #   container_name: floci
-  #   image: hectorvent/floci:latest
-  #   ports:
-  #     - "7207:4566"
-  #   environment:
-  #     - FLOCI_STORAGE_MODE=persistent
-  #     - FLOCI_STORAGE_PERSISTENT_PATH=/data/floci
-  #     - FLOCI_DEFAULT_REGION=us-east-1
-  #   volumes:
-  #     - floci_server_data:/data/floci
+  #   networks:
+  #     secrets-net:
+  #       aliases:
+  #         - azr.secrets
 
 volumes:
   infisical_pgsql_data:
@@ -129,9 +166,6 @@ volumes:
   infisical_redis_data:
     driver: local
     name: infisical_redis_data
-  # floci_server_data:
-  #   driver: local
-  #   name: floci_server_data
   ministack_server_data:
     driver: local
     name: ministack_server_data
@@ -140,4 +174,9 @@ volumes:
     name: openbao_server_data
 
 networks:
-  infisical:
+  infisical-net:
+    name: infisical-net
+  secrets-net:
+    name: secrets-net
+  secrets-ssl-net:
+    name: secrets-ssl-net
