@@ -4,7 +4,7 @@ Using a secret manager in the dev env
 By default Jaxon DbAdmin will load the database connection options and credentials from its config file, or from the `.env` and `.env.dbadmin` files.
 In the dev env, they are located in the `dbadmin-demo/` dir, and not included in this repo.
 
-The `docker/compose-secrets` provides containers that run all the supported secret managers, for testing.
+The `docker/compose-secrets` provides containers that run the supported secret managers, or equivalent emulators, for testing.
   - `infisical`: [Infisical](https://infisical.com/)
   - `ministack`: [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)
   - `gcp-secret-manager`: [GCP Secret Manager](https://cloud.google.com/security/products/secret-manager)
