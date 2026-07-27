@@ -1,4 +1,4 @@
-FROM lagdo/alpine-php-nginx-unit AS dbadmin-base
+FROM lagdo/alpine-php-free-unit AS dbadmin-base
 
 ARG PHP_USER
 ARG PHP_UID
@@ -13,7 +13,7 @@ RUN set -xe && \
   install-php-extensions sqlite3 mysqlnd mysqli pgsql \
     pdo pdo_sqlite pdo_mysql pdo_pgsql xdebug
 
-# Configure Nginx Unit
+# Configure Free Unit
 COPY dbadmin/unit/config.json /docker-entrypoint.d/config.json
 
 RUN addgroup -g ${PHP_GID} --system ${PHP_USER} && \

@@ -1,4 +1,4 @@
-FROM lagdo/alpine-php-nginx-unit
+FROM lagdo/alpine-php-free-unit
 
 ARG PHP_USER
 ARG PHP_UID
@@ -11,7 +11,7 @@ RUN set -xe && \
   apk add --no-cache bash pcre curl wget zip vim git sqlite && \
   install-php-extensions pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql xdebug
 
-# Configure Nginx Unit
+# Configure Free Unit
 COPY backpack/unit/config.json /docker-entrypoint.d/config.json
 
 RUN addgroup -g ${PHP_GID} --system ${PHP_USER} && \

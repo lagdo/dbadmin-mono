@@ -14,7 +14,7 @@ use function Jaxon\storage;
 
 function getExportStorage(): Filesystem
 {
-    // Make a Filesystem object with the storage.exports options.
+    // Make a Filesystem object with the storage.stores.exports options.
     return storage()->get('exports');
 }
 

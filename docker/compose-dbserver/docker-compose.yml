@@ -6,12 +6,14 @@ services:
     volumes:
       - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
     restart: always
-    ports:
-      - 3307:3306
+    expose:
+      - 3306
     environment:
       MARIADB_ROOT_PASSWORD: dbadmin
     networks:
-      - dbserver-dev-net
+      dbserver-dev-net:
+        aliases:
+          - maria.db.dbadmin.loc
 
   mysql:
     container_name: dbadmin-mysql
@@ -19,19 +21,21 @@ services:
     volumes:
       - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
     restart: always
-    ports:
-      - 3308:3306
+    expose:
+      - 3306
     environment:
       MYSQL_ROOT_PASSWORD: dbadmin
     networks:
-      - dbserver-dev-net
+      dbserver-dev-net:
+        aliases:
+          - mysql.db.dbadmin.loc
 
   pgsql-14:
     container_name: dbadmin-pgsql-14
     image: postgres:14.15-alpine3.21
     restart: always
-    ports:
-      - 5433:5432
+    expose:
+      - 5432
     # set shared memory limit when using docker-compose
     shm_size: 128mb
     # or set shared memory limit when deploy via swarm stack
@@ -43,14 +47,16 @@ services:
     environment:
       POSTGRES_PASSWORD: dbadmin
     networks:
-      - dbserver-dev-net
+      dbserver-dev-net:
+        aliases:
+          - pgsql-14.db.dbadmin.loc
 
   pgsql-17:
     container_name: dbadmin-pgsql-17
     image: postgres:17-alpine3.21
     restart: always
-    ports:
-      - 5434:5432
+    expose:
+      - 5432
     # set shared memory limit when using docker-compose
     shm_size: 128mb
     # or set shared memory limit when deploy via swarm stack
@@ -62,28 +68,9 @@ services:
     environment:
       POSTGRES_PASSWORD: dbadmin
     networks:
-      - dbserver-dev-net
-
-  adminer:
-    container_name: dbadmin-adminer
-    image: adminer
-    restart: always
-    ports:
-      - 7093:8080
-    networks:
-      - dbserver-dev-net
-
-  phpmyadmin:
-    container_name: dbadmin-phpmyadmin
-    image: phpmyadmin
-    restart: always
-    environment:
-      # - PMA_HOST=dbserver-mariadb
-      - PMA_ARBITRARY=1
-    ports:
-      - 7094:80
-    networks:
-      - dbserver-dev-net
+      dbserver-dev-net:
+        aliases:
+          - pgsql-17.db.dbadmin.loc
 
 networks:
   dbserver-dev-net:
