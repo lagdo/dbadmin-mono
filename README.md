@@ -61,8 +61,3 @@ Contribute
 
 - Issue Tracker: https://github.com/lagdo/dbadmin-mono/issues
 - Source Code: https://github.com/lagdo/dbadmin-mono
-
-License
--------
-
-The project is licensed under the Apache license.
