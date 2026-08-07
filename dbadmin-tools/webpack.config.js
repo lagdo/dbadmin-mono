@@ -18,6 +18,6 @@ export default {
     },
     output: {
         filename: "[name].js",
-        path: path.resolve(__dirname, "assets/editor"),
+        path: path.resolve(__dirname, "assets/dbadmin/editor"),
     },
 };

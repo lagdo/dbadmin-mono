@@ -1,14 +1,14 @@
 <?php
 
-$assetsDir = dirname(__DIR__, 2) . '/dbadmin-demo/public/assets';
+$publicDir = dirname(__DIR__, 2) . '/dbadmin-demo/public';
 
 return [
     'app' => [
         'storage' => [
             'stores' => [
-                'assets' => [
+                'public' => [
                     'adapter' => 'local',
-                    'dir' => $assetsDir,
+                    'dir' => $publicDir,
                 ],
             ],
         ],

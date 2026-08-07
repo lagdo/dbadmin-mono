@@ -37,17 +37,17 @@ class InstallCommand
 
         $this->command = new Command();
         // Define a flag "-s" a.k.a. "--source"
-        $this->command->setHelp('Install the static files in the assets dir.')
+        $this->command->setHelp('Install the static files in the public dir.')
             ->option('c')
             ->aka('config')
             ->describedAs('The Jaxon config file')
             ->must(fn(string $path) => file_exists($path))
             ->map($this->config(...))
             ->require()
-            ->option('o')
-            ->aka('option')
-            ->describedAs('The assets storage config option')
-            ->map(fn(string $option) => storage()->get($option))
+            ->option('p')
+            ->aka('public')
+            ->describedAs('The public storage config option')
+            ->map(fn(string $public) => storage()->get($public))
             ->require();
     }
 
@@ -68,7 +68,7 @@ class InstallCommand
     public function run(): void
     {
         /** @var Filesystem */
-        $storage = $this->command['option'];
+        $public = $this->command['public'];
 
         $assetsSource = dirname(__DIR__) . '/assets';
         $offset = strlen($assetsSource);
@@ -77,31 +77,33 @@ class InstallCommand
         $itFile = new RecursiveIteratorIterator($itDir);
         foreach($itFile as $file)
         {
+            $filename = $file->getFilename();
+
             // Ignore hidden files.
-            if($file->isFile() && str_starts_with($file->getFilename(), '.')) {
+            if($file->isFile() && str_starts_with($filename, '.')) {
                 continue;
             }
 
             $subdir = substr($file->getPath(), $offset);
 
             if($file->isDir()) {
-                $this->io->blue('>>> In directory: ' . $file->getPath());
-                if ($subdir !== '') {
-                    $storage->createDirectory($subdir);
+                // The ".." dir can also appear here.
+                if ($filename === '.' && $subdir !== '') {
+                    $this->io->blue(">>> In directory: .$subdir.");
+                    $public->createDirectory($subdir);
                 }
                 continue;
             }
 
             if(!$file->isFile() || !$file->isReadable()) {
-                $this->io->red('>>> Incorrect file: ' . $file->getFilename());
+                $this->io->red(">>> Incorrect file: $filename.");
                 continue;
             }
 
-            $this->io->green('>>> Copy file: ' . $file->getFilename());
+            $this->io->green(">>> Copy file: .$subdir/$filename.");
             $stream = fopen($file->getRealPath(), 'r');
-            $destFile = $subdir === '' ? $file->getFilename() :
-                "$subdir/" . $file->getFilename();
-            $storage->writeStream($destFile, $stream);
+            $destFile = $subdir === '' ? $filename : "$subdir/$filename";
+            $public->writeStream($destFile, $stream);
         }
     }
 }
