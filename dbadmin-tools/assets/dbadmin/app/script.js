@@ -71,15 +71,20 @@ jaxon.dbadmin = {};
     /**
      * @param {string} columnType
      * @param {array} unsignedTypes
+     * @param {array} listTypes
      * @param {array} collationTypes
      * @param {array} onUpdateTypes
      *
      * @returns {string}
      */
-    const editedColumnOption = (columnType, unsignedTypes, collationTypes, onUpdateTypes) => {
+    const editedColumnOption = (columnType, unsignedTypes,
+        listTypes, collationTypes, onUpdateTypes) => {
         const find = element => element === columnType;
         if (unsignedTypes.find(find)) {
             return 'unsigned';
+        }
+        if (listTypes.find(find)) {
+            return 'list';
         }
         if (collationTypes.find(find)) {
             return 'collation';
@@ -93,12 +98,14 @@ jaxon.dbadmin = {};
     /**
      * @param {string} formId
      * @param {array} unsignedTypes
+     * @param {array} listTypes
      * @param {array} collationTypes
      * @param {array} onUpdateTypes
      *
      * @returns {void}
      */
-    self.onColumnTypeChanged = (formId, unsignedTypes, collationTypes, onUpdateTypes) => {
+    self.onColumnTypeChanged = (formId, unsignedTypes,
+        listTypes, collationTypes, onUpdateTypes) => {
         const form = $(`#${formId}`);
         const columnType = $('.dbadmin-column-edit-type', form).first().val();
         if (columnType === undefined) {
@@ -106,7 +113,8 @@ jaxon.dbadmin = {};
         }
 
         $('.dbadmin-column-option-edit-row', `#${formId}`).css('display', 'none');
-        const option = editedColumnOption(columnType, unsignedTypes, collationTypes, onUpdateTypes);
+        const option = editedColumnOption(columnType, unsignedTypes,
+            listTypes, collationTypes, onUpdateTypes);
         if (option !== '') {
             $(`.dbadmin-column-option-${option}`, form).css('display', 'flex');
         }
