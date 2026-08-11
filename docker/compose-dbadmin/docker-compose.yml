@@ -15,10 +15,6 @@ services:
       - ../sqlite:/var/lib/sqlite
     ports:
       - 7090:8080
-    extra_hosts:
-      - pgsql.addr=host-gateway
-      - maria.addr=host-gateway
-      - mysql.addr=host-gateway
     networks:
       - dbserver-dev-net
 
@@ -35,7 +31,7 @@ services:
         - CLI_UID=${CLI_UID:-1000}
         - CLI_GID=${CLI_GID:-1000}
     volumes:
-      - ./tools/mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
+      - ../tools/mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
       - ../scripts/seeds:/home/dbadmin/seeds
       - ../../jaxon-dbadmin/migrations:/home/dbadmin/migrations
       - ../sqlite:/var/lib/sqlite

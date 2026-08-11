@@ -5,5 +5,5 @@ sqlite/3/*sqlite
 scripts/seeds/pgsql/sql/
 scripts/seeds/mysql/sql/
 scripts/secrets/infisical/.infisical.json
-compose-dbadmin/tools/aws/*
-compose-dbadmin/tools/gcp/*
+tools/aws/*
+tools/gcp/*
