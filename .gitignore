@@ -1,3 +1,4 @@
 composer.phar
 vendor/
 .monorepo-split-cache/
+docker/compose-tutorial/backpack/app/database.sqlite

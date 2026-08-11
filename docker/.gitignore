@@ -7,3 +7,4 @@ scripts/seeds/mysql/sql/
 scripts/secrets/infisical/.infisical.json
 tools/aws/*
 tools/gcp/*
+compose-tutorial/backpack/app/database.sqlite
