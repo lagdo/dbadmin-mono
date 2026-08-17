@@ -1,0 +1,91 @@
+services:
+
+  dbadmin-app-laravel:
+    container_name: dbadmin-app-laravel
+    build:
+      context: ./
+      additional_contexts:
+        # Give access to the SSL certs dir.
+        secrets-ssl: ../ssl
+      dockerfile: Dockerfile
+      args:
+        - PHP_USER=dbadmin
+        - PHP_UID=${PHP_UID:-1000}
+        - PHP_GID=${PHP_GID:-1000}
+        - PHP_FRW=laravel
+    volumes:
+      - ../../../dbadmin-app-laravel:/var/www
+      - ../../../dbadmin-app-laravel/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ../sqlite:/var/lib/sqlite
+      - ../tools/aws:/home/dbadmin/.aws:ro
+      - ../tools/gcp:/home/dbadmin/.gcp:ro
+    ports:
+      - 7301:8080
+    networks:
+      - dbserver-dev-net
+      - secrets-ssl-net
+    environment:
+      - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+  dbadmin-app-symfony:
+    container_name: dbadmin-app-symfony
+    build:
+      context: ./
+      additional_contexts:
+        # Give access to the SSL certs dir.
+        secrets-ssl: ../ssl
+      dockerfile: Dockerfile
+      args:
+        - PHP_USER=dbadmin
+        - PHP_UID=${PHP_UID:-1000}
+        - PHP_GID=${PHP_GID:-1000}
+        - PHP_FRW=symfony
+    volumes:
+      - ../../../dbadmin-app-symfony:/var/www
+      - ../../../dbadmin-app-symfony/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ../sqlite:/var/lib/sqlite
+      - ../tools/aws:/home/dbadmin/.aws:ro
+      - ../tools/gcp:/home/dbadmin/.gcp:ro
+    ports:
+      - 7302:8080
+    networks:
+      - dbserver-dev-net
+      - secrets-ssl-net
+    environment:
+      - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+  dbadmin-app-slim:
+    container_name: dbadmin-app-slim
+    build:
+      context: ./
+      additional_contexts:
+        # Give access to the SSL certs dir.
+        secrets-ssl: ../ssl
+      dockerfile: Dockerfile
+      args:
+        - PHP_USER=dbadmin
+        - PHP_UID=${PHP_UID:-1000}
+        - PHP_GID=${PHP_GID:-1000}
+        - PHP_FRW=slim
+    volumes:
+      - ../../../dbadmin-app-slim:/var/www
+      - ../../../dbadmin-app-slim/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ../sqlite:/var/lib/sqlite
+      - ../tools/aws:/home/dbadmin/.aws:ro
+      - ../tools/gcp:/home/dbadmin/.gcp:ro
+    ports:
+      - 7303:8080
+    networks:
+      - dbserver-dev-net
+      - secrets-ssl-net
+    environment:
+      - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+networks:
+  dbserver-dev-net:
+    external: true
+  secrets-ssl-net:
+    external: true

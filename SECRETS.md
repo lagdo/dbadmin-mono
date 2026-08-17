@@ -31,7 +31,7 @@ When the database credentials are fetched from a secret servers, the `username` 
 In the `dbadmin-demo/app/config/servers.php` and `dbadmin-demo/.env.dbadmin` files for example, the `dbadmin-pgsql-14` server entry will be changed to this.
 
 ```php
-// dbadmin-demo/app/config/servers.
+// dbadmin-demo/app/config/servers.php
 
             'dbadmin-pgsql-14' => [
                 'driver' => 'pgsql',
@@ -86,10 +86,13 @@ infisical secrets --projectId=<project-id> --env dev
 ./create-secrets.sh
 ```
 
-In the `dbadmin-demo/app/config/secrets.php` file, set the `reader` option.
+In the `dbadmin-demo/app/config/app.php` file, set the `['secret']['reader']` option.
 
 ```php
-    'reader' => InfisicalConfigProvider::class,
+    'secret' => [
+        'reader' => Provider\Secret\InfisicalConfigProvider::class,
+        ...
+    ],
 ```
 
 In the `dbadmin-demo/.env` file, set the following options.
@@ -113,10 +116,13 @@ cd /home/dbadmin/secrets/aws/
 ./create-secrets.sh
 ```
 
-In the `dbadmin-demo/app/config/secrets.php` file, set the `reader` option.
+In the `dbadmin-demo/app/config/app.php` file, set the `['secret']['reader']` option.
 
 ```php
-    'reader' => AwsSecretConfigProvider::class,
+    'secret' => [
+        'reader' => Provider\Secret\AwsSecretConfigProvider::class,
+        ...
+    ],
 ```
 
 In the `dbadmin-demo/.env` file, set the following options.
@@ -151,10 +157,13 @@ gcloud auth application-default login
 Open the printed URL in a browser, follow the instructions, and enter the provided key.
 Upon success, the credentials file will be saved in `/home/dbadmin/.config/gcloud/application_default_credentials.json`, and automatically made available in the `dbadmin-dev` container.
 
-In the `dbadmin-demo/app/config/secrets.php` file, set the `reader` option.
+In the `dbadmin-demo/app/config/app.php` file, set the `['secret']['reader']` option.
 
 ```php
-    'reader' => GcpSecretConfigProvider::class,
+    'secret' => [
+        'reader' => Provider\Secret\GcpSecretConfigProvider::class,
+        ...
+    ],
 ```
 
 In the `dbadmin-demo/.env` file, set the following options.
@@ -183,10 +192,13 @@ cd /home/dbadmin/secrets/openbao/
 ./create-secrets.sh
 ```
 
-In the `dbadmin-demo/app/config/secrets.php` file, set the `reader` option.
+In the `dbadmin-demo/app/config/app.php` file, set the `['secret']['reader']` option.
 
 ```php
-    'reader' => OpenBaoConfigProvider::class,
+    'secret' => [
+        'reader' => Provider\Secret\OpenBaoConfigProvider::class,
+        ...
+    ],
 ```
 
 In the `dbadmin-demo/.env` file, set the following options.

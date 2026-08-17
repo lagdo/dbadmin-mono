@@ -36,13 +36,19 @@ return [
         ],
     ],
     'audit' => [
-        'enabled' => false,
+        'enabled' => true,
         'users' => [
             // The emails of users that are allowed to access the audit page.
         ],
         'queries' => [
             'database' => [
                 // Same as the "servers" items, but "name" is the database name.
+                'driver' => 'pgsql',
+                'name' => 'auditdb',
+                'host' => env('PGSQL17_DB_HOST'),
+                'port' => env('PGSQL17_DB_PORT'),
+                'username' => env('PGSQL17_DB_USERNAME'),
+                'password' => env('PGSQL17_DB_PASSWORD'),
             ],
             'pagination' => [
                 'limit' => 10,

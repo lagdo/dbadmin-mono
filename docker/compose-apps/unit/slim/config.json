@@ -1,0 +1,29 @@
+{
+    "listeners": {
+        "*:8080": {
+            "pass": "routes"
+        }
+    },
+
+    "routes": [
+        {
+            "match": {
+                "uri": "!/index.php"
+            },
+            "action": {
+                "share": "/var/www/public$uri",
+                "fallback": {
+                    "pass": "applications/dbadmin"
+                }
+            }
+        }
+    ],
+
+    "applications": {
+        "dbadmin": {
+            "type": "php",
+            "root": "/var/www/public/",
+            "script": "index.php"
+        }
+    }
+}

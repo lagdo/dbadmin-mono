@@ -12,6 +12,7 @@ services:
         - PHP_GID=${PHP_GID:-1000}
     volumes:
       - ../..:/var/www
+      - ./dbadmin/dbadmin-dev:/var/www/dbadmin-demo/app/config/dbadmin:ro
       - ../sqlite:/var/lib/sqlite
     ports:
       - 7090:8080
