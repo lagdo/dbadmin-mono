@@ -3,6 +3,4 @@
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use Lagdo\DbAdmin\Tools\InstallCommand;
-
-(new InstallCommand())->run();
+(new Lagdo\DbAdmin\Tools\InstallCommand())->run();

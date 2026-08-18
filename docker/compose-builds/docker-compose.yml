@@ -1,0 +1,85 @@
+services:
+
+  dbadmin-build-laravel:
+    container_name: dbadmin-build-laravel
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - PHP_USER=dbadmin
+        - IMAGE_TAG=laravel
+      # Uncomment this section a root CA certificate needs to be installed.
+      additional_contexts:
+        secrets-ssl: ../ssl
+    volumes:
+      - ../../../dbadmin-app-laravel/.env.dbadmin:/var/www/.env.dbadmin:ro
+      - ../../../dbadmin-app-laravel/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ../sqlite:/var/lib/sqlite
+      - ../tools/aws:/home/dbadmin/.aws:ro
+      - ../tools/gcp:/home/dbadmin/.gcp:ro
+    ports:
+      - 7311:8080
+    networks:
+      - dbserver-dev-net
+      - secrets-ssl-net
+    environment:
+      - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+  dbadmin-build-symfony:
+    container_name: dbadmin-build-symfony
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - PHP_USER=dbadmin
+        - IMAGE_TAG=symfony
+      # Uncomment this section a root CA certificate needs to be installed.
+      additional_contexts:
+        secrets-ssl: ../ssl
+    volumes:
+      - ../../../dbadmin-app-symfony/.env.dbadmin:/var/www/.env.dbadmin:ro
+      - ../../../dbadmin-app-symfony/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ../sqlite:/var/lib/sqlite
+      - ../tools/aws:/home/dbadmin/.aws:ro
+      - ../tools/gcp:/home/dbadmin/.gcp:ro
+    ports:
+      - 7312:8080
+    networks:
+      - dbserver-dev-net
+      - secrets-ssl-net
+    environment:
+      - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+  dbadmin-build-slim:
+    container_name: dbadmin-build-slim
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - PHP_USER=dbadmin
+        - IMAGE_TAG=slim
+      # Uncomment this section a root CA certificate needs to be installed.
+      additional_contexts:
+        secrets-ssl: ../ssl
+    volumes:
+      - ../../../dbadmin-app-slim/.env.dbadmin:/var/www/.env.dbadmin:ro
+      - ../../../dbadmin-app-slim/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ../sqlite:/var/lib/sqlite
+      - ../tools/aws:/home/dbadmin/.aws:ro
+      - ../tools/gcp:/home/dbadmin/.gcp:ro
+    ports:
+      - 7313:8080
+    networks:
+      - dbserver-dev-net
+      - secrets-ssl-net
+    environment:
+      - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+networks:
+  dbserver-dev-net:
+    external: true
+  secrets-ssl-net:
+    external: true
