@@ -14,4 +14,4 @@ RUN update-ca-certificates
 USER ${PHP_USER}
 
 # Create the secret keys and run the migrations.
-RUN composer run post-create-project-cmd
+RUN cd /var/www && composer run post-create-project-cmd
