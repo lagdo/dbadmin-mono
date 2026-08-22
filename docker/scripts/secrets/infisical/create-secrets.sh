@@ -12,7 +12,7 @@ function create_secret()
     SECRET_VALUE=$2
 
     # Create the secret.
-    infisical secrets set ${SECRET_KEY}=${SECRET_VALUE}
+    infisical secrets set ${SECRET_KEY}=${SECRET_VALUE} --domain=${DOMAIN}
 }
 
 

@@ -10,6 +10,7 @@ services:
         - PHP_USER=dbadmin
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
+    user: "${PHP_UID:-1000}:${PHP_GID:-1000}"
     volumes:
       - ../..:/var/www
       - ./dbadmin/dbadmin-dev:/var/www/dbadmin-demo/app/config/dbadmin:ro
@@ -31,10 +32,11 @@ services:
         - CLI_USER=dbadmin
         - CLI_UID=${CLI_UID:-1000}
         - CLI_GID=${CLI_GID:-1000}
+    user: "${CLI_UID:-1000}:${CLI_GID:-1000}"
     volumes:
       - ../tools/mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
-      - ../scripts/seeds:/home/dbadmin/seeds
-      - ../../jaxon-dbadmin/migrations:/home/dbadmin/migrations
+      - ../scripts/seeds:/home/dbadmin/seeds:ro
+      - ../../jaxon-dbadmin/migrations:/home/dbadmin/migrations:ro
       - ../sqlite:/var/lib/sqlite
     networks:
       - dbserver-dev-net
@@ -48,6 +50,7 @@ services:
         - PHP_USER=adminer
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
+    user: "${PHP_UID:-1000}:${PHP_GID:-1000}"
     volumes:
       - ../../../adminer:/var/www
       - ../sqlite:/var/lib/sqlite

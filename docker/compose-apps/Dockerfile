@@ -24,25 +24,15 @@ RUN update-ca-certificates
 # Configure Free Unit
 COPY unit/${PHP_FRW}/config.json /docker-entrypoint.d/config.json
 
-# App root
-COPY . /var/www
-
 RUN addgroup -g ${PHP_GID} --system ${PHP_USER} && \
   adduser -G ${PHP_USER} --system -D -s /bin/sh -u ${PHP_UID} ${PHP_USER} && \
   touch /var/run/unit.pid && \
   touch /var/log/unit.log && \
   mkdir -p /usr/local/var && \
-  mkdir -p /var/cache/jaxon && \
   chown -R ${PHP_USER}:${PHP_USER} /var/log/unit.log \
-    /usr/local/var /var/www /var/run /run /var/cache/jaxon
+    /usr/local/var /var/www /var/run /run
 
 USER ${PHP_USER}
-
-# Install Composer packages
-# RUN cd /var/www && \
-#   composer install --no-dev && \
-#   cp .env.docker .env && \
-#   composer run post-create-project-cmd
 
 WORKDIR /var/www
 EXPOSE 8080

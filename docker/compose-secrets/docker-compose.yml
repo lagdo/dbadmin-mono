@@ -6,7 +6,7 @@ services:
       context: ./
       dockerfile: certs/Dockerfile
     volumes:
-      - ../ssl/:/data/ssl/
+      - ../ssl:/data/ssl
 
   secrets-nginx:
     container_name: secrets-nginx
@@ -17,8 +17,8 @@ services:
       context: ./
       dockerfile: nginx/Dockerfile
     volumes:
-      - ../ssl/:/etc/nginx/ssl/:ro
-      - ./nginx/secrets.conf:/etc/nginx/conf.d/secrets.conf:ro
+      - ../ssl:/etc/nginx/ssl
+      - ./nginx/secrets.conf:/etc/nginx/conf.d/secrets.conf
     restart: always
     ports:
       - 7200:80
@@ -90,6 +90,7 @@ services:
       - ministack_server_data:/tmp/ministack-state
     environment:
       - PERSIST_STATE=1
+      - LOCALSTACK_PERSISTENCE=1
       - AWS_DEFAULT_REGION=us-east-1
     networks:
       secrets-net:

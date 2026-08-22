@@ -10,7 +10,8 @@ function create_secret()
     SECRET_JSON=$2
 
     aws secretsmanager --endpoint-url ${ENDPOINT_URL} --profile ${PROFILE} \
-        delete-secret --secret-id ${SECRET_NAME} --force-delete-without-recovery
+        delete-secret --secret-id ${SECRET_NAME} --force-delete-without-recovery \
+        > /dev/null 2>&1
     aws secretsmanager --endpoint-url ${ENDPOINT_URL} --profile ${PROFILE} \
         create-secret --name ${SECRET_NAME} --secret-string ${SECRET_JSON}
 }

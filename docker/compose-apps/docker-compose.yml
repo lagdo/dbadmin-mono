@@ -13,9 +13,11 @@ services:
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
         - PHP_FRW=laravel
+    user: "${PHP_UID:-1000}:${PHP_GID:-1000}"
     volumes:
       - ../../../dbadmin-app-laravel:/var/www
       - ../../../dbadmin-app-laravel/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ./data:/var/www/storage/data
       - ../sqlite:/var/lib/sqlite
       - ../tools/aws:/home/dbadmin/.aws:ro
       - ../tools/gcp:/home/dbadmin/.gcp:ro
@@ -27,6 +29,9 @@ services:
     environment:
       - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
       - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - DB_DATABASE=storage/data/laravel_db.sqlite
+      - RUN_COMPOSER=true
+      - COMPOSER_OPTIONS=run dbadmin-create-localdb
 
   dbadmin-app-symfony:
     container_name: dbadmin-app-symfony
@@ -41,9 +46,11 @@ services:
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
         - PHP_FRW=symfony
+    user: "${PHP_UID:-1000}:${PHP_GID:-1000}"
     volumes:
       - ../../../dbadmin-app-symfony:/var/www
       - ../../../dbadmin-app-symfony/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ./data:/var/www/var/data
       - ../sqlite:/var/lib/sqlite
       - ../tools/aws:/home/dbadmin/.aws:ro
       - ../tools/gcp:/home/dbadmin/.gcp:ro
@@ -55,6 +62,9 @@ services:
     environment:
       - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
       - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - DATABASE_URL=sqlite:///%kernel.project_dir%/var/data/symfony_db.sqlite
+      - RUN_COMPOSER=true
+      - COMPOSER_OPTIONS=run dbadmin-create-localdb
 
   dbadmin-app-slim:
     container_name: dbadmin-app-slim
@@ -69,9 +79,11 @@ services:
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
         - PHP_FRW=slim
+    user: "${PHP_UID:-1000}:${PHP_GID:-1000}"
     volumes:
       - ../../../dbadmin-app-slim:/var/www
       - ../../../dbadmin-app-slim/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ./data:/var/www/storage/data
       - ../sqlite:/var/lib/sqlite
       - ../tools/aws:/home/dbadmin/.aws:ro
       - ../tools/gcp:/home/dbadmin/.gcp:ro
@@ -83,6 +95,7 @@ services:
     environment:
       - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
       - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - USERS_JSON_FILE=storage/data/slim_users.json
 
 networks:
   dbserver-dev-net:

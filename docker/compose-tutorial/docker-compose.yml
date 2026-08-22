@@ -26,6 +26,8 @@ services:
         - PHP_USER=dbadmin
         - PHP_UID=${PHP_UID:-1000}
         - PHP_GID=${PHP_GID:-1000}
+    user: "${PHP_UID:-1000}:${PHP_GID:-1000}"
+    userns_mode: "keep-id"
     restart: always
     volumes:
       - ./config/.env.dbadmin:/var/www/backpack/.env.dbadmin
