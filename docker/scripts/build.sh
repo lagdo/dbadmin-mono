@@ -2,13 +2,13 @@
 
 REPO=lagdo/jaxon-dbadmin
 PROJECT_ROOT=$1
+DBADMIN_VERSION=0.11.1
+VERSION_MINOR=${DBADMIN_VERSION:0:4}
 
 function build_app()
 {
     PROJECT_DIR=..
     FRAMEWORK=$1
-    VERSION_MINOR=$2
-    VERSION_RELEASE=$3
 
     (
         cd ${PROJECT_ROOT}/dbadmin-app-${FRAMEWORK}/docker \
@@ -18,15 +18,15 @@ function build_app()
             --build-arg PHP_GID=1000 \
             -t ${REPO}:${FRAMEWORK} \
             -f Dockerfile ${PROJECT_DIR} \
-        && docker tag ${REPO}:${FRAMEWORK} ${REPO}:${FRAMEWORK} \
-        && docker push ${REPO}:${FRAMEWORK} \
+        && docker tag ${REPO}:${FRAMEWORK} ${REPO}:${DBADMIN_VERSION}-${FRAMEWORK} \
+        && docker push ${REPO}:${DBADMIN_VERSION}-${FRAMEWORK} \
         && docker tag ${REPO}:${FRAMEWORK} ${REPO}:${VERSION_MINOR}-${FRAMEWORK} \
         && docker push ${REPO}:${VERSION_MINOR}-${FRAMEWORK} \
-        && docker tag ${REPO}:${FRAMEWORK} ${REPO}:${VERSION_RELEASE}-${FRAMEWORK} \
-        && docker push ${REPO}:${VERSION_RELEASE}-${FRAMEWORK}
+        && docker tag ${REPO}:${FRAMEWORK} ${REPO}:${FRAMEWORK} \
+        && docker push ${REPO}:${FRAMEWORK}
     )
 }
 
-build_app laravel 0.11 0.11.0
-build_app symfony 0.11 0.11.0
-build_app slim 0.11 0.11.0
+build_app laravel
+build_app symfony
+build_app slim
