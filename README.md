@@ -50,16 +50,19 @@ Jaxon DbAdmin currently implements the following features:
 - Code completion for table and field names in the SQL editor.
 - Navigate through related tables.
 - Save the executed queries in an audit logs database.
-- Show the audit logs in a dedicated page, with limited access.
+- Show the audit logs in a dedicated page, with restricted access.
 
 The following features are planned for future releases:
 
 - An advanced GUI-based query builder.
 - Automated tests.
+- Support more secret managers.
+  - [Azure Key Vault](https://azure.microsoft.com/fr-fr/products/key-vault)
+  - [Alibaba Key Management Service](https://www.alibabacloud.com/help/en/kms)
 - Advanced SQL edition and code completion with the Ace linters
   - https://github.com/mkslanc/ace-linters
   - https://www.npmjs.com/package/ace-sql-linter
-- Provide a WebAwesome based UI template
+- Provide a WebAwesome based UI template.
 - Provide TailwindCSS based UI templates.
 - Use an advanced UI component for HTML tables.
 - Save and display more data in the audit logs.

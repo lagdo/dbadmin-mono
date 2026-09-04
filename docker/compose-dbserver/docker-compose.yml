@@ -4,7 +4,7 @@ services:
     container_name: dbadmin-maria
     image: mariadb:10-ubi
     volumes:
-      - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
+      - ../tools/mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
     restart: always
     expose:
       - 3306
@@ -19,7 +19,7 @@ services:
     container_name: dbadmin-mysql
     image: mysql:8.0
     volumes:
-      - ./mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
+      - ../tools/mysql/disable-ssl.cnf:/etc/my.cnf.d/disable-ssl.cnf
     restart: always
     expose:
       - 3306
