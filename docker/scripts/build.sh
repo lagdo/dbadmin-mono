@@ -27,6 +27,6 @@ function build_app()
     )
 }
 
-build_app laravel 0.11.3
-build_app symfony 0.11.4
-build_app slim 0.11.4
+build_app laravel 0.11.4
+build_app symfony 0.11.5
+build_app slim 0.11.5
