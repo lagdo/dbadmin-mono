@@ -1,7 +1,8 @@
 #/bin/bash
 
 # Create secrets for the dev env databases.
-PROJECTS_PATH=https://gcp.secrets.loc/v1/projects
+# PROJECTS_PATH=https://gcp.secrets.loc/v1/projects
+PROJECTS_PATH=https://floci-gcp.secrets.loc/v1/projects
 PROJECT_ID=dbadmin
 
 function create_secret()

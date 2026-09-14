@@ -31,6 +31,10 @@ services:
           - aws.secrets.loc
           - gcp.secrets.loc
           - bao.secrets.loc
+          - floci.secrets.loc
+          - floci-aws.secrets.loc
+          - floci-azr.secrets.loc
+          - floci-gcp.secrets.loc
 
   secrets-infisical:
     image: infisical/infisical:v0.160.7
@@ -146,19 +150,85 @@ services:
         aliases:
           - bao.secrets
 
-  # azure-vault:
-  #   container_name: azure-vault
-  #   image: jamesgoulddev/azure-keyvault-emulator:latest
-  #   volumes:
-  #     - ../certs/azure:/certs
-  #   expose:
-  #     - 4997
-  #   environment:
-  #     - Persist=true
-  #   networks:
-  #     secrets-net:
-  #       aliases:
-  #         - azr.secrets
+  secrets-floci-aws:
+    container_name: floci-aws
+    image: floci/floci:latest
+    expose:
+      - 4566
+    volumes:
+      - floci_aws_server_data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      FLOCI_HOSTNAME: aws.floci.secrets
+      # FLOCI_STORAGE_MODE: persistent
+      FLOCI_STORAGE_MODE: wal
+      FLOCI_STORAGE_PERSISTENT_PATH: /app/data
+    networks:
+      secrets-net:
+        aliases:
+          - aws.floci.secrets
+
+  secrets-floci-azr:
+    container_name: floci-azr
+    image: floci/floci-az:latest
+    expose:
+      - 4577
+    volumes:
+      - floci_azr_server_data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      # FLOCI_AZ_STORAGE_MODE: hybrid      # in-memory + async flush every 5 s (recommended)
+      FLOCI_AZ_STORAGE_MODE: wal           # every write goes to disk before responding
+      # FLOCI_AZ_STORAGE_MODE: persistent  # flush only on graceful shutdown
+      FLOCI_AZ_SERVICES_BLOB_ENABLED: "false"
+      FLOCI_AZ_SERVICES_QUEUE_ENABLED: "false"
+      FLOCI_AZ_SERVICES_TABLE_ENABLED: "false"
+      FLOCI_AZ_SERVICES_FUNCTIONS_ENABLED: "true"
+      FLOCI_AZ_SERVICES_APP_CONFIG_ENABLED: "false"
+    networks:
+      secrets-net:
+        aliases:
+          - azr.floci.secrets
+
+  secrets-floci-gcp:
+    container_name: floci-gcp
+    image: floci/floci-gcp:latest
+    expose:
+      - 4588
+    volumes:
+      - floci_gcp_server_data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      FLOCI_GCP_HOSTNAME: gcp.floci.secrets
+      FLOCI_GCP_BASE_URL: http://gcp.floci.secrets:4588
+      # FLOCI_GCP_STORAGE_MODE: hybrid
+      FLOCI_GCP_STORAGE_MODE: wal
+      FLOCI_GCP_STORAGE_PERSISTENT_PATH: /app/data
+    networks:
+      secrets-net:
+        aliases:
+          - gcp.floci.secrets
+
+  secrets-floci-ui:
+    container_name: floci-ui
+    image: floci/floci-ui:latest
+    expose:
+      - 4500
+    environment:
+      COMPOSE_PROFILES: multicloud # AWS + Azure + GCP
+      API_TARGET: http://floci-api:4501
+      VITE_USE_POLLING: "true"
+      FLOCI_ENDPOINT: http://aws.floci.secrets:4566
+      FLOCI_AZURE_ENDPOINT: http://azr.floci.secrets:4577
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: fake
+      AWS_SECRET_ACCESS_KEY: fake
+      FLOCI_GCP_ENDPOINT: http://gcp.floci.secrets:4588
+      FLOCI_GCP_PROJECT: dbadmin
+    networks:
+      secrets-net:
+        aliases:
+          - floci.secrets
 
 volumes:
   infisical_pgsql_data:
@@ -173,6 +243,15 @@ volumes:
   openbao_server_data:
     driver: local
     name: openbao_server_data
+  floci_aws_server_data:
+    driver: local
+    name: floci_aws_server_data
+  floci_azr_server_data:
+    driver: local
+    name: floci_azr_server_data
+  floci_gcp_server_data:
+    driver: local
+    name: floci_gcp_server_data
 
 networks:
   infisical-net:

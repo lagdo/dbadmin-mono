@@ -1,7 +1,8 @@
 #/bin/bash
 
 # Create secrets for the dev env databases.
-ENDPOINT_URL=https://aws.secrets.loc
+# ENDPOINT_URL=https://aws.secrets.loc
+ENDPOINT_URL=https://floci-aws.secrets.loc
 PROFILE=dbadmin
 
 function create_secret()
