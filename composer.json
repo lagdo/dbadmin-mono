@@ -30,9 +30,9 @@
         "jaxon-php/jaxon-storage": "^1.2",
         "jaxon-php/jaxon-upload": "^2.1",
         "lagdo/facades": "^1.2",
-        "lagdo/jaxon-ui-builder": "0.12.*",
-        "lagdo/ui-builder": "0.12.*",
-        "lagdo/ui-builder-bootstrap5": "0.11.*",
+        "lagdo/jaxon-ui-builder": "0.13.*",
+        "lagdo/ui-builder": "0.13.*",
+        "lagdo/ui-builder-bootstrap5": "0.12.*",
         "vlucas/phpdotenv": "^5.4.1"
     },
     "require-dev": {
