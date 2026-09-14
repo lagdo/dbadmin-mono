@@ -1,3 +1,4 @@
 /vendor/*
 /node_modules/*
 /assets/dbadmin/editor/*js
+package-lock.json
