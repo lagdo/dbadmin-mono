@@ -10,17 +10,7 @@
     ],
     "homepage": "https://github.com/lagdo/dbadmin",
     "license": "Apache-2.0",
-    "keywords": [
-        "Database",
-        "Admin",
-        "Sql",
-        "Dashboard",
-        "Jaxon",
-        "Ajax",
-        "PostgreSQL",
-        "MySQL",
-        "Sqlite"
-    ],
+    "keywords": ["Database", "Admin", "Sql", "Dashboard", "Jaxon", "Ajax", "PostgreSQL", "MySQL", "Sqlite"],
     "support": {
         "issues": "https://github.com/lagdo/dbadmin/issues",
         "source": "https://github.com/lagdo/dbadmin"
@@ -29,6 +19,7 @@
         "php": ">=8.1.0",
         "ext-iconv": "*",
         "ext-json": "*",
+        "alibabacloud/kms-20160120": "^2.0",
         "aws/aws-sdk-php": "^3.379",
         "csharpru/vault-php": "^4.4",
         "google/cloud-secret-manager": "^2.3",
