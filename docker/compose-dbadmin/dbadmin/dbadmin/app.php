@@ -141,5 +141,13 @@ return [
         //         return 'db-users-' . str_replace('.', '-', $prefix) . "-$option";
         //     }
         // },
+        // 'reader' => Provider\Secret\AlibabaKmsConfigProvider::class,
+        // 'key' => fn() => new class implements Provider\Secret\KeyBuilderInterface {
+        //     public function build(string $prefix, string $option = ''): string
+        //     {
+        //         // $username = Auth::userId(); // Use this to customize the key.
+        //         return "db.users.{$prefix}.{$option}";
+        //     }
+        // },
     ],
 ];
