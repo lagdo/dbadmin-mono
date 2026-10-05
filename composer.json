@@ -40,6 +40,7 @@
         "lagdo/jaxon-ui-builder": "0.15.*",
         "lagdo/ui-builder": "0.15.*",
         "lagdo/ui-builder-bootstrap5": "0.14.*",
+        "lagdo/ui-builder-bootstrap4": "0.14.*",
         "vlucas/phpdotenv": "^5.4.1"
     },
     "require-dev": {
