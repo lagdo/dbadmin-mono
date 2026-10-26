@@ -41,6 +41,7 @@
         "lagdo/ui-builder": "0.16.*",
         "lagdo/ui-builder-bootstrap5": "0.15.*",
         "lagdo/ui-builder-bootstrap4": "0.15.*",
+        "lagdo/ui-builder-bulma": "0.1.*",
         "vlucas/phpdotenv": "^5.4.1"
     },
     "require-dev": {
