@@ -6,7 +6,7 @@ div.pure-g {
     margin: 3px 0;
 }
 
-#jaxon-dbadmin .btn-select {
+#jaxon-dbadmin .btn-select, #jaxon-dbadmin .jaxon-dbadmin-page-header_items {
     margin-top: 0;
     margin-bottom: 0;
 }

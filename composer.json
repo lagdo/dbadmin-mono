@@ -37,10 +37,10 @@
         "jaxon-php/jaxon-storage": "^1.2",
         "jaxon-php/jaxon-upload": "^2.1",
         "lagdo/facades": "^1.2",
-        "lagdo/jaxon-ui-builder": "0.15.*",
-        "lagdo/ui-builder": "0.15.*",
-        "lagdo/ui-builder-bootstrap5": "0.14.*",
-        "lagdo/ui-builder-bootstrap4": "0.14.*",
+        "lagdo/jaxon-ui-builder": "0.16.*",
+        "lagdo/ui-builder": "0.16.*",
+        "lagdo/ui-builder-bootstrap5": "0.15.*",
+        "lagdo/ui-builder-bootstrap4": "0.15.*",
         "vlucas/phpdotenv": "^5.4.1"
     },
     "require-dev": {
@@ -58,7 +58,8 @@
         "nategood/commando": "^1.0",
         "php-coveralls/php-coveralls": "^2.5",
         "phpunit/phpcov": "^8.2",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "carthage-software/mago": "^1.53"
     },
     "autoload": {
         "psr-4": {
