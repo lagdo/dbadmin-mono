@@ -19,8 +19,8 @@ function create_secret()
     echo ''
 }
 
-create_secret db-users-queries-database-username postgres
-create_secret db-users-queries-database-password dbadmin
+create_secret db-users-audit-database-username postgres
+create_secret db-users-audit-database-password dbadmin
 
 create_secret db-users-servers-dbadmin-pgsql-17-username postgres
 create_secret db-users-servers-dbadmin-pgsql-17-password dbadmin

@@ -25,8 +25,8 @@ infisical login --method=universal-auth \
 # All other commands will also use the same domain automatically
 infisical secrets --projectId ${PROJECT_ID} --env dev
 
-create_secret users.queries.database.username postgres
-create_secret users.queries.database.password dbadmin
+create_secret users.audit.database.username postgres
+create_secret users.audit.database.password dbadmin
 
 create_secret users.servers.dbadmin-pgsql-17.username postgres
 create_secret users.servers.dbadmin-pgsql-17.password dbadmin

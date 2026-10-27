@@ -17,7 +17,7 @@ function create_secret()
         create-secret --name ${SECRET_NAME} --secret-string ${SECRET_JSON}
 }
 
-create_secret users.queries.database '{"username":"postgres","password":"dbadmin"}'
+create_secret users.audit.database '{"username":"postgres","password":"dbadmin"}'
 
 create_secret users.servers.dbadmin-pgsql-17 '{"username":"postgres","password":"dbadmin"}'
 
