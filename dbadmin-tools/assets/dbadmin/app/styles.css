@@ -3,7 +3,11 @@
 }
 
 div.pure-g {
-    margin: 3px 0;
+    margin: 5px 0;
+}
+
+#jaxon-dbadmin .dbadmin-menu-item {
+    cursor: pointer;
 }
 
 #jaxon-dbadmin .btn-select, #jaxon-dbadmin .jaxon-dbadmin-page-header_items {
@@ -211,14 +215,19 @@ div.pure-g {
     position-area: y-end span-x-end;
 }
 
+.alert-wrapper {
+    /* Set a value greater than 40, so the CuteAlert dialog is displayed on top of the Bulma modal. */
+    z-index: 100;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input.dbadmin-no-arrows::-webkit-outer-spin-button,
 input.dbadmin-no-arrows::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input.dbadmin-no-arrows[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
