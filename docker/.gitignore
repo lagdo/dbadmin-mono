@@ -8,5 +8,4 @@ scripts/secrets/infisical/.infisical.json
 tools/aws/*
 tools/gcp/*
 compose-apps/data/
-compose-dbadmin/dbadmin/dbadmin-dev/
 compose-tutorial/backpack/app/database.sqlite
