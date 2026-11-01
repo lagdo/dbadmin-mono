@@ -1,4 +1,4 @@
-ARG DBADMIN_VERSION=0.9.0
+ARG DBADMIN_VERSION=0.14.0
 
 # Root builder
 FROM lagdo/alpine-php-free-unit

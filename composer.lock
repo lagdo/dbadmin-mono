@@ -141,21 +141,22 @@
         },
         {
             "name": "alibabacloud/darabonba",
-            "version": "v1.0.4",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alibabacloud-sdk-php/darabonba.git",
-                "reference": "b1ccea693258ea68e455e330922406f3afe10e9c"
+                "reference": "be3deb9d4686947cde8b11a6c68bbb6c8ff81f11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alibabacloud-sdk-php/darabonba/zipball/b1ccea693258ea68e455e330922406f3afe10e9c",
-                "reference": "b1ccea693258ea68e455e330922406f3afe10e9c",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/darabonba/zipball/be3deb9d4686947cde8b11a6c68bbb6c8ff81f11",
+                "reference": "be3deb9d4686947cde8b11a6c68bbb6c8ff81f11",
                 "shasum": ""
             },
             "require": {
                 "adbario/php-dot-notation": "^2.4",
                 "alibabacloud/tea": "^3.2",
+                "clue/block-react": "^1.5",
                 "ext-curl": "*",
                 "ext-json": "*",
                 "ext-libxml": "*",
@@ -164,10 +165,13 @@
                 "ext-simplexml": "*",
                 "ext-xmlwriter": "*",
                 "guzzlehttp/guzzle": "^6.3|^7.0",
-                "php": ">=5.5"
+                "php": ">=5.5",
+                "ratchet/pawl": "^0.4",
+                "ratchet/rfc6455": "^0.3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35|^5.4.3|^9.3",
+                "cboden/ratchet": "^0.4",
+                "phpunit/phpunit": "^4.8.35|^5.4.3|^8.5|^9.3",
                 "symfony/dotenv": "^3.4",
                 "symfony/var-dumper": "^3.4"
             },
@@ -176,6 +180,9 @@
             },
             "type": "library",
             "autoload": {
+                "files": [
+                    "src/psr7-compat.php"
+                ],
                 "psr-4": {
                     "AlibabaCloud\\Dara\\": "src"
                 }
@@ -200,10 +207,10 @@
                 "tea"
             ],
             "support": {
-                "issues": "https://github.com/aliyun/tea-php/issues",
-                "source": "https://github.com/aliyun/tea-php"
+                "issues": "https://github.com/alibabacloud-sdk-php/darabonba/issues",
+                "source": "https://github.com/alibabacloud-sdk-php/darabonba"
             },
-            "time": "2025-12-15T10:15:24+00:00"
+            "time": "2026-10-27T11:08:38+00:00"
         },
         {
             "name": "alibabacloud/darabonba-array",
@@ -526,22 +533,22 @@
         },
         {
             "name": "alibabacloud/kms-20160120",
-            "version": "2.0.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alibabacloud-sdk-php/Kms-20160120.git",
-                "reference": "29d99a724df5e9f6ab7cdf8dcc9835bcfe8187f5"
+                "reference": "e5511e71e82c746bc40c14cbe66666881b630b1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alibabacloud-sdk-php/Kms-20160120/zipball/29d99a724df5e9f6ab7cdf8dcc9835bcfe8187f5",
-                "reference": "29d99a724df5e9f6ab7cdf8dcc9835bcfe8187f5",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/Kms-20160120/zipball/e5511e71e82c746bc40c14cbe66666881b630b1b",
+                "reference": "e5511e71e82c746bc40c14cbe66666881b630b1b",
                 "shasum": ""
             },
             "require": {
                 "alibabacloud/darabonba": "^1.0.0",
                 "alibabacloud/gateway-pop": "^0.0.8",
-                "alibabacloud/openapi-core": "^1.0.0",
+                "alibabacloud/openapi-core": "^1.0.10",
                 "php": ">5.5"
             },
             "type": "library",
@@ -562,32 +569,32 @@
             ],
             "description": "Alibaba Cloud KeyManagementService (20160120) SDK Library for PHP",
             "support": {
-                "source": "https://github.com/alibabacloud-sdk-php/Kms-20160120/tree/2.0.0"
+                "source": "https://github.com/alibabacloud-sdk-php/Kms-20160120/tree/2.3.1"
             },
-            "time": "2026-07-02T03:31:32+00:00"
+            "time": "2026-10-16T08:43:11+00:00"
         },
         {
             "name": "alibabacloud/openapi-core",
-            "version": "1.0.9",
+            "version": "1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alibabacloud-sdk-php/openapi-core.git",
-                "reference": "7b241b2a0e71f70629e2ecdc5cbe8c8b6b3a7567"
+                "reference": "55e00087498c24cf7a9d8299755e63f43519e58d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alibabacloud-sdk-php/openapi-core/zipball/7b241b2a0e71f70629e2ecdc5cbe8c8b6b3a7567",
-                "reference": "7b241b2a0e71f70629e2ecdc5cbe8c8b6b3a7567",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/openapi-core/zipball/55e00087498c24cf7a9d8299755e63f43519e58d",
+                "reference": "55e00087498c24cf7a9d8299755e63f43519e58d",
                 "shasum": ""
             },
             "require": {
                 "alibabacloud/credentials": "^1.2.2",
-                "alibabacloud/darabonba": "^1",
+                "alibabacloud/darabonba": "^1.0.5",
                 "alibabacloud/gateway-spi": "^1",
                 "php": ">5.5"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35|^5.4.3|^9.3",
+                "phpunit/phpunit": "^5.7.27|^8.5.28|^9.6.19",
                 "symfony/dotenv": "^3.4",
                 "symfony/var-dumper": "^3.4"
             },
@@ -610,9 +617,9 @@
             "description": "Alibaba Cloud OpenApi Client Core",
             "support": {
                 "issues": "https://github.com/alibabacloud-sdk-php/openapi-core/issues",
-                "source": "https://github.com/alibabacloud-sdk-php/openapi-core/tree/1.0.9"
+                "source": "https://github.com/alibabacloud-sdk-php/openapi-core/tree/1.0.10"
             },
-            "time": "2026-01-15T06:47:29+00:00"
+            "time": "2026-07-13T10:04:10+00:00"
         },
         {
             "name": "alibabacloud/openapi-util",
@@ -822,16 +829,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.402.0",
+            "version": "3.402.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "661f6a54f2a63ac5137390c291535c74cfe6019e"
+                "reference": "c5118d25aa1cfe3aa9dbf03a4f06056945427edb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/661f6a54f2a63ac5137390c291535c74cfe6019e",
-                "reference": "661f6a54f2a63ac5137390c291535c74cfe6019e",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c5118d25aa1cfe3aa9dbf03a4f06056945427edb",
+                "reference": "c5118d25aa1cfe3aa9dbf03a4f06056945427edb",
                 "shasum": ""
             },
             "require": {
@@ -913,9 +920,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.402.0"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.402.4"
             },
-            "time": "2026-10-22T18:09:05+00:00"
+            "time": "2026-10-29T18:05:22+00:00"
         },
         {
             "name": "brick/math",
@@ -976,6 +983,75 @@
                 }
             ],
             "time": "2026-09-12T10:28:18+00:00"
+        },
+        {
+            "name": "clue/block-react",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clue/reactphp-block.git",
+                "reference": "718b0571a94aa693c6fffc72182e87257ac900f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/clue/reactphp-block/zipball/718b0571a94aa693c6fffc72182e87257ac900f3",
+                "reference": "718b0571a94aa693c6fffc72182e87257ac900f3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "react/event-loop": "^1.2",
+                "react/promise": "^3.0 || ^2.7 || ^1.2.1",
+                "react/promise-timer": "^1.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3 || ^5.7 || ^4.8.35",
+                "react/http": "^1.4"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering"
+                }
+            ],
+            "description": "Lightweight library that eases integrating async components built for ReactPHP in a traditional, blocking environment.",
+            "homepage": "https://github.com/clue/reactphp-block",
+            "keywords": [
+                "async",
+                "await",
+                "blocking",
+                "event loop",
+                "promise",
+                "reactphp",
+                "sleep",
+                "synchronous"
+            ],
+            "support": {
+                "issues": "https://github.com/clue/reactphp-block/issues",
+                "source": "https://github.com/clue/reactphp-block/tree/v1.5.0"
+            },
+            "funding": [
+                {
+                    "url": "https://clue.engineering/support",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/clue",
+                    "type": "github"
+                }
+            ],
+            "abandoned": "react/async",
+            "time": "2021-10-20T14:07:33+00:00"
         },
         {
             "name": "csharpru/vault-php",
@@ -1039,6 +1115,53 @@
                 "source": "https://github.com/CSharpRU/vault-php/tree/4.4.1"
             },
             "time": "2025-04-23T08:42:13+00:00"
+        },
+        {
+            "name": "evenement/evenement",
+            "version": "v3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/igorw/evenement.git",
+                "reference": "0a16b0d71ab13284339abb99d9d2bd813640efbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/igorw/evenement/zipball/0a16b0d71ab13284339abb99d9d2bd813640efbc",
+                "reference": "0a16b0d71ab13284339abb99d9d2bd813640efbc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9 || ^6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Evenement\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                }
+            ],
+            "description": "Événement is a very simple event dispatching library for PHP",
+            "keywords": [
+                "event-dispatcher",
+                "event-emitter"
+            ],
+            "support": {
+                "issues": "https://github.com/igorw/evenement/issues",
+                "source": "https://github.com/igorw/evenement/tree/v3.0.2"
+            },
+            "time": "2023-08-08T05:53:35+00:00"
         },
         {
             "name": "firebase/php-jwt",
@@ -1116,16 +1239,16 @@
         },
         {
             "name": "google/auth",
-            "version": "v1.55.2",
+            "version": "v1.55.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-auth-library-php.git",
-                "reference": "293fdf064cfc5b77a22bb7406b59f149b3fb70e8"
+                "reference": "81d6d2bd311ba5fb579e52f6c8aa2d660379de75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/293fdf064cfc5b77a22bb7406b59f149b3fb70e8",
-                "reference": "293fdf064cfc5b77a22bb7406b59f149b3fb70e8",
+                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/81d6d2bd311ba5fb579e52f6c8aa2d660379de75",
+                "reference": "81d6d2bd311ba5fb579e52f6c8aa2d660379de75",
                 "shasum": ""
             },
             "require": {
@@ -1180,22 +1303,22 @@
             "support": {
                 "docs": "https://cloud.google.com/php/docs/reference/auth/latest",
                 "issues": "https://github.com/googleapis/google-auth-library-php/issues",
-                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.55.2"
+                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.55.3"
             },
-            "time": "2026-10-16T21:30:20+00:00"
+            "time": "2026-10-28T23:00:54+00:00"
         },
         {
             "name": "google/cloud-secret-manager",
-            "version": "v2.5.5",
+            "version": "v2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php-secret-manager.git",
-                "reference": "676aa0f81d1aa18cba8d1bb003a8a796dea09fd3"
+                "reference": "cc74d8b3479e6de7dea995dca77061e6d69c3f2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php-secret-manager/zipball/676aa0f81d1aa18cba8d1bb003a8a796dea09fd3",
-                "reference": "676aa0f81d1aa18cba8d1bb003a8a796dea09fd3",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-secret-manager/zipball/cc74d8b3479e6de7dea995dca77061e6d69c3f2c",
+                "reference": "cc74d8b3479e6de7dea995dca77061e6d69c3f2c",
                 "shasum": ""
             },
             "require": {
@@ -1231,22 +1354,22 @@
             ],
             "description": "Secret Manager Client for PHP",
             "support": {
-                "source": "https://github.com/googleapis/google-cloud-php-secret-manager/tree/v2.5.5"
+                "source": "https://github.com/googleapis/google-cloud-php-secret-manager/tree/v2.6.0"
             },
-            "time": "2026-10-16T21:30:20+00:00"
+            "time": "2026-10-28T01:51:30+00:00"
         },
         {
             "name": "google/common-protos",
-            "version": "4.14.3",
+            "version": "4.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/common-protos-php.git",
-                "reference": "3c219d28f513a8997ac5d098f43943e3c5b4509a"
+                "reference": "74893ae29540a7166dab074cee8b57e78c534702"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/common-protos-php/zipball/3c219d28f513a8997ac5d098f43943e3c5b4509a",
-                "reference": "3c219d28f513a8997ac5d098f43943e3c5b4509a",
+                "url": "https://api.github.com/repos/googleapis/common-protos-php/zipball/74893ae29540a7166dab074cee8b57e78c534702",
+                "reference": "74893ae29540a7166dab074cee8b57e78c534702",
                 "shasum": ""
             },
             "require": {
@@ -1290,31 +1413,31 @@
                 "google"
             ],
             "support": {
-                "source": "https://github.com/googleapis/common-protos-php/tree/v4.14.3"
+                "source": "https://github.com/googleapis/common-protos-php/tree/v4.15.0"
             },
-            "time": "2026-09-14T18:27:51+00:00"
+            "time": "2026-10-28T01:51:30+00:00"
         },
         {
             "name": "google/gax",
-            "version": "v1.51.1",
+            "version": "v1.51.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/gax-php.git",
-                "reference": "024610fe27bc1bd71449f10fc1287c00580c0446"
+                "reference": "1c06ae8e829e4e56bf22d4ce32768bf2523ddf7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/gax-php/zipball/024610fe27bc1bd71449f10fc1287c00580c0446",
-                "reference": "024610fe27bc1bd71449f10fc1287c00580c0446",
+                "url": "https://api.github.com/repos/googleapis/gax-php/zipball/1c06ae8e829e4e56bf22d4ce32768bf2523ddf7d",
+                "reference": "1c06ae8e829e4e56bf22d4ce32768bf2523ddf7d",
                 "shasum": ""
             },
             "require": {
                 "google/auth": "^1.53",
                 "google/common-protos": "^4.9",
-                "google/grpc-gcp": "^0.4",
+                "google/grpc-gcp": "^0.5",
                 "google/longrunning": "~0.4",
                 "google/protobuf": "^4.31||^5.34",
-                "grpc/grpc": "^1.38",
+                "grpc/grpc": "^1.84.1",
                 "guzzlehttp/promises": "^2.0.3||^3.0",
                 "guzzlehttp/psr7": "^2.6.3||^3.0",
                 "php": "^8.2",
@@ -1353,29 +1476,29 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/gax-php/issues",
-                "source": "https://github.com/googleapis/gax-php/tree/v1.51.1"
+                "source": "https://github.com/googleapis/gax-php/tree/v1.51.2"
             },
-            "time": "2026-10-16T21:30:20+00:00"
+            "time": "2026-10-28T23:00:54+00:00"
         },
         {
             "name": "google/grpc-gcp",
-            "version": "0.4.2",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GoogleCloudPlatform/grpc-gcp-php.git",
-                "reference": "1049c0c15b6a1789fdeb52af688a94d540932469"
+                "reference": "cecdf5ebe76a7b4e6e133a0c081f7be8ab274cd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GoogleCloudPlatform/grpc-gcp-php/zipball/1049c0c15b6a1789fdeb52af688a94d540932469",
-                "reference": "1049c0c15b6a1789fdeb52af688a94d540932469",
+                "url": "https://api.github.com/repos/GoogleCloudPlatform/grpc-gcp-php/zipball/cecdf5ebe76a7b4e6e133a0c081f7be8ab274cd7",
+                "reference": "cecdf5ebe76a7b4e6e133a0c081f7be8ab274cd7",
                 "shasum": ""
             },
             "require": {
                 "google/auth": "^1.3",
                 "google/protobuf": "^v3.25.3||^4.26.1||^5.0",
-                "grpc/grpc": "^v1.13.0",
-                "php": "^8.0",
+                "grpc/grpc": "^1.84.1",
+                "php": "^8.2",
                 "psr/cache": "^1.0.1||^2.0.0||^3.0.0"
             },
             "require-dev": {
@@ -1398,22 +1521,22 @@
             "description": "gRPC GCP library for channel management",
             "support": {
                 "issues": "https://github.com/GoogleCloudPlatform/grpc-gcp-php/issues",
-                "source": "https://github.com/GoogleCloudPlatform/grpc-gcp-php/tree/v0.4.2"
+                "source": "https://github.com/GoogleCloudPlatform/grpc-gcp-php/tree/v0.5.0"
             },
-            "time": "2026-03-12T22:56:09+00:00"
+            "time": "2026-10-28T20:22:51+00:00"
         },
         {
             "name": "google/longrunning",
-            "version": "0.8.5",
+            "version": "0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/php-longrunning.git",
-                "reference": "ca83fbce2e20556f9abdb939efce14f642336acd"
+                "reference": "ccecf40953cefbddb569fd67b27bd0cf8a1381da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/php-longrunning/zipball/ca83fbce2e20556f9abdb939efce14f642336acd",
-                "reference": "ca83fbce2e20556f9abdb939efce14f642336acd",
+                "url": "https://api.github.com/repos/googleapis/php-longrunning/zipball/ccecf40953cefbddb569fd67b27bd0cf8a1381da",
+                "reference": "ccecf40953cefbddb569fd67b27bd0cf8a1381da",
                 "shasum": ""
             },
             "require-dev": {
@@ -1442,9 +1565,9 @@
             ],
             "description": "Google LongRunning Client for PHP",
             "support": {
-                "source": "https://github.com/googleapis/php-longrunning/tree/v0.8.5"
+                "source": "https://github.com/googleapis/php-longrunning/tree/v0.9.0"
             },
-            "time": "2026-09-28T17:51:46+00:00"
+            "time": "2026-10-28T01:51:30+00:00"
         },
         {
             "name": "google/protobuf",
@@ -1554,20 +1677,20 @@
         },
         {
             "name": "grpc/grpc",
-            "version": "1.82.0",
+            "version": "1.85.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grpc/grpc-php.git",
-                "reference": "be984cb608f21e96453b3cfe54c748cc7b192250"
+                "reference": "08bd482ca6f99d45fa85ad0bd70876e7455e39cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grpc/grpc-php/zipball/be984cb608f21e96453b3cfe54c748cc7b192250",
-                "reference": "be984cb608f21e96453b3cfe54c748cc7b192250",
+                "url": "https://api.github.com/repos/grpc/grpc-php/zipball/08bd482ca6f99d45fa85ad0bd70876e7455e39cf",
+                "reference": "08bd482ca6f99d45fa85ad0bd70876e7455e39cf",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.0"
+                "php": ">=8.2.0"
             },
             "require-dev": {
                 "google/auth": "^v1.3.0"
@@ -1592,9 +1715,9 @@
                 "rpc"
             ],
             "support": {
-                "source": "https://github.com/grpc/grpc-php/tree/v1.82.0"
+                "source": "https://github.com/grpc/grpc-php/tree/v1.85.0"
             },
-            "time": "2026-07-03T09:39:53+00:00"
+            "time": "2026-10-28T05:30:17+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2580,16 +2703,16 @@
         },
         {
             "name": "lagdo/jaxon-ui-builder",
-            "version": "v0.16.0",
+            "version": "v0.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/jaxon-ui-builder.git",
-                "reference": "9b2fcc134e7a0d014d1c3361a7ea134e66a35a9e"
+                "reference": "68d68f8c1599e884b224219f0195a548072ffb1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/jaxon-ui-builder/zipball/9b2fcc134e7a0d014d1c3361a7ea134e66a35a9e",
-                "reference": "9b2fcc134e7a0d014d1c3361a7ea134e66a35a9e",
+                "url": "https://api.github.com/repos/lagdo/jaxon-ui-builder/zipball/68d68f8c1599e884b224219f0195a548072ffb1d",
+                "reference": "68d68f8c1599e884b224219f0195a548072ffb1d",
                 "shasum": ""
             },
             "require": {
@@ -2599,9 +2722,6 @@
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "src/register.php"
-                ],
                 "psr-4": {
                     "Lagdo\\UiBuilder\\Jaxon\\": "src/"
                 }
@@ -2628,7 +2748,7 @@
                 "issues": "https://github.com/lagdo/jaxon-ui-builder/issues",
                 "source": "https://github.com/lagdo/jaxon-ui-builder"
             },
-            "time": "2026-10-26T05:07:47+00:00"
+            "time": "2026-10-31T00:42:10+00:00"
         },
         {
             "name": "lagdo/ui-builder",
@@ -2788,16 +2908,16 @@
         },
         {
             "name": "lagdo/ui-builder-bulma",
-            "version": "v0.1.0",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lagdo/ui-builder-bulma.git",
-                "reference": "1682c2170ee407011ca74d30c71c87d9a76f6062"
+                "reference": "857c1c8a9ca723800e9bcc51de39a00aa6d43d43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lagdo/ui-builder-bulma/zipball/1682c2170ee407011ca74d30c71c87d9a76f6062",
-                "reference": "1682c2170ee407011ca74d30c71c87d9a76f6062",
+                "url": "https://api.github.com/repos/lagdo/ui-builder-bulma/zipball/857c1c8a9ca723800e9bcc51de39a00aa6d43d43",
+                "reference": "857c1c8a9ca723800e9bcc51de39a00aa6d43d43",
                 "shasum": ""
             },
             "require": {
@@ -2836,7 +2956,7 @@
                 "issues": "https://github.com/lagdo/ui-builder-bulma/issues",
                 "source": "https://github.com/lagdo/ui-builder-bulma"
             },
-            "time": "2026-10-26T06:07:41+00:00"
+            "time": "2026-10-29T19:42:01+00:00"
         },
         {
             "name": "league/flysystem",
@@ -4160,6 +4280,647 @@
             "time": "2026-09-16T11:39:30+00:00"
         },
         {
+            "name": "ratchet/pawl",
+            "version": "v0.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ratchetphp/Pawl.git",
+                "reference": "2c582373c78271de32cb04c755c4c0db7e09c9c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ratchetphp/Pawl/zipball/2c582373c78271de32cb04c755c4c0db7e09c9c0",
+                "reference": "2c582373c78271de32cb04c755c4c0db7e09c9c0",
+                "shasum": ""
+            },
+            "require": {
+                "evenement/evenement": "^3.0 || ^2.0",
+                "guzzlehttp/psr7": "^2.0",
+                "php": ">=7.4",
+                "ratchet/rfc6455": "^0.3.1 || ^0.4.0",
+                "react/socket": "^1.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3 || ^5.7 || ^4.8"
+            },
+            "suggest": {
+                "reactivex/rxphp": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions_include.php"
+                ],
+                "psr-4": {
+                    "Ratchet\\Client\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Asynchronous WebSocket client",
+            "keywords": [
+                "Ratchet",
+                "async",
+                "client",
+                "websocket",
+                "websocket client"
+            ],
+            "support": {
+                "issues": "https://github.com/ratchetphp/Pawl/issues",
+                "source": "https://github.com/ratchetphp/Pawl/tree/v0.4.3"
+            },
+            "time": "2025-03-19T16:47:38+00:00"
+        },
+        {
+            "name": "ratchet/rfc6455",
+            "version": "v0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ratchetphp/RFC6455.git",
+                "reference": "7c964514e93456a52a99a20fcfa0de242a43ccdb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ratchetphp/RFC6455/zipball/7c964514e93456a52a99a20fcfa0de242a43ccdb",
+                "reference": "7c964514e93456a52a99a20fcfa0de242a43ccdb",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^2 || ^1.7",
+                "php": ">=5.4.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7",
+                "react/socket": "^1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ratchet\\RFC6455\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Boden",
+                    "email": "cboden@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Matt Bonneau",
+                    "role": "Developer"
+                }
+            ],
+            "description": "RFC6455 WebSocket protocol handler",
+            "homepage": "http://socketo.me",
+            "keywords": [
+                "WebSockets",
+                "rfc6455",
+                "websocket"
+            ],
+            "support": {
+                "chat": "https://gitter.im/reactphp/reactphp",
+                "issues": "https://github.com/ratchetphp/RFC6455/issues",
+                "source": "https://github.com/ratchetphp/RFC6455/tree/v0.3.1"
+            },
+            "time": "2021-12-09T23:20:49+00:00"
+        },
+        {
+            "name": "react/cache",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/cache.git",
+                "reference": "d47c472b64aa5608225f47965a484b75c7817d5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/cache/zipball/d47c472b64aa5608225f47965a484b75c7817d5b",
+                "reference": "d47c472b64aa5608225f47965a484b75c7817d5b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "react/promise": "^3.0 || ^2.0 || ^1.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5 || ^5.7 || ^4.8.35"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "React\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering",
+                    "homepage": "https://clue.engineering/"
+                },
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "reactphp@ceesjankiewiet.nl",
+                    "homepage": "https://wyrihaximus.net/"
+                },
+                {
+                    "name": "Jan Sorgalla",
+                    "email": "jsorgalla@gmail.com",
+                    "homepage": "https://sorgalla.com/"
+                },
+                {
+                    "name": "Chris Boden",
+                    "email": "cboden@gmail.com",
+                    "homepage": "https://cboden.dev/"
+                }
+            ],
+            "description": "Async, Promise-based cache interface for ReactPHP",
+            "keywords": [
+                "cache",
+                "caching",
+                "promise",
+                "reactphp"
+            ],
+            "support": {
+                "issues": "https://github.com/reactphp/cache/issues",
+                "source": "https://github.com/reactphp/cache/tree/v1.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/reactphp",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2022-11-30T15:59:55+00:00"
+        },
+        {
+            "name": "react/dns",
+            "version": "v1.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/dns.git",
+                "reference": "7562c05391f42701c1fccf189c8225fece1cd7c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/dns/zipball/7562c05391f42701c1fccf189c8225fece1cd7c3",
+                "reference": "7562c05391f42701c1fccf189c8225fece1cd7c3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "react/cache": "^1.0 || ^0.6 || ^0.5",
+                "react/event-loop": "^1.2",
+                "react/promise": "^3.2 || ^2.7 || ^1.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.6 || ^5.7 || ^4.8.36",
+                "react/async": "^4.3 || ^3 || ^2",
+                "react/promise-timer": "^1.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "React\\Dns\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering",
+                    "homepage": "https://clue.engineering/"
+                },
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "reactphp@ceesjankiewiet.nl",
+                    "homepage": "https://wyrihaximus.net/"
+                },
+                {
+                    "name": "Jan Sorgalla",
+                    "email": "jsorgalla@gmail.com",
+                    "homepage": "https://sorgalla.com/"
+                },
+                {
+                    "name": "Chris Boden",
+                    "email": "cboden@gmail.com",
+                    "homepage": "https://cboden.dev/"
+                }
+            ],
+            "description": "Async DNS resolver for ReactPHP",
+            "keywords": [
+                "async",
+                "dns",
+                "dns-resolver",
+                "reactphp"
+            ],
+            "support": {
+                "issues": "https://github.com/reactphp/dns/issues",
+                "source": "https://github.com/reactphp/dns/tree/v1.14.0"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/reactphp",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2025-11-18T19:34:28+00:00"
+        },
+        {
+            "name": "react/event-loop",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/event-loop.git",
+                "reference": "ba276bda6083df7e0050fd9b33f66ad7a4ac747a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/event-loop/zipball/ba276bda6083df7e0050fd9b33f66ad7a4ac747a",
+                "reference": "ba276bda6083df7e0050fd9b33f66ad7a4ac747a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.6 || ^5.7 || ^4.8.36"
+            },
+            "suggest": {
+                "ext-pcntl": "For signal handling support when using the StreamSelectLoop"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "React\\EventLoop\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering",
+                    "homepage": "https://clue.engineering/"
+                },
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "reactphp@ceesjankiewiet.nl",
+                    "homepage": "https://wyrihaximus.net/"
+                },
+                {
+                    "name": "Jan Sorgalla",
+                    "email": "jsorgalla@gmail.com",
+                    "homepage": "https://sorgalla.com/"
+                },
+                {
+                    "name": "Chris Boden",
+                    "email": "cboden@gmail.com",
+                    "homepage": "https://cboden.dev/"
+                }
+            ],
+            "description": "ReactPHP's core reactor event loop that libraries can use for evented I/O.",
+            "keywords": [
+                "asynchronous",
+                "event-loop"
+            ],
+            "support": {
+                "issues": "https://github.com/reactphp/event-loop/issues",
+                "source": "https://github.com/reactphp/event-loop/tree/v1.6.0"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/reactphp",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2025-11-17T20:46:25+00:00"
+        },
+        {
+            "name": "react/promise",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/promise.git",
+                "reference": "23444f53a813a3296c1368bb104793ce8d88f04a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/23444f53a813a3296c1368bb104793ce8d88f04a",
+                "reference": "23444f53a813a3296c1368bb104793ce8d88f04a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "1.12.28 || 1.4.10",
+                "phpunit/phpunit": "^9.6 || ^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions_include.php"
+                ],
+                "psr-4": {
+                    "React\\Promise\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Sorgalla",
+                    "email": "jsorgalla@gmail.com",
+                    "homepage": "https://sorgalla.com/"
+                },
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering",
+                    "homepage": "https://clue.engineering/"
+                },
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "reactphp@ceesjankiewiet.nl",
+                    "homepage": "https://wyrihaximus.net/"
+                },
+                {
+                    "name": "Chris Boden",
+                    "email": "cboden@gmail.com",
+                    "homepage": "https://cboden.dev/"
+                }
+            ],
+            "description": "A lightweight implementation of CommonJS Promises/A for PHP",
+            "keywords": [
+                "promise",
+                "promises"
+            ],
+            "support": {
+                "issues": "https://github.com/reactphp/promise/issues",
+                "source": "https://github.com/reactphp/promise/tree/v3.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/reactphp",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2025-08-19T18:57:03+00:00"
+        },
+        {
+            "name": "react/promise-timer",
+            "version": "v1.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/promise-timer.git",
+                "reference": "4f70306ed66b8b44768941ca7f142092600fafc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/promise-timer/zipball/4f70306ed66b8b44768941ca7f142092600fafc1",
+                "reference": "4f70306ed66b8b44768941ca7f142092600fafc1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "react/event-loop": "^1.2",
+                "react/promise": "^3.2 || ^2.7.0 || ^1.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.6 || ^5.7 || ^4.8.36"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions_include.php"
+                ],
+                "psr-4": {
+                    "React\\Promise\\Timer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering",
+                    "homepage": "https://clue.engineering/"
+                },
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "reactphp@ceesjankiewiet.nl",
+                    "homepage": "https://wyrihaximus.net/"
+                },
+                {
+                    "name": "Jan Sorgalla",
+                    "email": "jsorgalla@gmail.com",
+                    "homepage": "https://sorgalla.com/"
+                },
+                {
+                    "name": "Chris Boden",
+                    "email": "cboden@gmail.com",
+                    "homepage": "https://cboden.dev/"
+                }
+            ],
+            "description": "A trivial implementation of timeouts for Promises, built on top of ReactPHP.",
+            "homepage": "https://github.com/reactphp/promise-timer",
+            "keywords": [
+                "async",
+                "event-loop",
+                "promise",
+                "reactphp",
+                "timeout",
+                "timer"
+            ],
+            "support": {
+                "issues": "https://github.com/reactphp/promise-timer/issues",
+                "source": "https://github.com/reactphp/promise-timer/tree/v1.11.0"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/reactphp",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2024-06-04T14:27:45+00:00"
+        },
+        {
+            "name": "react/socket",
+            "version": "v1.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/socket.git",
+                "reference": "ef5b17b81f6f60504c539313f94f2d826c5faa08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/socket/zipball/ef5b17b81f6f60504c539313f94f2d826c5faa08",
+                "reference": "ef5b17b81f6f60504c539313f94f2d826c5faa08",
+                "shasum": ""
+            },
+            "require": {
+                "evenement/evenement": "^3.0 || ^2.0 || ^1.0",
+                "php": ">=5.3.0",
+                "react/dns": "^1.13",
+                "react/event-loop": "^1.2",
+                "react/promise": "^3.2 || ^2.6 || ^1.2.1",
+                "react/stream": "^1.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.6 || ^5.7 || ^4.8.36",
+                "react/async": "^4.3 || ^3.3 || ^2",
+                "react/promise-stream": "^1.4",
+                "react/promise-timer": "^1.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "React\\Socket\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering",
+                    "homepage": "https://clue.engineering/"
+                },
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "reactphp@ceesjankiewiet.nl",
+                    "homepage": "https://wyrihaximus.net/"
+                },
+                {
+                    "name": "Jan Sorgalla",
+                    "email": "jsorgalla@gmail.com",
+                    "homepage": "https://sorgalla.com/"
+                },
+                {
+                    "name": "Chris Boden",
+                    "email": "cboden@gmail.com",
+                    "homepage": "https://cboden.dev/"
+                }
+            ],
+            "description": "Async, streaming plaintext TCP/IP and secure TLS socket server and client connections for ReactPHP",
+            "keywords": [
+                "Connection",
+                "Socket",
+                "async",
+                "reactphp",
+                "stream"
+            ],
+            "support": {
+                "issues": "https://github.com/reactphp/socket/issues",
+                "source": "https://github.com/reactphp/socket/tree/v1.17.0"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/reactphp",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2025-11-19T20:47:34+00:00"
+        },
+        {
+            "name": "react/stream",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/stream.git",
+                "reference": "1e5b0acb8fe55143b5b426817155190eb6f5b18d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/stream/zipball/1e5b0acb8fe55143b5b426817155190eb6f5b18d",
+                "reference": "1e5b0acb8fe55143b5b426817155190eb6f5b18d",
+                "shasum": ""
+            },
+            "require": {
+                "evenement/evenement": "^3.0 || ^2.0 || ^1.0",
+                "php": ">=5.3.8",
+                "react/event-loop": "^1.2"
+            },
+            "require-dev": {
+                "clue/stream-filter": "~1.2",
+                "phpunit/phpunit": "^9.6 || ^5.7 || ^4.8.36"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "React\\Stream\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering",
+                    "homepage": "https://clue.engineering/"
+                },
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "reactphp@ceesjankiewiet.nl",
+                    "homepage": "https://wyrihaximus.net/"
+                },
+                {
+                    "name": "Jan Sorgalla",
+                    "email": "jsorgalla@gmail.com",
+                    "homepage": "https://sorgalla.com/"
+                },
+                {
+                    "name": "Chris Boden",
+                    "email": "cboden@gmail.com",
+                    "homepage": "https://cboden.dev/"
+                }
+            ],
+            "description": "Event-driven readable and writable streams for non-blocking I/O in ReactPHP",
+            "keywords": [
+                "event-driven",
+                "io",
+                "non-blocking",
+                "pipe",
+                "reactphp",
+                "readable",
+                "stream",
+                "writable"
+            ],
+            "support": {
+                "issues": "https://github.com/reactphp/stream/issues",
+                "source": "https://github.com/reactphp/stream/tree/v1.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/reactphp",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2024-06-11T12:45:25+00:00"
+        },
+        {
             "name": "symfony/deprecation-contracts",
             "version": "v3.7.1",
             "source": {
@@ -4385,16 +5146,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.43.0",
+            "version": "v1.43.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "4d5d331bf731e0aedbc6b2f5e61135b7b7996a72"
+                "reference": "122889ed24dc000165bcbfd77ec412f15cbdfc6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/4d5d331bf731e0aedbc6b2f5e61135b7b7996a72",
-                "reference": "4d5d331bf731e0aedbc6b2f5e61135b7b7996a72",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/122889ed24dc000165bcbfd77ec412f15cbdfc6a",
+                "reference": "122889ed24dc000165bcbfd77ec412f15cbdfc6a",
                 "shasum": ""
             },
             "require": {
@@ -4446,7 +5207,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.43.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.43.3"
             },
             "funding": [
                 {
@@ -4466,7 +5227,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-24T15:19:04+00:00"
+            "time": "2026-10-28T09:35:49+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
@@ -5028,16 +5789,16 @@
         },
         {
             "name": "composer/semver",
-            "version": "3.5.2",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "9dfce66f1e97360ea5e6d3e38ab14277e4cc591e"
+                "reference": "d92543b7ede9c4ec6b59853cefb061e39866d2cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/9dfce66f1e97360ea5e6d3e38ab14277e4cc591e",
-                "reference": "9dfce66f1e97360ea5e6d3e38ab14277e4cc591e",
+                "url": "https://api.github.com/repos/composer/semver/zipball/d92543b7ede9c4ec6b59853cefb061e39866d2cf",
+                "reference": "d92543b7ede9c4ec6b59853cefb061e39866d2cf",
                 "shasum": ""
             },
             "require": {
@@ -5089,7 +5850,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/semver/issues",
-                "source": "https://github.com/composer/semver/tree/3.5.2"
+                "source": "https://github.com/composer/semver/tree/3.6.0"
             },
             "funding": [
                 {
@@ -5101,7 +5862,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-22T15:37:26+00:00"
+            "time": "2026-10-29T09:13:34+00:00"
         },
         {
             "name": "composer/xdebug-handler",
@@ -7724,16 +8485,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.4.54",
+            "version": "v5.4.55",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "68a4a45af9fcb8c9bee567a88ae29e721fb22986"
+                "reference": "0b8208c757a9f97e372c6297a1863ffe19686dc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/68a4a45af9fcb8c9bee567a88ae29e721fb22986",
-                "reference": "68a4a45af9fcb8c9bee567a88ae29e721fb22986",
+                "url": "https://api.github.com/repos/symfony/console/zipball/0b8208c757a9f97e372c6297a1863ffe19686dc0",
+                "reference": "0b8208c757a9f97e372c6297a1863ffe19686dc0",
                 "shasum": ""
             },
             "require": {
@@ -7803,7 +8564,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v5.4.54"
+                "source": "https://github.com/symfony/console/tree/v5.4.55"
             },
             "funding": [
                 {
@@ -7823,7 +8584,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-07T15:50:15+00:00"
+            "time": "2026-10-28T09:02:56+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -8081,16 +8842,16 @@
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.43.0",
+            "version": "v1.43.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-                "reference": "5cac8f4db97208823aa353f59a01faad2da52c75"
+                "reference": "5a8f33c87aeecffce24e721b5064fab05f4becf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/5cac8f4db97208823aa353f59a01faad2da52c75",
-                "reference": "5cac8f4db97208823aa353f59a01faad2da52c75",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/5a8f33c87aeecffce24e721b5064fab05f4becf8",
+                "reference": "5a8f33c87aeecffce24e721b5064fab05f4becf8",
                 "shasum": ""
             },
             "require": {
@@ -8139,7 +8900,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.43.0"
+                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.43.3"
             },
             "funding": [
                 {
@@ -8159,7 +8920,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:46:47+00:00"
+            "time": "2026-10-15T09:18:53+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
@@ -8408,16 +9169,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v8.1.9",
+            "version": "v8.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189"
+                "reference": "08aa69fa0998bb65a089f9e148a2c0f8b391398e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
-                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
+                "url": "https://api.github.com/repos/symfony/process/zipball/08aa69fa0998bb65a089f9e148a2c0f8b391398e",
+                "reference": "08aa69fa0998bb65a089f9e148a2c0f8b391398e",
                 "shasum": ""
             },
             "require": {
@@ -8449,7 +9210,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v8.1.9"
+                "source": "https://github.com/symfony/process/tree/v8.1.10"
             },
             "funding": [
                 {
@@ -8469,7 +9230,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-08T16:57:43+00:00"
+            "time": "2026-10-25T14:40:25+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -8622,16 +9383,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v6.4.48",
+            "version": "v6.4.49",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "9459a27a00b1f0fec1954e9eb362d00aedcfe048"
+                "reference": "6910c3715e0bd5cb2d3416348c0051bf54d43201"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/9459a27a00b1f0fec1954e9eb362d00aedcfe048",
-                "reference": "9459a27a00b1f0fec1954e9eb362d00aedcfe048",
+                "url": "https://api.github.com/repos/symfony/string/zipball/6910c3715e0bd5cb2d3416348c0051bf54d43201",
+                "reference": "6910c3715e0bd5cb2d3416348c0051bf54d43201",
                 "shasum": ""
             },
             "require": {
@@ -8687,7 +9448,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v6.4.48"
+                "source": "https://github.com/symfony/string/tree/v6.4.49"
             },
             "funding": [
                 {
@@ -8707,20 +9468,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-03T14:51:46+00:00"
+            "time": "2026-10-23T15:23:41+00:00"
         },
         {
             "name": "symfony/translation",
-            "version": "v6.4.44",
+            "version": "v6.4.49",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "fa2235501e2cf6b1d38ab42954b248a5e93c8e89"
+                "reference": "81998c85f03941f8efeb6f44549259066361780b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/fa2235501e2cf6b1d38ab42954b248a5e93c8e89",
-                "reference": "fa2235501e2cf6b1d38ab42954b248a5e93c8e89",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/81998c85f03941f8efeb6f44549259066361780b",
+                "reference": "81998c85f03941f8efeb6f44549259066361780b",
                 "shasum": ""
             },
             "require": {
@@ -8786,7 +9547,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v6.4.44"
+                "source": "https://github.com/symfony/translation/tree/v6.4.49"
             },
             "funding": [
                 {
@@ -8806,7 +9567,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-20T19:22:13+00:00"
+            "time": "2026-10-25T08:57:29+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -8892,16 +9653,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v6.4.48",
+            "version": "v6.4.49",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "91288fddb497a598b564343ea663ea272370a7dc"
+                "reference": "bbefb7d9cd1bf804148bd1c306a9acc87f335196"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/91288fddb497a598b564343ea663ea272370a7dc",
-                "reference": "91288fddb497a598b564343ea663ea272370a7dc",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/bbefb7d9cd1bf804148bd1c306a9acc87f335196",
+                "reference": "bbefb7d9cd1bf804148bd1c306a9acc87f335196",
                 "shasum": ""
             },
             "require": {
@@ -8944,7 +9705,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v6.4.48"
+                "source": "https://github.com/symfony/yaml/tree/v6.4.49"
             },
             "funding": [
                 {
@@ -8964,7 +9725,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-12T09:18:28+00:00"
+            "time": "2026-10-18T08:05:12+00:00"
         },
         {
             "name": "theseer/tokenizer",
