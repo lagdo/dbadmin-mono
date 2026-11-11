@@ -150,6 +150,18 @@ jaxon.dbadmin = {};
     };
 
     /**
+     * @param {string} importId
+     * @param {int} failures
+     * @param {int} delay
+     *
+     * @returns {void}
+     */
+    self.scheduleImportStatusUpdate = (importId, failures, delay) => {
+        const importClass = Lagdo.DbAdmin.App.Ajax.Admin.Db.Command.Import;
+        setTimeout(() => importClass.updateStatus(importId, failures), delay);
+    };
+
+    /**
      * Convert an HTML text to a DOM node. Only the first child is returned.
      *
      * @param {string} htmlText

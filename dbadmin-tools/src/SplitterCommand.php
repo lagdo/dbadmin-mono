@@ -58,7 +58,7 @@ class SplitterCommand
         $stream->lineNumber++;
         // Remove the newline char.
         $queryLine = rtrim($queryLine);
-        $this->io->green(">>> Line number {$stream->lineNumber}: $queryLine");
+        $this->io->green("-- >>> Line number {$stream->lineNumber}: $queryLine");
         return true;
     }
 
@@ -73,9 +73,9 @@ class SplitterCommand
 
         $queries = $this->splitter->splitQueries($stream);
         foreach ($queries as $query) {
-            $this->io->blue("<<< Query number {$stream->queryCount}:");
+            $this->io->blue("-- <<< Query number {$stream->queryCount}:");
             $this->io->blue($query);
-            $this->io->blue('<<<');
+            $this->io->blue('-- <<<');
         }
     }
 }
