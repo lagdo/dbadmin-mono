@@ -48,6 +48,7 @@
         "lagdo/ui-builder-bootstrap5": "0.15.*",
         "lagdo/ui-builder-bootstrap4": "0.15.*",
         "lagdo/ui-builder-bulma": "0.1.*",
+        "lagdo/ui-builder-tailwind": "dev-main",
         "league/climate": "^3.11",
         "nategood/commando": "^1.0",
         "vlucas/phpdotenv": "^5.4.1"
