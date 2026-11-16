@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "611894625ad87b8a6a0a4a89f20f1279",
+    "content-hash": "1b97d7367d6240806f605004d9b81070",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -1403,16 +1403,16 @@
         },
         {
             "name": "jaxon-php/jaxon-core",
-            "version": "5.8.7",
+            "version": "v5.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaxon-php/jaxon-core.git",
-                "reference": "fe4d156f78390dd9c6e79dc63cb1c8ba76e54e16"
+                "reference": "b8957e5fdb5141dad82bc3642e8612f1998cb16f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaxon-php/jaxon-core/zipball/fe4d156f78390dd9c6e79dc63cb1c8ba76e54e16",
-                "reference": "fe4d156f78390dd9c6e79dc63cb1c8ba76e54e16",
+                "url": "https://api.github.com/repos/jaxon-php/jaxon-core/zipball/b8957e5fdb5141dad82bc3642e8612f1998cb16f",
+                "reference": "b8957e5fdb5141dad82bc3642e8612f1998cb16f",
                 "shasum": ""
             },
             "require": {
@@ -1483,7 +1483,7 @@
                 "issues": "https://github.com/jaxon-php/jaxon-core/issues",
                 "source": "https://github.com/jaxon-php/jaxon-core"
             },
-            "time": "2026-11-05T22:19:36+00:00"
+            "time": "2026-11-16T21:37:03+00:00"
         },
         {
             "name": "jaxon-php/jaxon-dialogs",
@@ -1606,16 +1606,16 @@
         },
         {
             "name": "jaxon-php/jaxon-upload",
-            "version": "v2.2.0",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaxon-php/jaxon-upload.git",
-                "reference": "5dd6dee4966688973bd3079a8d96b3c88da9e650"
+                "reference": "42b4fd9df4d9c9454aceacb100260ff4c2a5a5e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaxon-php/jaxon-upload/zipball/5dd6dee4966688973bd3079a8d96b3c88da9e650",
-                "reference": "5dd6dee4966688973bd3079a8d96b3c88da9e650",
+                "url": "https://api.github.com/repos/jaxon-php/jaxon-upload/zipball/42b4fd9df4d9c9454aceacb100260ff4c2a5a5e0",
+                "reference": "42b4fd9df4d9c9454aceacb100260ff4c2a5a5e0",
                 "shasum": ""
             },
             "require": {
@@ -1660,7 +1660,7 @@
                 "issues": "https://github.com/jaxon-php/jaxon-upload/issues",
                 "source": "https://github.com/jaxon-php/jaxon-upload"
             },
-            "time": "2026-11-05T21:52:19+00:00"
+            "time": "2026-11-16T22:18:13+00:00"
         },
         {
             "name": "jaxon-php/jaxon-utils",
