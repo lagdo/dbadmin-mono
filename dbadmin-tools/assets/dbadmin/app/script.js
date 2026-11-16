@@ -150,18 +150,6 @@ jaxon.dbadmin = {};
     };
 
     /**
-     * @param {string} importId
-     * @param {int} failures
-     * @param {int} delay
-     *
-     * @returns {void}
-     */
-    self.scheduleImportStatusUpdate = (importId, failures, delay) => {
-        const importClass = Lagdo.DbAdmin.App.Ajax.Admin.Db.Command.Import;
-        setTimeout(() => importClass.updateStatus(importId, failures), delay);
-    };
-
-    /**
      * Convert an HTML text to a DOM node. Only the first child is returned.
      *
      * @param {string} htmlText
@@ -320,23 +308,38 @@ jaxon.dom.ready(() => {
         cursor: jaxon.config.cursor.update,
     };
 
+    const cursorUpdateDisabled = ({ type, name, method }) => type === 'class' &&
+        name === 'Lagdo.DbAdmin.App.Ajax.Admin.Db.Command.Import' && method === 'updateStatus';
+
     // Replace the default Jaxon defined cursor with our custom spinner.
     jaxon.config.cursor.update = {
-        onRequest: function() {
-            if(spin.count++ === 0)
+        onRequest: function ({ func = {} }) {
+            if (cursorUpdateDisabled(func)) {
+                return;
+            }
+
+            if (spin.count++ === 0)
             {
                 spin.spinner.spin(document.body);
                 spin.cursor.onRequest();
             }
         },
-        onComplete: function() {
+        onComplete: function({ func = {} }) {
+            if (cursorUpdateDisabled(func)) {
+                return;
+            }
+
             if(--spin.count === 0)
             {
                 spin.spinner.stop();
                 spin.cursor.onComplete();
             }
         },
-        onFailure: function() {
+        onFailure: function({ func = {} }) {
+            if (cursorUpdateDisabled(func)) {
+                return;
+            }
+
             if(--spin.count === 0)
             {
                 spin.spinner.stop();
