@@ -10,7 +10,7 @@ ENV PHP_GID=${PHP_GID}
 
 RUN set -xe && \
   apk add --no-cache bash pcre curl wget zip vim git sqlite && \
-  install-php-extensions sqlite3 mysqlnd mysqli pgsql \
+  install-php-extensions bz2 sqlite3 mysqlnd mysqli pgsql \
     pdo pdo_sqlite pdo_mysql pdo_pgsql xdebug
 
 # Configure Free Unit
