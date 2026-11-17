@@ -1,5 +1,4 @@
 ssl/*
-exports/*
 sqlite/3/*db
 sqlite/3/*sqlite
 scripts/seeds/pgsql/sql/
@@ -9,3 +8,7 @@ tools/aws/*
 tools/gcp/*
 compose-apps/data/
 compose-tutorial/backpack/app/database.sqlite
+
+compose-dbadmin/config/
+compose-apps/config/
+compose-apps/users/

@@ -17,7 +17,7 @@
     },
     "require": {
         "php": ">=8.1.0",
-        "lagdo/jaxon-dbadmin": "0.31.*"
+        "lagdo/jaxon-dbadmin": "0.38.*"
     },
     "require-dev": {
         "league/climate": "^3.11",

@@ -15,7 +15,7 @@ ENV PHP_FRW=${PHP_FRW}
 
 RUN set -xe && \
   apk add --no-cache openssl ca-certificates && \
-  install-php-extensions pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql
+  install-php-extensions bz2 pdo pdo_sqlite sqlite3 pdo_mysql mysqlnd mysqli pdo_pgsql pgsql
 
 # Install the root CA certificate
 COPY --from=secrets-ssl dbadmin_root_ca.pem /usr/local/share/ca-certificates/dbadmin_root_ca.crt

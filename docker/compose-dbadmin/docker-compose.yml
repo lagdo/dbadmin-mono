@@ -13,7 +13,7 @@ services:
     user: "${PHP_UID:-1000}:${PHP_GID:-1000}"
     volumes:
       - ../..:/var/www
-      - ../../dbadmin-demo/app/config/dbadmin-dev:/var/www/dbadmin-demo/app/config/dbadmin:ro
+      - ./config:/var/www/dbadmin-demo/app/config:ro
       - ../sqlite:/var/lib/sqlite
     ports:
       - 7090:8080
