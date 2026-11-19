@@ -12,8 +12,16 @@ services:
       additional_contexts:
         secrets-ssl: ../ssl
     volumes:
-      - ../../../dbadmin-app-laravel/.env.dbadmin:/var/www/.env.dbadmin:ro
-      - ../../../dbadmin-app-laravel/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ../shared/config/.env.dbadmin:/var/www/.env.dbadmin
+      - ../shared/config/laravel/.env:/var/www/.env
+      - ../shared/config/app/dbadmin:/var/www/config/dbadmin
+      - ../shared/config/laravel/jaxon.php:/var/www/config/jaxon.php
+      - ../shared/config/laravel/services/user.php:/var/www/config/dbadmin/services/user.php
+      - ../shared/config/laravel/services/storage.php:/var/www/config/dbadmin/services/storage.php
+      - ../shared/logs/laravel:/var/www/storage/logs
+      - ../shared/users:/var/www/users
+      - ../scripts/seeds:/var/www/seeds
+      - ../shared/data:/var/www/storage/data
       - ../sqlite:/var/lib/sqlite
       - ../tools/aws:/home/dbadmin/.aws:ro
       - ../tools/gcp:/home/dbadmin/.gcp:ro
@@ -22,9 +30,6 @@ services:
     networks:
       - dbserver-dev-net
       - secrets-ssl-net
-    environment:
-      - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
   dbadmin-build-symfony:
     container_name: dbadmin-build-symfony
@@ -38,8 +43,16 @@ services:
       additional_contexts:
         secrets-ssl: ../ssl
     volumes:
-      - ../../../dbadmin-app-symfony/.env.dbadmin:/var/www/.env.dbadmin:ro
-      - ../../../dbadmin-app-symfony/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ../shared/config/.env.dbadmin:/var/www/.env.dbadmin
+      - ../shared/config/symfony/.env:/var/www/.env
+      - ../shared/config/app/dbadmin:/var/www/config/dbadmin
+      - ../shared/config/symfony/jaxon.yaml:/var/www/config/packages/jaxon.yaml
+      - ../shared/config/symfony/services/user.php:/var/www/config/dbadmin/services/user.php
+      - ../shared/config/symfony/services/storage.php:/var/www/config/dbadmin/services/storage.php
+      - ../shared/logs/symfony:/var/www/var/log
+      - ../shared/users:/var/www/users
+      - ../scripts/seeds:/var/www/seeds
+      - ../shared/data:/var/www/var/data
       - ../sqlite:/var/lib/sqlite
       - ../tools/aws:/home/dbadmin/.aws:ro
       - ../tools/gcp:/home/dbadmin/.gcp:ro
@@ -48,9 +61,6 @@ services:
     networks:
       - dbserver-dev-net
       - secrets-ssl-net
-    environment:
-      - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
   dbadmin-build-slim:
     container_name: dbadmin-build-slim
@@ -64,8 +74,16 @@ services:
       additional_contexts:
         secrets-ssl: ../ssl
     volumes:
-      - ../../../dbadmin-app-slim/.env.dbadmin:/var/www/.env.dbadmin:ro
-      - ../../../dbadmin-app-slim/docker/dbadmin-dev:/var/www/config/dbadmin:ro
+      - ../shared/config/.env.dbadmin:/var/www/.env.dbadmin:ro
+      - ../shared/config/slim/.env:/var/www/.env:ro
+      - ../shared/config/app/dbadmin:/var/www/config/dbadmin:ro
+      - ../shared/config/slim/jaxon.php:/var/www/config/jaxon.php:ro
+      - ../shared/config/slim/services/user.php:/var/www/config/dbadmin/services/user.php:ro
+      - ../shared/config/slim/services/storage.php:/var/www/config/dbadmin/services/storage.php:ro
+      - ../shared/logs/slim:/var/www/storage/logs
+      - ../shared/users:/var/www/users
+      - ../scripts/seeds:/var/www/seeds
+      - ../shared/data:/var/www/storage/data
       - ../sqlite:/var/lib/sqlite
       - ../tools/aws:/home/dbadmin/.aws:ro
       - ../tools/gcp:/home/dbadmin/.gcp:ro
@@ -74,9 +92,6 @@ services:
     networks:
       - dbserver-dev-net
       - secrets-ssl-net
-    environment:
-      - AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
 networks:
   dbserver-dev-net:

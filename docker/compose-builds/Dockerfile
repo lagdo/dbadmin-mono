@@ -9,9 +9,6 @@ USER root
 RUN set -xe && apk add --no-cache openssl ca-certificates
 
 COPY --from=secrets-ssl dbadmin_root_ca.pem /usr/local/share/ca-certificates/dbadmin_root_ca.crt
-RUN update-ca-certificates
+RUN update-ca-certificates && install-php-extensions
 
 USER ${PHP_USER}
-
-# Create the secret keys and run the migrations.
-RUN cd /var/www && composer run post-create-project-cmd

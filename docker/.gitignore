@@ -1,4 +1,5 @@
 ssl/*
+shared/
 sqlite/3/*db
 sqlite/3/*sqlite
 scripts/seeds/pgsql/sql/
@@ -6,9 +7,5 @@ scripts/seeds/mysql/sql/
 scripts/secrets/infisical/.infisical.json
 tools/aws/*
 tools/gcp/*
-compose-apps/data/
-compose-tutorial/backpack/app/database.sqlite
 
-compose-dbadmin/config/
-compose-apps/config/
-compose-apps/users/
+compose-tutorial/backpack/app/database.sqlite

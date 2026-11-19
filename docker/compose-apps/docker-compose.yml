@@ -16,13 +16,13 @@ services:
     user: "${PHP_UID:-1000}:${PHP_GID:-1000}"
     volumes:
       - ../../../dbadmin-app-laravel:/var/www
-      - ../compose-dbadmin/config/dbadmin:/var/www/config/dbadmin:ro
-      - ./config/laravel/jaxon.php:/var/www/config/jaxon.php:ro
-      - ./config/laravel/services/user.php:/var/www/config/dbadmin/services/user.php:ro
-      - ./config/laravel/services/storage.php:/var/www/config/dbadmin/services/storage.php:ro
-      - ./users:/var/www/users
+      - ../shared/config/app/dbadmin:/var/www/config/dbadmin:ro
+      - ../shared/config/laravel/jaxon.php:/var/www/config/jaxon.php:ro
+      - ../shared/config/laravel/services/user.php:/var/www/config/dbadmin/services/user.php:ro
+      - ../shared/config/laravel/services/storage.php:/var/www/config/dbadmin/services/storage.php:ro
+      - ../shared/users:/var/www/users
       - ../scripts/seeds:/var/www/seeds
-      - ./data:/var/www/storage/data
+      - ../shared/data:/var/www/storage/data
       - ../sqlite:/var/lib/sqlite
       - ../tools/aws:/home/dbadmin/.aws:ro
       - ../tools/gcp:/home/dbadmin/.gcp:ro
@@ -54,13 +54,13 @@ services:
     user: "${PHP_UID:-1000}:${PHP_GID:-1000}"
     volumes:
       - ../../../dbadmin-app-symfony:/var/www
-      - ../compose-dbadmin/config/dbadmin:/var/www/config/dbadmin:ro
-      - ./config/symfony/jaxon.yaml:/var/www/config/packages/jaxon.yaml:ro
-      - ./config/symfony/services/user.php:/var/www/config/dbadmin/services/user.php:ro
-      - ./config/symfony/services/storage.php:/var/www/config/dbadmin/services/storage.php:ro
-      - ./users:/var/www/users
+      - ../shared/config/app/dbadmin:/var/www/config/dbadmin:ro
+      - ../shared/config/symfony/jaxon.yaml:/var/www/config/packages/jaxon.yaml:ro
+      - ../shared/config/symfony/services/user.php:/var/www/config/dbadmin/services/user.php:ro
+      - ../shared/config/symfony/services/storage.php:/var/www/config/dbadmin/services/storage.php:ro
+      - ../shared/users:/var/www/users
       - ../scripts/seeds:/var/www/seeds
-      - ./data:/var/www/var/data
+      - ../shared/data:/var/www/var/data
       - ../sqlite:/var/lib/sqlite
       - ../tools/aws:/home/dbadmin/.aws:ro
       - ../tools/gcp:/home/dbadmin/.gcp:ro
@@ -92,13 +92,13 @@ services:
     user: "${PHP_UID:-1000}:${PHP_GID:-1000}"
     volumes:
       - ../../../dbadmin-app-slim:/var/www
-      - ../compose-dbadmin/config/dbadmin:/var/www/config/dbadmin:ro
-      - ./config/slim/jaxon.php:/var/www/config/jaxon.php:ro
-      - ./config/slim/services/user.php:/var/www/config/dbadmin/services/user.php:ro
-      - ./config/slim/services/storage.php:/var/www/config/dbadmin/services/storage.php:ro
-      - ./users:/var/www/users
+      - ../shared/config/app/dbadmin:/var/www/config/dbadmin:ro
+      - ../shared/config/slim/jaxon.php:/var/www/config/jaxon.php:ro
+      - ../shared/config/slim/services/user.php:/var/www/config/dbadmin/services/user.php:ro
+      - ../shared/config/slim/services/storage.php:/var/www/config/dbadmin/services/storage.php:ro
+      - ../shared/users:/var/www/users
       - ../scripts/seeds:/var/www/seeds
-      - ./data:/var/www/storage/data
+      - ../shared/data:/var/www/storage/data
       - ../sqlite:/var/lib/sqlite
       - ../tools/aws:/home/dbadmin/.aws:ro
       - ../tools/gcp:/home/dbadmin/.gcp:ro
